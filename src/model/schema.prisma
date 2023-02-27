@@ -1,0 +1,188 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schem
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  idProject    Int     @default(autoincrement()) @id
+  title String  @unique
+  description  String?
+  stt String?
+  submission_date DateTime?
+  period DateTime?
+  specification String?
+  area String?
+  role String?
+  auth Boolean?
+  creator String?
+  submission Submission[]
+  project_submission Project_Submission[]
+  project_skill Project_skill[]
+  project_profile Project_Profile[]
+  project_position Project_Position[]
+  project_technology Project_Technology[]
+  project_team Project_Team[]
+}
+
+model Submission {
+  id_submission        Int      @default(autoincrement()) @id
+  name String?
+  id_project_rel    Project?    @relation(fields: [id_project], references: [idProject])
+  id_project Int?
+  reason String?
+  email_rel Profile? @relation(fields: [email], references: [email])
+  email String?
+  submission_skill Submission_skill[]
+  project_submission Project_Submission[]
+  position_submission Position_Submission[] 
+  technology_submission Technology_Submission[]
+}
+
+model Profile {
+  id_profile Int @default(autoincrement()) @id
+  name String?
+  email String @unique 
+  id_skill Int?
+  submission Submission[]
+  skill_profile Skill_Profile[]
+  profile_manager Profile_Manager[]
+  project_profile Project_Profile[]
+  technology_profile Technology_Profile[]
+  project_team Project_Team[]
+
+}
+
+model Skill_Profile {
+ id Int @default(autoincrement())@id
+ id_skill_rel Skill? @relation(fields: [id_skill], references: [id_skill])
+ id_skill Int?
+ email_rel Profile? @relation(fields: [email], references: [email])
+ email String?
+}
+
+model Skill {
+  id_skill Int @default(autoincrement()) @id
+  skill String? 
+  Skill_Profile Skill_Profile[]
+  Submission_skill Submission_skill[]
+  project_skill Project_skill[]
+}
+
+model Submission_skill {
+ id Int @default(autoincrement())@id
+ id_skill_rel Skill? @relation(fields: [id_skill], references: [id_skill])
+ id_skill Int?
+ id_submission_rel Submission? @relation(fields: [id_submission], references: [id_submission])
+ id_submission Int? 
+}
+
+model Project_skill {
+  id Int @default(autoincrement())@id
+  id_project_rel Project? @relation(fields: [id_project], references: [idProject])
+  id_project Int?
+  id_skill_rel Skill? @relation(fields: [id_skill], references: [id_skill])
+  id_skill Int?
+}
+
+model Project_Profile {
+  id Int @default(autoincrement())@id
+  id_project_rel Project? @relation(fields: [id_project], references: [idProject])
+  id_project Int?
+  id_profile_rel Profile? @relation(fields:[id_profile], references: [id_profile])
+  id_profile Int?
+}
+
+model Profile_Manager {
+  id Int @default(autoincrement())@id
+  manager_email_rel Manager? @relation(fields: [manager_email], references: [email])
+  manager_email String?
+  employee_email_rel Profile? @relation(fields: [email], references: [email])
+  email String?
+}
+
+model Manager {
+  id Int @default(autoincrement())@id
+  email String @unique
+  name String
+  area String
+  manager_email Profile_Manager[]
+}
+
+model Project_Submission {
+  id Int @default(autoincrement())@id
+  id_project_rel Project? @relation(fields: [id_project], references: [idProject])
+  id_project Int?
+  id_submission_rel Submission? @relation(fields: [id_submission], references: [id_submission])
+  id_submission Int?
+}
+
+model Position_Submission {
+  id Int @default(autoincrement())@id
+  id_position_rel Position? @relation(fields: [id_position], references: [id_position])
+  id_position Int?
+  id_submission_rel Submission? @relation(fields: [id_submission], references: [id_submission])
+  id_submission Int?
+}
+
+model Project_Position {
+  id Int @default(autoincrement())@id
+  id_project_rel Project? @relation(fields: [id_project], references: [idProject])
+  id_project Int?
+  id_position_rel Position? @relation(fields:[id_position], references: [id_position])
+  id_position Int?
+}
+
+model Project_Technology{
+  id Int @default(autoincrement())@id
+  id_project_rel Project? @relation(fields: [id_project], references: [idProject])
+  id_project Int?
+  id_technology_rel Technology? @relation(fields:[id_technology], references: [id_technology])
+  id_technology Int?
+}
+
+model Project_Team{
+  id Int @default(autoincrement())@id
+  id_project_rel Project? @relation(fields: [id_project], references: [idProject])
+  id_project Int
+  id_team_rel Profile? @relation(fields:[email], references: [email])
+  email String @unique
+}
+
+
+model Technology_Profile{
+  id Int @default(autoincrement())@id
+  id_technology_rel Technology? @relation(fields: [id_technology], references: [id_technology])
+  id_technology Int
+  id_profile_rel Profile? @relation(fields:[id_profile], references: [id_profile])
+  id_profile Int?
+}
+
+model Technology{
+  id_technology Int @default(autoincrement())@id
+  Technology String?
+  project_technology Project_Technology[]
+  technology_profile Technology_Profile[]
+  technology_submission Technology_Submission[]
+}
+
+model Technology_Submission{
+  id Int @default(autoincrement())@id
+  id_technology_rel Technology? @relation(fields: [id_technology], references: [id_technology])
+  id_technology Int?
+  id_submission_rel Submission? @relation(fields: [id_submission], references: [id_submission])
+  id_submission Int?
+}
+
+model Position{
+  id_position Int @default(autoincrement())@id
+  position String?
+  position_submission Position_Submission[]
+  project_position Project_Position[]
+}
