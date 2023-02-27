@@ -4,6 +4,8 @@ import { UpdateSubmissionDto } from './dto/update-submission.dto';
 
 @Injectable()
 export class SubmissionService {
+  submssions: string[] = [];
+
   create(createSubmissionDto: CreateSubmissionDto) {
     return 'This action adds a new submission';
   }
