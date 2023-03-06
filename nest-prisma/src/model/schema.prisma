@@ -21,6 +21,7 @@ model Project {
   area String?
   role String?
   auth Boolean?
+  creator_rel Profile? @relation(fields: [creator], references: [email])
   creator String?
   submission Submission[]
   project_skill Project_skill[]
@@ -52,6 +53,7 @@ model Profile {
   project_profile Project_Profile[]
   technology_profile Technology_Profile[]
   project_team Project_Team[]
+  project Project[]
 
 }
 
