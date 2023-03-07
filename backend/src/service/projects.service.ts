@@ -30,4 +30,9 @@ export class ProjectsService {
         const project = await this.repository.getProjects({});
         return project;
     }
+
+    async remove(id: number) {
+        return this.prisma.article.delete({ where: { id } });
+      }
+    
 }
