@@ -6,11 +6,11 @@ CREATE TABLE "Project" (
     "stt" TEXT,
     "submission_date" TIMESTAMP(3),
     "period" TIMESTAMP(3),
+    "creator" TEXT NOT NULL,
     "specification" TEXT,
     "area" TEXT,
     "role" TEXT,
     "auth" BOOLEAN,
-    "creator" TEXT,
 
     CONSTRAINT "Project_pkey" PRIMARY KEY ("idProject")
 );
@@ -162,6 +162,9 @@ CREATE UNIQUE INDEX "Manager_email_key" ON "Manager"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Project_Team_email_key" ON "Project_Team"("email");
+
+-- AddForeignKey
+ALTER TABLE "Project" ADD CONSTRAINT "Project_creator_fkey" FOREIGN KEY ("creator") REFERENCES "Profile"("email") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Submission" ADD CONSTRAINT "Submission_id_project_fkey" FOREIGN KEY ("id_project") REFERENCES "Project"("idProject") ON DELETE SET NULL ON UPDATE CASCADE;
