@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Patch, Param } from '@nestjs/common';
+import { Body, Controller, Get, Post, Patch, Param, Delete } from '@nestjs/common';
 import { ProjectsService } from 'src/service/projects.service';
 
 @Controller('api')
@@ -27,9 +27,11 @@ export class ApiController {
     return this.projectsService.getProject();
   }
 
-  @Patch(':project')
-  update(@Param('id') id: string, @Body() projectsService: ProjectsService) {
-  return this.projectsService.update(+id, projectsService);
-}
+  @Delete(`project`)
+  async deleteProject(@Body() data: {idProject:number}) {
+    const idProject = data;
+    return this.projectsService.deleteProject(idProject);
+  }
+
 }
 

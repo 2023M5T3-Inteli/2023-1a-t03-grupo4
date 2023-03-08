@@ -17,12 +17,12 @@ model Project {
   stt String?
   submission_date DateTime?
   period DateTime?
+  creator_rel Profile? @relation(fields: [creator], references: [email])
+  creator String
   specification String?
   area String?
   role String?
   auth Boolean?
-  creator_rel Profile? @relation(fields: [creator], references: [email])
-  creator String?
   submission Submission[]
   project_skill Project_skill[]
   project_profile Project_Profile[]
@@ -54,7 +54,6 @@ model Profile {
   technology_profile Technology_Profile[]
   project_team Project_Team[]
   project Project[]
-
 }
 
 model Skill_Profile {
