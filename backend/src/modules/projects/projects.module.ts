@@ -5,7 +5,7 @@ import { ProjectsService } from 'src/service/projects.service';
 
 
 @Module({
-    imports: [PrismaModule],
+  imports: [PrismaModule],
   providers: [ProjectsRepository, ProjectsService],
   exports: [ProjectsService],
 })
