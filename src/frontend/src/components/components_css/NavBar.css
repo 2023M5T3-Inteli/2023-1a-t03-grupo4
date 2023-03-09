@@ -1,0 +1,243 @@
+.logo {
+    transition: .2s;
+}
+
+.logo:hover {
+    width: 120px;
+    margin-left: -5px;
+    transition: .2s ease-out;
+}
+
+.backBoxWhite {
+    content: '';
+    background: var(--base);
+    width: 7rem;
+    height: 35px;
+}
+
+.active {
+    padding-top: 26.7rem;
+}
+
+.fa-bars {
+    color: var(--primary-color);
+    transition: .2s;
+}
+
+.fa-bars:hover {
+    color: var(--accent-color);
+    transition: .2s;
+}
+
+.fa-bars:active {
+    color: var(--secondary-color);
+}
+
+.dropNotification {
+    border-radius: 0 0 20px 20px;
+}
+
+.dropUser {
+    border-radius: 0 0 20px 20px;
+}
+
+ul > a {
+    padding-top: 10px;
+}
+
+ul > a:hover {
+    background: var(--accent);
+    transition: .3s;
+}
+
+.addProject {
+    cursor: pointer;
+    transition: .3s ease-in;
+}
+
+.addProject:hover {
+    padding-right: .3rem;
+    color: var(--accent-color);
+    transform: translateY(-4px);
+    transition: .3s ease-out;
+}
+
+.addProject > h1  {
+    transition: .3s ease-out;
+}
+
+.addProject:hover > h1 {
+    padding-right: .3rem;
+    transform: translate(0px,24px);
+    transition: .2s ease-out;
+}
+
+.notifications {
+    cursor: pointer;
+    transition: .3s ease-in;
+}
+
+.notifications:hover {
+    padding-left: .5rem;
+    padding-right: .5rem;
+    color: var(--accent-color);
+    transform: translateY(-4px);
+    transition: .3s ease-out;
+}
+
+.notifications > h1  {
+    transition: .3s ease-out;
+}
+
+.notifications:hover > h1 {
+    padding-right: .3rem;
+    transform: translate(4px,24px);
+    transition: .2s ease-out;
+}
+
+.user {
+    cursor: pointer;
+    transition: .3s ease-in;
+}
+
+.user:hover {
+    padding-left: .5rem;
+    padding-right: .3rem;
+    color: var(--accent-color);
+    transform: translateY(-4px);
+    transition: .3s ease-out;
+}
+
+.user > h1  {
+    transition: .3s ease-out;
+}
+
+.user:hover > h1 {
+    padding-right: .3rem;
+    transform: translate(3px,24px);
+    transition: .2s ease-out;
+}
+
+.sm-screen_show {
+    display: none;
+}
+
+@media screen and (max-width:500px) {
+    .sm-screen_hide {
+        display: none;
+    }
+
+    .sm-screen_show {
+        display: block;
+    }
+
+    .sm-screen-no-padding-x {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .navBarArea {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .dropNavBar {
+        transition: all .5s;
+    }
+
+    .active {
+        padding-top: 22rem;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .burgerMenu:checked ~ .dropNavBar {
+        padding: 300px;
+    }
+
+    .addProject {
+        cursor: pointer;
+        transition: .3s ease-in;
+    }
+    
+    .addProject:hover {
+        padding-left: 2.5rem;
+        padding-right: 3rem;
+        background: var(--base);
+        color: var(--accent-color);
+        /* transform: translateX(-4px); */
+        transition: .3s ease-out;
+    }
+    
+    .addProject > h1  {
+        transition: .3s ease-out;
+    }
+    
+    .addProject:hover > h1 {
+        transform: translateX(10px);
+        transition: .2s ease-out;
+    }
+    
+    .notifications {
+        cursor: pointer;
+        transition: .3s ease-in;
+    }
+    
+    .notifications:hover {
+        padding-left: 2.5rem;
+        padding-right: 3rem;
+        background: var(--base);
+        color: var(--accent-color);
+        /* transform: translateX(-4px); */
+        transition: .3s ease-out;
+    }
+    
+    .notifications > h1  {
+        transition: .3s ease-out;
+    }
+    
+    .notifications:hover > h1 {
+        transform: translateX(10px);
+        transition: .2s ease-out;
+    }
+    
+    .user {
+        cursor: pointer;
+        transition: .3s ease-in;
+    }
+    
+    .user:hover {
+        padding-left: 2.5rem;
+        padding-right: 3rem;
+        background: var(--base);
+        color: var(--accent-color);
+        /* transform: translateX(-4px); */
+        transition: .3s ease-out;
+    }
+    
+    .user > h1  {
+        transition: .3s ease-out;
+    }
+    
+    .user:hover > h1 {
+        transform: translateX(10px);
+        transition: .2s ease-out;
+    }
+
+    ul > a {
+        margin-top: 10px;
+    }
+
+    ul > a:hover{
+        border-radius: 20px;
+        transform: translateY(-5px);
+        background: var(--base);
+        transition: .3s;
+    }
+}
