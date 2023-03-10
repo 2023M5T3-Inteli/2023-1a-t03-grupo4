@@ -1,13 +1,17 @@
 import { Body, Controller, Get, Post, Patch, Param, Delete } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { SubmissionsService } from 'src/service/submissions.service';
+import { CreateSubmission } from 'src/dto/create.submission.dto';
+import { DeleteSubmission } from 'src/dto/delete.submission.dto';
 
+@ApiTags('Submission')
 @Controller('submission')
-export class ProfileController {
+export class SubmissionController {
   constructor(private readonly profilesService: SubmissionsService) {}
 
   @Post(`submission`)
-  async createSubmission(@Body() data: { id_submission: number, name: string, id_project: number; reason: string, email: string, status: string}) {
-    const { id_submission, name, id_project, reason,  email, status} = data;
+  async createSubmission(@Body() createSubmission:CreateSubmission) {
+    const { id_submission, name, id_project, reason,  email, status} = createSubmission;
     return this.profilesService.createSubmission({
         id_submission,
         name,
@@ -24,8 +28,8 @@ export class ProfileController {
   }
 
   @Delete(`submission`)
-  async deleteSubmission(@Body() data: {id_submission:number}) {
-    const id_submission = data;
+  async deleteSubmission(@Body() deleteSubmission:DeleteSubmission) {
+    const id_submission = deleteSubmission;
     return this.profilesService.deleteSubmission(id_submission);
   }
 
