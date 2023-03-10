@@ -1,13 +1,17 @@
 import { Body, Controller, Get, Post, Patch, Param, Delete } from '@nestjs/common';
+import { ApiOperation, ApiTags, ApiParam } from '@nestjs/swagger';
 import { ProfilesService } from 'src/service/profiles.service';
+import { CreateProfile } from 'src/dto/create.profile.dto';
+import { DeleteProfile } from 'src/dto/delete.profile.dto';
 
-@Controller('profile')
+@ApiTags ('Profile')
+@Controller('api')
 export class ProfileController {
   constructor(private readonly profilesService: ProfilesService) {}
-
+  
   @Post(`profile`)
-  async createProfile(@Body() data: { id_profile: number, name: string; email: string}) {
-    const { id_profile, name, email } = data;
+  async createProfile(@Body() createProfile:CreateProfile) {
+    const { id_profile, name, email } = createProfile;
     return this.profilesService.createProfile({
         id_profile,
         name,
@@ -19,11 +23,11 @@ export class ProfileController {
   getProfile() {
     return this.profilesService.getProfile();
   }
-
+  
   @Delete(`profile`)
-  async deleteProfile(@Body() data: {idProfile:number}) {
-    const idProfile = data;
-    return this.profilesService.deleteProfile(idProfile);
+  async deleteProfile(@Body() deleteProfile:DeleteProfile) {
+    const id_profile = deleteProfile;
+    return this.profilesService.deleteProfile(id_profile);
   }
 
 }
