@@ -4,17 +4,17 @@
 <a href= "https://www.inteli.edu.br/"><img src="https://www.inteli.edu.br/wp-content/uploads/2021/08/20172028/marca_1-2.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
 </p>
 
-# Nome do Projeto
+# Desenvolvimento de serviços em cloud computing
 
-## Nome do Grupo
+## Cumulonimbus
 
-## Integrantes: <a href="https://www.linkedin.com/in/victorbarq/">Goku Sayajin</a>, <a href="https://www.linkedin.com/in/victorbarq/">Saitama One</a>, <a href="https://www.linkedin.com/in/victorbarq/">Ikki de Fenix</a>, <a href="https://www.linkedin.com/in/victorbarq/">Yusuke Urameshi</a>, <a href="https://www.linkedin.com/in/victorbarq/">Roronoa Zoro</a>
+## Integrantes: <a href="https://www.linkedin.com/in/beatriz-hirasaki-leite-b2261923a/">Beatriz Hirasaki</a>, <a href="https://www.linkedin.com/in/felipe-gomes-526186232/">Felipe Gomes</a>, <a href="https://www.linkedin.com/in/gabrielriostorres/">Gabriel Rios</a>, <a href="https://www.linkedin.com/in/mateus-neves-3b767123b/">Mateus Neves</a>, <a href="https://www.linkedin.com/in/mike-mouadeb-24b781224/">Mike Mouadeb</a>, <a href="https://www.linkedin.com/in/priscila-falc%C3%A3o-3435a1244/">Priscila Falcão</a> e <a href="https://www.linkedin.com/in/wagner-estevam/">Wagner Estevam</a>. 
 
 ## Descrição
 
 📜 Descrição curta sobre o que seu projeto faz.
 <br><br>
-Meu projeto é um exemplo de como utilizar o github.
+O projeto é uma aplicação web que contém front-end, back-end e banco de dados hospedados na AWS.
 <br><br>
 <p align="center">
 <img src="https://pix4free.org/assets/library/2021-01-20/originals/game.jpg" alt="NOME DO JOGO" border="0">
@@ -24,9 +24,9 @@ Meu projeto é um exemplo de como utilizar o github.
 
 💡 De um a dois parágrafos sobre o que é seu projeto e o que ele faz.
 <br><br>
-Meu projeto ajuda estudantes inteli a configurarem seus githubs.
+Muitos profissionais de T.I se interessam por aprender novas tecnologias. Por exemplo, uma pessoa que trabalha com Front-end usando JavaScript quer aprender Ciência de Dados e programar em Python. Na Dell, alguns profissionais estão saindo da empresa por não estarem se sentindo desafiados e não estarem tendo oportunidades de ganhar novos conhecimentos no vasto mundo da programação.
 <br><br>
-May the force be with you!
+Com o objetivo de não perder esses desenvolvedores e como forma de engajar seus funcionários, a DELL precisa de uma aplicação web que consiga centralizar e conectar essa demanda dos funcionários de adquirirem novos conhecimentos com a oferta de projetos temporários que há na companhia.
 <br><br>
 
 ## 🛠 Estrutura de pastas
