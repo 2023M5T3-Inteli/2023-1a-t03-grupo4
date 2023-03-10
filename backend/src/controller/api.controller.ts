@@ -6,7 +6,7 @@ export class ApiController {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Post(`project`)
-  async createProject(@Body() data: { idProject: number, title: string; description: string, stt: string, submission_date: Date, period: Date, specification: string, area: string, role: string, auth: boolean, creator: string }) {
+  async createProject(@Body() data: { idProject: number, title: string; description: string, stt: string, submission_date: Date, period: Date, specification: string, area: string, role: string, auth: boolean, creator: number }) {
     const { idProject, title, description, submission_date, period, specification, area, role, auth, creator} = data;
     return this.projectsService.createProject({
         idProject,
