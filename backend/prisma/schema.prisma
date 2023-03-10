@@ -1,5 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// // This is your Prisma schema file,
+// // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -17,8 +17,8 @@ model Project {
   stt String?
   submission_date DateTime?
   period DateTime?
-  creator_rel Profile? @relation(fields: [creator], references: [email])
-  creator String
+  creator_rel Profile? @relation(fields: [creator], references: [id_profile])
+  creator Int
   specification String?
   area String?
   role String?
@@ -60,8 +60,8 @@ model Skill_Profile {
  id Int @default(autoincrement())@id
  id_skill_rel Skill? @relation(fields: [id_skill], references: [id_skill])
  id_skill Int?
- email_rel Profile? @relation(fields: [email], references: [email])
- email String?
+ email_rel Profile? @relation(fields: [email], references: [id_profile])
+ email Int
 }
 
 model Skill {
@@ -73,27 +73,28 @@ model Skill {
 
 
 model Project_skill {
-  id Int @default(autoincrement())@id
-  id_project_rel Project? @relation(fields: [id_project], references: [idProject])
-  id_project Int?
-  id_skill_rel Skill? @relation(fields: [id_skill], references: [id_skill])
-  id_skill Int?
+  id_project_rel Project @relation(fields: [id_project], references: [idProject])
+  id_project Int
+  id_skill_rel Skill @relation(fields: [id_skill], references: [id_skill])
+  id_skill Int
+
+  @@id([id_project, id_skill])
 }
 
 model Project_Profile {
-  id Int @default(autoincrement())@id
   id_project_rel Project? @relation(fields: [id_project], references: [idProject])
-  id_project Int?
+  id_project Int
   id_profile_rel Profile? @relation(fields:[id_profile], references: [id_profile])
-  id_profile Int?
+  id_profile Int
+  @@id([id_project, id_profile])
 }
 
 model Profile_Manager {
-  id Int @default(autoincrement())@id
-  manager_email_rel Manager? @relation(fields: [manager_email], references: [email])
-  manager_email String?
-  employee_email_rel Profile? @relation(fields: [email], references: [email])
-  email String?
+  manager_email_rel Manager? @relation(fields: [manager_email], references: [id])
+  manager_email Int
+  employee_email_rel Profile? @relation(fields: [email], references: [id_profile])
+  email Int
+  @@id([manager_email, email])
 }
 
 model Manager {
@@ -105,44 +106,45 @@ model Manager {
 }
 
 model Position_Submission {
-  id Int @default(autoincrement())@id
   id_position_rel Position? @relation(fields: [id_position], references: [id_position])
-  id_position Int?
+  id_position Int
   id_submission_rel Submission? @relation(fields: [id_submission], references: [id_submission])
-  id_submission Int?
+  id_submission Int
+  @@id([id_position, id_submission])
 }
 
 model Project_Position {
-  id Int @default(autoincrement())@id
   id_project_rel Project? @relation(fields: [id_project], references: [idProject])
-  id_project Int?
+  id_project Int
   id_position_rel Position? @relation(fields:[id_position], references: [id_position])
-  id_position Int?
+  id_position Int
+  @@id([id_project, id_position])
 }
 
 model Project_Technology{
-  id Int @default(autoincrement())@id
   id_project_rel Project? @relation(fields: [id_project], references: [idProject])
-  id_project Int?
+  id_project Int
   id_technology_rel Technology? @relation(fields:[id_technology], references: [id_technology])
-  id_technology Int?
+  id_technology Int
+  @@id([id_project, id_technology])
 }
 
 model Project_Team{
-  id Int @default(autoincrement())@id
   id_project_rel Project? @relation(fields: [id_project], references: [idProject])
   id_project Int
-  id_team_rel Profile? @relation(fields:[email], references: [email])
-  email String @unique
+  id_team_rel Profile? @relation(fields:[email], references: [id_profile])
+  email  Int
+
+  @@id([id_project, email])
 }
 
 
 model Technology_Profile{
-  id Int @default(autoincrement())@id
   id_technology_rel Technology? @relation(fields: [id_technology], references: [id_technology])
   id_technology Int
   id_profile_rel Profile? @relation(fields:[id_profile], references: [id_profile])
-  id_profile Int?
+  id_profile Int
+  @@id([id_technology, id_profile])
 }
 
 model Technology{
