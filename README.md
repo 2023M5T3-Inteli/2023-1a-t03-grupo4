@@ -1,7 +1,7 @@
 # Inteli - Instituto de Tecnologia e Liderança 
 
 <p align="center">
-<a href= "https://www.inteli.edu.br/"><img src="[https://www.inteli.edu.br/wp-content/uploads/2021/08/20172028/marca_1-2.png](https://www.inteli.edu.br/wp-content/uploads/2022/04/28103439/Logo-Container.png)" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
+<a href= "https://www.inteli.edu.br/"><img src="imagens/logo-inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
 </p>
 
 # Desenvolvimento de serviços em cloud computing
@@ -17,7 +17,7 @@
 O projeto é uma aplicação web em cloud, baseado na arquitetura de 3 camadas, contendo: front-end, back-end e banco de dados hospedados na AWS.
 <br><br>
 <p align="center">
-<img src="https://drive.google.com/file/d/1ag_tKDl_yIWtCzPT--K6WpyyiLmwzT_J/view?usp=sharing" alt="Cumulonimbus" border="0">
+<img src="imagens/Logo-Full_Name_NoBG.png" alt="Cumulonimbus" border="0">
 </p>
 
 
