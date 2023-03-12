@@ -17,7 +17,7 @@
 O projeto é uma aplicação web em cloud, baseado na arquitetura de 3 camadas, contendo: front-end, back-end e banco de dados hospedados na AWS.
 <br><br>
 <p align="center">
-<img src="imagens/Logo-Full_Name_NoBG.png" alt="Cumulonimbus" border="0">
+<img src="imagens/Logo-Full_Name_NoBG.png" alt="Cumulonimbus" border="0" style="max-width: 100px;"g>
 </p>
 
 
@@ -44,64 +44,58 @@ Neste sentido, com o objetivo de manter o engajamento de seus funcionários, o g
 |-->src<br>
 |readme.md<br>
 
-A pasta raiz contem dois arquivos que devem ser alterados:
-
-<b>README.MD</b>: Arquivo que serve como guia e explicação geral sobre seu projeto. O mesmo que você está lendo agora.
-
-Há também 4 pastas que seguem da seguinte forma:
-
-<b>docs</b>: Aqui serão colocados os arquivos compilados em HTML do jogo.
-<b>documentos</b>: Aqui estarão todos os documentos do projeto, mas principalmente o <b>GDD (Game Design Document)/Documentação do Sistema</b>. Há uma pasta <b>antigos</b> onde estarão todas as versões antigas da documentação.
-
-<b>executáveis</b>: Aqui estarão todos os executáveis do jogo, prontos para rodar. Há no mínimo 3 pastas, uma para binários <b>Windows</b>, uma para binários <b>android</b> e uma para a <b>Web/HTML</b>
-
-<b>imagens</b>: Algumas imagens do jogo/sistema e logos prontos para serem utilizados e visualizados.
-
-<b>src</b>: Nesta pasta irá todo o código fonte do jogo/sistema, pronto para para ser baixado e modificado.
 
 ## 🛠 Instalação
 
-<b>Android:</b>
-
-Faça o Download do JOGO.apk no seu celular.
-Execute o APK e siga as instruções de seu telefone.
-
-<b>Windows:</b>
-
-Não há instalação! Apenas executável!
-Encontre o JOGO.exe na pasta executáveis e execute-o como qualquer outro programa.
-
-<b>HTML:</b>
-
-Não há instalação!
-Encontre o index.html na pasta executáveis e execute-o como uma página WEB (através de algum browser).
+1 -
+2 - 
+3 - 
 
 ## 💻 Configuração para Desenvolvimento
 
-1 - Faça o download do GODOT e deste repositório.
-2 - Abra o GODOT, ao ser prontificado clique em IMPORTAR.
-3 - Selecione a pasta onde descompactou este repositório.
+1 - 
+2 - 
+3 - 
+4 - 
 
-Para abrir este projeto você necessita das seguintes ferramentas:
-
--<a href="https://godotengine.org/download">GODOT</a>
-
-## 🗃 Histórico de lançamentos
+## 📄 Histórico de lançamentos
 
 A cada atualização os detalhes devem ser lançados aqui.
 
-* 0.2.1 - 25/01/2022
-    * MUDANÇA: Atualização de docs (código do módulo permanece inalterado)
-* 0.2.0 - 15/01/2022
-    * MUDANÇA: Remove `setDefaultXYZ()`
-    * ADD: Adiciona `init()`
-* 0.1.1 - 11/01/2022
-    * CONSERTADO: Crash quando chama `baz()` (Obrigado @NomeDoContribuidorGeneroso!)
-* 0.1.0 - 10/01/2022
-    * O primeiro lançamento adequado
-    * MUDANÇA: Renomeia `foo()` para `bar()`
-* 0.0.1 - 01/01/2022
-    * Trabalho em andamento
+* Sprint 1 - 10/02/2023
+    * Wireframe
+    * Arquitetura do sistema V1
+    * Matriz SWOT
+    * Value Proposition Canvas 
+    * Diagrama de sequência do fluxo de dados
+    * 5 Forças de Potter
+    * Matriz de risco
+    * Casos de uso
+    * Especificação dos requisitos
+* Sprint 2 - 24/02/2023
+    * Desenvolvimento GitFlow
+    * Definição da arquitetura de pastas
+    * Produção de VPCs e subredes
+    * Produção de instâncias na EC2
+    * Produção de buckets no S3
+    * Modelo lógico de dados
+    * Modelo conceitual de dados
+    * Endpoints TDD
+    * Arquitetura da solução V2
+    * Adaptação do wireframe para os requistos do cliente
+* Sprint 3 - 10/03/2023
+    * Back-end com enpoints funcionais
+    * Documentação API
+    * Front-end em React
+    * Arquitetura da solução V3
+    * Produção de banco de dados no RDS
+* Sprint 4 - 24/03/2023
+    * 
+    * 
+* Sprint 5 - 07/04/2023
+    * 
+    *
+    *
 
 ## 🎓 Referências
 
