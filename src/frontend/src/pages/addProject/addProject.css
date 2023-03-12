@@ -1,0 +1,23 @@
+.addProjectCard {
+    background: var(--base);
+    border-radius: 30px;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    min-width: fit-content;
+}
+
+.textInputBR20 fieldset{
+    border-radius: 20px;
+    border-color:  var(--grey2);
+}
+
+.textInputBR20:active fieldset{
+    border-color:  var(--accent-color) !important;
+}
+
+
+@media screen and (max-width:900px) {
+
+}
