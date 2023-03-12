@@ -1,35 +1,34 @@
 # Inteli - Instituto de Tecnologia e Liderança 
 
 <p align="center">
-<a href= "https://www.inteli.edu.br/"><img src="https://www.inteli.edu.br/wp-content/uploads/2021/08/20172028/marca_1-2.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
+<a href= "https://www.inteli.edu.br/"><img src="[https://www.inteli.edu.br/wp-content/uploads/2021/08/20172028/marca_1-2.png](https://www.inteli.edu.br/wp-content/uploads/2022/04/28103439/Logo-Container.png)" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
 </p>
 
 # Desenvolvimento de serviços em cloud computing
 
 ## Cumulonimbus
 
-## Integrantes: <a href="https://www.linkedin.com/in/beatriz-hirasaki-leite-b2261923a/">Beatriz Hirasaki</a>, <a href="https://www.linkedin.com/in/felipe-gomes-526186232/">Felipe Gomes</a>, <a href="https://www.linkedin.com/in/gabrielriostorres/">Gabriel Rios</a>, <a href="https://www.linkedin.com/in/mateus-neves-3b767123b/">Mateus Neves</a>, <a href="https://www.linkedin.com/in/mike-mouadeb-24b781224/">Mike Mouadeb</a>, <a href="https://www.linkedin.com/in/priscila-falc%C3%A3o-3435a1244/">Priscila Falcão</a> e <a href="https://www.linkedin.com/in/wagner-estevam/">Wagner Estevam</a>. 
+### Integrantes: <a href="https://www.linkedin.com/in/beatriz-hirasaki-leite-b2261923a/">Beatriz Hirasaki</a>, <a href="https://www.linkedin.com/in/felipe-gomes-526186232/">Felipe Gomes</a>, <a href="https://www.linkedin.com/in/gabrielriostorres/">Gabriel Rios</a>, <a href="https://www.linkedin.com/in/mateus-neves-3b767123b/">Mateus Neves</a>, <a href="https://www.linkedin.com/in/mike-mouadeb-24b781224/">Mike Mouadeb</a>, <a href="https://www.linkedin.com/in/priscila-falc%C3%A3o-3435a1244/">Priscila Falcão</a> e <a href="https://www.linkedin.com/in/wagner-estevam/">Wagner Estevam</a>. 
 
 ## Descrição
 
-📜 Descrição curta sobre o que seu projeto faz.
+### 💻 Projeto
 <br><br>
-O projeto é uma aplicação web que contém front-end, back-end e banco de dados hospedados na AWS.
+O projeto é uma aplicação web em cloud, baseado na arquitetura de 3 camadas, contendo: front-end, back-end e banco de dados hospedados na AWS.
 <br><br>
 <p align="center">
-<img src="https://pix4free.org/assets/library/2021-01-20/originals/game.jpg" alt="NOME DO JOGO" border="0">
-  Game by <a href="http://www.nyphotographic.com/">Nick Youngson</a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> <a href="http://pix4free.org/">Pix4free</a>
+<img src="https://drive.google.com/file/d/1ag_tKDl_yIWtCzPT--K6WpyyiLmwzT_J/view?usp=sharing" alt="Cumulonimbus" border="0">
 </p>
 
 
-💡 De um a dois parágrafos sobre o que é seu projeto e o que ele faz.
+➕ MAIS SOBRE
 <br><br>
-Muitos profissionais de T.I se interessam por aprender novas tecnologias. Por exemplo, uma pessoa que trabalha com Front-end usando JavaScript quer aprender Ciência de Dados e programar em Python. Na Dell, alguns profissionais estão saindo da empresa por não estarem se sentindo desafiados e não estarem tendo oportunidades de ganhar novos conhecimentos no vasto mundo da programação.
+Muitos profissionais de T.I se interessam por aprender novas tecnologias. Por exemplo, uma pessoa que trabalha com Front-end usando JavaScript quer aprender Ciência de Dados e programar em Python. Assim, pôde se observar essa demanda na Dell, onde alguns profissionais estão saindo da empresa por não estarem se sentindo desafiados e não estarem tendo oportunidades de ganhar novos conhecimentos. Isso tem gerado preocupação para a empresa que busca novos mecanismos para a permanência de deus colaboradores.
 <br><br>
-Com o objetivo de não perder esses desenvolvedores e como forma de engajar seus funcionários, a DELL precisa de uma aplicação web que consiga centralizar e conectar essa demanda dos funcionários de adquirirem novos conhecimentos com a oferta de projetos temporários que há na companhia.
+Neste sentido, com o objetivo de manter o engajamento de seus funcionários, o grupo Cumulonimbus desenvolveu uma aplicação web em nuvem, a fim de centralizar e conectar essa demanda dos funcionários de adquirirem novos conhecimentos com a oferta de projetos temporários que há na companhia. Com a segurança e escalabilidade que os serviços em nuvem oferecem, o projeto conta com a estrutura da AWS para desenvolver as suas diferentes camadas da aplicação.
 <br><br>
 
-## 🛠 Estrutura de pastas
+## 💾 Estrutura de pastas
 
 -Raiz<br>
 |<br>
@@ -103,10 +102,6 @@ A cada atualização os detalhes devem ser lançados aqui.
     * MUDANÇA: Renomeia `foo()` para `bar()`
 * 0.0.1 - 01/01/2022
     * Trabalho em andamento
-
-## 📋 Licença/License
-
-<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/Spidus/Teste_Final_1">MODELO GIT INTELI</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.yggbrasil.com.br/vr">INTELI, VICTOR BRUNO ALEXANDER ROSETTI DE QUIROZ</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"></a></p>
 
 ## 🎓 Referências
 
