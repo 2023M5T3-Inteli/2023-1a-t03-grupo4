@@ -4,6 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { Prisma, Profile } from '@prisma/client';
 
+// CRUD - Profile
 @Injectable()
 export class ProfilesRepository {
   constructor(private prisma: PrismaService) {}
