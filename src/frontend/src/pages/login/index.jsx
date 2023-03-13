@@ -1,6 +1,7 @@
 
 import './login.css'
 
+import * as React from 'react';
 import { useState } from 'react';
 
 import TextInput from '../../components/TextInput'
@@ -8,8 +9,22 @@ import PrimaryBtn from '../../components/PrimaryBtn'
 import CheckBox from '../../components/CheckBox'
 import DellLogo from '../../assets/svg/DellLogo/export';
 import CNLogoName from '../../assets/images/CNLogoName.png'
+import { FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton } from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+
 
 function Login() {
+
+    const [showPassword, setShowPassword] = React.useState(false);
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+  
+    const handleMouseDownPassword = (event) => {
+      event.preventDefault();
+    };
+  
 
     //Constantes e armazenam o que foi escrito nos inputs de login
     const [email, setEmail] = useState('')
@@ -53,23 +68,62 @@ function Login() {
                             </section>
                         
 
-                            <section className="flex flex-col">
+                            <section className="flex flex-col items-center">
 
                                 {/* Campos de input para login */}
-                                <div className="flex flex-col items-center" style={{padding:10}}>
-                                    <TextInput htmlFor={"email"} type={"email"} label={"Usuário"} value={email} onChange={(e) => setEmail(e.target.value)} placeholder={"Email"}/>
-                                    <i className="fa-regular fa-envelope" style={{position:'absolute',marginTop:"2.45rem",marginLeft:"19rem"}}></i>
+                                <div className="flex flex-col items-center w-full" style={{maxWidth:"23rem"}}>
+                                    <FormControl fullWidth className='textInputBR20' sx={{ m: 1, background:"white", borderRadius:"20px" }} variant="outlined">
+                                        <InputLabel htmlFor="email">Email</InputLabel>
+                                        <OutlinedInput
+                                            id="email"
+                                            type={"email"}
+                                            value={email} onChange={(e) => setEmail(e.target.value)}
+                                            endAdornment={
+                                            <InputAdornment position="end">
+                                                <MailOutlineIcon></MailOutlineIcon>
+                                            </InputAdornment>
+                                            }
+                                            
+                                            label="Email"
+                                            sx={{borderRadius:"20px"}}
+                                        />
+                                    </FormControl>
+                                    {/* <TextInput htmlFor={"email"} type={"email"} label={"Usuário"} value={email} onChange={(e) => setEmail(e.target.value)} placeholder={"Email"}/>
+                                    <i className="fa-regular fa-envelope" style={{position:'absolute',marginTop:"2.45rem",marginLeft:"19rem"}}></i> */}
 
                                     <br></br>
 
-                                    <TextInput htmlFor={"password"} type={"password"} label={"Senha"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder={"Senha"}/>
-                                    <i className="fa-regular fa-eye cursor-pointer" style={{position:'absolute',marginTop:"8.45rem",marginLeft:"19rem"}}></i>
+                                    <FormControl fullWidth className='textInputBR20' sx={{ m: 1, background:"white", borderRadius:"20px" }} variant="outlined">
+                                        <InputLabel htmlFor="password">Password</InputLabel>
+                                        <OutlinedInput
+                                            id="password"
+                                            type={showPassword ? 'text' : 'password'}
+                                            value={password} onChange={(e) => setPassword(e.target.value)}
+                                            endAdornment={
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                edge="end"
+                                                
+                                                >
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                            }
+                                            sx={{borderRadius:"20px"}}
+                                            label="Password"
+                                        />
+                                    </FormControl>
+                                    {/* <TextInput htmlFor={"password"} type={"password"} label={"Senha"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder={"Senha"}/>
+                                    <i className="fa-regular fa-eye cursor-pointer" style={{position:'absolute',marginTop:"8.45rem",marginLeft:"19rem"}}></i> */}
 
-                                    <br></br>
+                                    <br /><br />
                                 </div>
 
                                 {/* Opções de login */}
-                                <section className="markField flex flex-row justify-around">
+                                <section className="markField flex flex-row justify-around w-full">
                                     <CheckBox count={1} label={"Continuar conectado"} checkFunction={(e) => {console.log("Continuar conectado")}}/>
                                     <a href='./#' className="text-black text-opacity-50" style={{margin:0,padding:1}}>Esqueceu a senha?</a>
                                 </section>

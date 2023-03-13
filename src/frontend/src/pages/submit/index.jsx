@@ -10,6 +10,9 @@ import Add from '@mui/icons-material/Add';
 
 function Submit() 
 { 
+    const checkedFunc = () => {
+        console.log('checked')
+    }
     function capitalizeFirstLetter(string){
         string = string.toLowerCase().split(' ').map((a) => a.charAt(0).toUpperCase() + a.substr(1)).join(' ');
         string = string.replace(/\s{2,}/g, ' ').trim()
@@ -39,7 +42,7 @@ function Submit()
         }  
     }
     const [value, setValue] = React.useState([]);
-    var [IsChecked, SetIsChecked] = React.useState(false)
+    var [IsChecked, setIsChecked] = React.useState(false)
 
     var Shadow = false
 
@@ -47,7 +50,7 @@ function Submit()
 
     const standardDev = () => {
         if(Shadow){Shadow=false}
-        IsChecked = SetIsChecked(!IsChecked)
+        setIsChecked(!IsChecked)
 
         window.addEventListener('load', standardBar = document.getElementById('standardBar'))
         window.addEventListener('load', shadowBar = document.getElementById('shadowBar'))
@@ -60,7 +63,7 @@ function Submit()
 
     const shadowDev = () => {
         if(!Shadow){Shadow=true}
-        IsChecked = SetIsChecked(!IsChecked)
+        setIsChecked(!IsChecked)
 
         window.addEventListener('load', standardBar = document.getElementById('standardBar'))
         window.addEventListener('load', shadowBar = document.getElementById('shadowBar'))
@@ -107,7 +110,7 @@ function Submit()
                 </div>
 
                 <div className="flex flex-wrap justify-end">
-                    <div className="teclabel"><h1>Tecnologia I</h1></div> 
+                    <div className="teclabel">Tecnologia I</div> 
                     <div className="teclabel">Tecnologia I</div> 
                     <div className="teclabel">Tecnologia I</div> 
                 </div>
@@ -116,7 +119,7 @@ function Submit()
             <br></br>
             <div className="flex flex-col justify-center items-center w-full">
                 <div className="flex flex-row justify-center items-center h-fit gap-3" style={{width:"100%"}}>
-                    <label htmlFor="standardDev">
+                    <label className="cursor-pointer" htmlFor="standardDev">
                         <h1 className="text-2xl font-medium text-center break-words">Participar no desenvolvimento</h1>
                         <div id='standardBar' className="selectedBar"></div>
                     </label>
@@ -124,7 +127,7 @@ function Submit()
 
                     <div className="divider"></div> 
 
-                    <label htmlFor="shadowDev">
+                    <label className="cursor-pointer" htmlFor="shadowDev">
                         <h1 className="text-2xl font-medium text-center">Participar como shadow</h1>
                         <div id='shadowBar' className="selectedBar hidden"></div>
                     </label>
@@ -179,7 +182,7 @@ function Submit()
                             </div>
                             <TextField className="textInputBR20" fullWidth rows={5} multiline label="Justificativa:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>
                             <div className="flex flex-row justify-between items-center">
-                                <CheckBox label="Meu gestor está ciente e concorda com minha participação no projeto."/>
+                                <CheckBox checkFunction={checkedFunc} label="Meu gestor está ciente e concorda com minha participação no projeto."/>
                                 <PrimaryBtn text="SUBMETER"/>
                             </div>
                         </div>

@@ -12,11 +12,15 @@ function CheckBox({label,count,checkFunction}) {
   //Varia o id do componente de acordo com a variável 'count'(contagem) para que não haja confusões nas funcçoes que referenciam o id do componente em páginas com mais de um componente
   var fieldId = 'checkBox' + count;
 
+
   //Marca ou desmarca (check) quando o checkbox é pressionado
   const handleCheck = () => {
     setIsChecked(!isChecked)
-    checkFunction()
+    if(!isChecked){
+      checkFunction()
+    }
   }
+
 
 
   //Retorna o componente em si
