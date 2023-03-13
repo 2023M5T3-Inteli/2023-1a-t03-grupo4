@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { Prisma, Project } from '@prisma/client';
 
-// CRUD - 
+// CRUD - Project
 @Injectable()
 export class ProjectsRepository {
   constructor(private prisma: PrismaService) {}
