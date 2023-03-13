@@ -39,6 +39,38 @@ function Submit()
         }  
     }
     const [value, setValue] = React.useState([]);
+    var [IsChecked, SetIsChecked] = React.useState(false)
+
+    var Shadow = false
+
+    var standardBar, shadowBar, roleSelector
+
+    const standardDev = () => {
+        if(Shadow){Shadow=false}
+        IsChecked = SetIsChecked(!IsChecked)
+
+        window.addEventListener('load', standardBar = document.getElementById('standardBar'))
+        window.addEventListener('load', shadowBar = document.getElementById('shadowBar'))
+        window.addEventListener('load', roleSelector = document.getElementById('roleSelector'))
+
+        shadowBar.classList.toggle('hidden')
+        standardBar.classList.toggle('hidden')
+        roleSelector.classList.toggle('hidden')
+    }
+
+    const shadowDev = () => {
+        if(!Shadow){Shadow=true}
+        IsChecked = SetIsChecked(!IsChecked)
+
+        window.addEventListener('load', standardBar = document.getElementById('standardBar'))
+        window.addEventListener('load', shadowBar = document.getElementById('shadowBar'))
+        window.addEventListener('load', roleSelector = document.getElementById('roleSelector'))
+
+        shadowBar.classList.toggle('hidden')
+        standardBar.classList.toggle('hidden')
+        roleSelector.classList.toggle('hidden')
+    }
+
     return(<div>
         <NavBar/>
         <div className="mainScreen px-40">
@@ -53,7 +85,7 @@ function Submit()
 
             <br /><br />
 
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row gap-2 justify-between">
                 <div className="flex flex-col justify-between">
                     <div className="flex flex-row items-center">
                         <p className="font-bold text-lg pr-1">Area:</p><p>Automations</p>
@@ -74,7 +106,7 @@ function Submit()
                     </div>
                 </div>
 
-                <div className="flex flex-row justify-between w-96 pr-3">
+                <div className="flex flex-wrap justify-end">
                     <div className="teclabel"><h1>Tecnologia I</h1></div> 
                     <div className="teclabel">Tecnologia I</div> 
                     <div className="teclabel">Tecnologia I</div> 
@@ -83,14 +115,20 @@ function Submit()
             {/* fim 1o bloco */}
             <br></br>
             <div className="flex flex-col justify-center items-center w-full">
-                <div className="flex flex-row justify-center items-center gap-10" style={{width:"100%"}}>
-                    <label htmlFor="standardDev"><h1 className="text-3xl" style={{minWidth:"24rem"}}>Participar no desenvolvimento</h1></label>
-                    <input className="hidden" id="standardDev" type = "radio" name="radio"></input>
+                <div className="flex flex-row justify-center items-center h-fit gap-3" style={{width:"100%"}}>
+                    <label htmlFor="standardDev">
+                        <h1 className="text-2xl font-medium text-center break-words">Participar no desenvolvimento</h1>
+                        <div id='standardBar' className="selectedBar"></div>
+                    </label>
+                    <input checked={!IsChecked} onChange={standardDev} className="hidden" id="standardDev" type = "radio" name="radio"></input>
 
                     <div className="divider"></div> 
 
-                    <label htmlFor="shadowDev"><h1 className="text-3xl break-keep" style={{minWidth:"19rem"}}>Participar como shadow</h1></label>
-                    <input className="hidden" id="shadowDev" type = "radio" name="radio"></input>
+                    <label htmlFor="shadowDev">
+                        <h1 className="text-2xl font-medium text-center">Participar como shadow</h1>
+                        <div id='shadowBar' className="selectedBar hidden"></div>
+                    </label>
+                    <input checked={IsChecked} onChange={shadowDev} className="hidden" id="shadowDev" type = "radio" name="radio"></input>
                 </div>
                 <br></br>
                 <div className="w-full">
@@ -106,7 +144,7 @@ function Submit()
 
                             <TextField className="textInputBR20" fullWidth label="Email institucional:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/> 
 
-                            <div className="flex flex-row justify-between items-center w-full">
+                            <div id='roleSelector' className="flex flex-row justify-between items-center w-full">
                                 <Autocomplete multiple id="fixed-tags-Role"
                                     onChange={(event, newValue) => {
                                         setValue([

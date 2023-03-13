@@ -100,7 +100,7 @@ function NavBar() {
             </div>
         </div>
 
-        <div id='dropNavBar' className="dropNavBar absolute sm-screen_show flex flex-col items-center shadow w-full h-fit -mt-60 pb-3" style={{background:"var(--accent)", color:"var(--primary-color)",borderRadius:"20px"}}>
+        <div id='dropNavBar' className="dropNavBar fixed sm-screen_show flex flex-col items-center shadow w-full h-fit -mt-60 pb-3" style={{background:"var(--accent)", color:"var(--primary-color)",borderRadius:"20px"}}>
             <a href='./' className="addProject flex flex-row items-center justify-between cursor-pointer w-full m-auto py-5 px-16">
                 <h1 htmlFor="fa-square-plus" className="text-md">Novo Projeto</h1>
                 <i className="fa-regular fa-square-plus text-3xl"></i>
@@ -111,7 +111,7 @@ function NavBar() {
                 <i className="fa-regular fa-bell text-3xl"></i>
             </a>
             
-            <input id='userMenuDrop' type="checkbox" onClick={handleCheckUserDrop} className="userMenuDrop absolute hidden"/> 
+            <input id='userMenuDrop' type="checkbox" onClick={handleCheckUserDrop} className="userMenuDrop fixed hidden"/> 
             <label htmlFor='userMenuDrop' className="user checkbtn flex flex-row items-center justify-between w-full m-auto py-5 px-16">                        
                     <h1 htmlFor="fa-circle-user" className="text-md">Usuário</h1>    
                     <i className="fa-regular fa-circle-user text-3xl"></i>
@@ -131,7 +131,7 @@ function NavBar() {
             </ul>           
         </div>
 
-        <div id='dropNotification' className="dropNotification sm-screen_hide absolute overflow-clip w-72 h-fit -mt-80 pb-3" style={{background:"var(--base)", transition: ".2s", right:"2%", border:"1px solid var(--grey1)"}}>
+        <div id='dropNotification' className="dropNotification sm-screen_hide fixed overflow-clip w-72 h-fit -mt-80 pb-3" style={{background:"var(--base)", transition: ".2s", right:"2%", border:"1px solid var(--grey1)"}}>
             <ul className="flex flex-col overflow-y-auto overflow-x-hidden" style={{maxHeight:"20rem"}}>
 
                 <a href="./home" className="flex flex-col justify-center">
@@ -216,7 +216,7 @@ function NavBar() {
             </ul>
         </div>
 
-        <div id='dropUser' className="dropUser sm-screen_hide absolute overflow-hidden w-fit -mt-80" style={{background:"var(--base)", transition: ".2s", right:"1%", border:"1px solid var(--grey1)"}}>
+        <div id='dropUser' className="dropUser sm-screen_hide fixed overflow-hidden w-fit -mt-80" style={{background:"var(--base)", transition: ".2s", right:"1%", border:"1px solid var(--grey1)"}}>
             <ul className="flex flex-col items-center justify-center w-36">
                 <a href="./profile" className="flex flex-row items-center justify-between px-5 pb-3 w-full">
                     <h1>Perfil</h1>

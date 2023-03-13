@@ -20,10 +20,10 @@ function Profile() {
 
   return (<>
       <NavBar />
-      <main className="mainScreen"><div className="flex flex-row">
+      <div className="mainScreen">
 
       
-        <div className="flex flex-col h-4/5 justify-start">
+        <div className="flex flex-col h-4/5 justify-start" style={{width:"100%"}}>
 
           <div>
             <div className={styles.profileContainer}>
@@ -49,198 +49,201 @@ function Profile() {
               </div>
             </div>
 
+            <div className="sm-screen-w-full flex flex-wrap justify-between items-center gap-5">
+              <div className="p-3 w-4/6 md-screen-w-full" style={{height:"35rem",maxHeight:"37rem",minWidth:"21rem", background:"var(--base)", borderRadius:"20px"}}>
+                <div className={styles.buttonsContainer}>
+                  <button
+                    onClick={portifolioPageHandler}
+                    className={showPortifolioFirstPage && styles.active}>
 
-            <div className="p-3" style={{height:"35rem",maxHeight:"37rem", background:"var(--base)", borderRadius:"20px"}}>
-              <div className={styles.buttonsContainer}>
-                <button
-                  onClick={portifolioPageHandler}
-                  className={showPortifolioFirstPage && styles.active}>
+                    Seus Projetos
 
-                  Seus Projetos
+                  </button>
+                  <button
+                    onClick={portifolioPageHandler}
+                    className={!showPortifolioFirstPage && styles.active}>
 
-                </button>
-                <button
-                  onClick={portifolioPageHandler}
-                  className={!showPortifolioFirstPage && styles.active}>
-
-                  Suas Skills
-                  
-                </button>
-              </div>
-              <div className={styles.portfolioContent}>
-                {showPortifolioFirstPage && (
-                  <ul className={styles.projectList}>
-                    <li className={styles.projectContainer}>
-
-                      <div className={styles.projectPictureBx}>
-                        <img
-                          src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
-                          alt="project"
-                        />
-                      </div>
-
-                      <div className={styles.projectContent}>
-                        <h1>Título 1 2 3</h1>
-
-                        <span>Analista de Sistemas</span>
-                        <p>Operações internacionais</p>
-
-                        <div className={styles.projectSkillsBx}>
-                          <p>Python</p>
-                          <p>Excel</p>
-                          <p>JavaScript</p>
-                        </div>
-                      </div>
-
-                      <div className={styles.detailBtnBx}>
-                        <button onClick={showModalHandler}>Detalhes</button>
-                      </div>
-                    </li>
-                    <li className={styles.projectContainer}>
-                      <div className={styles.projectPictureBx}>
-                        
-                        <img
-                          src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
-                          alt="project"
-                        />
-
-                      </div>
-                      <div className={styles.projectContent}>
-                        <h1>Título 1 2 3</h1>
-
-                        <span>Analista de Sistemas</span>
-                        <p>Operações internacionais</p>
-
-                        <div className={styles.projectSkillsBx}>
-                          <p>Python</p>
-                          <p>Excel</p>
-                          <p>JavaScript</p>
-                        </div>
-                      </div>
-
-                      <div className={styles.detailBtnBx}>
-                        <button onClick={showModalHandler}>Detalhes</button>
-                      </div>
-                    </li>
-                    <li className={styles.projectContainer}>
-
-                      <div className={styles.projectPictureBx}>
-                        <img
-                          src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
-                          alt="project"
-                        />
-                      </div>
-
-                      <div className={styles.projectContent}>
-                        <h1>Título 1 2 3</h1>
-
-                        <span>Analista de Sistemas</span>
-                        <p>Operações internacionais</p>
-
-                        <div className={styles.projectSkillsBx}>
-                          <p>Python</p>
-                          <p>Excel</p>
-                          <p>JavaScript</p>
-                        </div>
-                      </div>
-
-                      <div className={styles.detailBtnBx}>
-                        <button onClick={showModalHandler}>Detalhes</button>
-                      </div>
-                    </li>
-                    <li className={styles.projectContainer}>
-
-                      <div className={styles.projectPictureBx}>
-                        <img
-                          src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
-                          alt="project"
-                        />
-                      </div>
-
-                      <div className={styles.projectContent}>
-                        <h1>Título 1 2 3</h1>
-
-                        <span>Analista de Sistemas</span>
-                        <p>Operações internacionais</p>
-
-                        <div className={styles.projectSkillsBx}>
-                          <p>Python</p>
-                          <p>Excel</p>
-                          <p>JavaScript</p>
-                        </div>
-                      </div>
-
-                      <div className={styles.detailBtnBx}>
-                        <button onClick={showModalHandler}>Detalhes</button>
-                      </div>
-                    </li>
-                    <li className={styles.projectContainer}>
-
-                      <div className={styles.projectPictureBx}>
-                        <img
-                          src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
-                          alt="project"
-                        />
-                      </div>
-
-                      <div className={styles.projectContent}>
-                        <h1>Título 1 2 3</h1>
-
-                        <span>Analista de Sistemas</span>
-                        <p>Operações internacionais</p>
-
-                        <div className={styles.projectSkillsBx}>
-                          <p>Python</p>
-                          <p>Excel</p>
-                          <p>JavaScript</p>
-                        </div>
-                      </div>
-
-                      <div className={styles.detailBtnBx}>
-                        <button onClick={showModalHandler}>Detalhes</button>
-                      </div>
-                    </li>
-                  </ul>
-                )}
-                {!showPortifolioFirstPage && (
-                  <div className={styles.skillColumnsWraper}>
-
-                    <div className={styles.skillsColumn}>
-                      <h2>Hard Skills</h2>
-                      
-                      <div>
-                        <p>Python</p>
-                        <p>SQL</p>
-                        <p>Excel</p>
-                        <p>C#</p>
-                        <p>AWS</p>
-                      </div>
-                    </div>
-
-                    <div className={styles.skillsColumn}>
-                      <h2>Soft Skills</h2>
+                    Suas Skills
                     
-                      <div>
-                        <p>Comunicação</p>
-                        <p>Liderança</p>
-                        <p>Estratégia</p>
-                        <p>Adaptabilidade</p>
-                        <p>Disciplina</p>
+                  </button>
+                </div>
+                <div className={styles.portfolioContent}>
+                  {showPortifolioFirstPage && (
+                    <ul className={styles.projectList}>
+                      <li className={styles.projectContainer}>
+
+                        <div className={styles.projectPictureBx}>
+                          <img
+                            src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
+                            alt="project"
+                          />
+                        </div>
+
+                        <div className={styles.projectContent}>
+                          <h1>Título 1 2 3</h1>
+
+                          <span>Analista de Sistemas</span>
+                          <p>Operações internacionais</p>
+
+                          <div className={styles.projectSkillsBx}>
+                            <p>Python</p>
+                            <p>Excel</p>
+                            <p>JavaScript</p>
+                          </div>
+                        </div>
+
+                        <div className={styles.detailBtnBx}>
+                          <button onClick={showModalHandler}>Detalhes</button>
+                        </div>
+                      </li>
+                      <li className={styles.projectContainer}>
+                        <div className={styles.projectPictureBx}>
+                          
+                          <img
+                            src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
+                            alt="project"
+                          />
+
+                        </div>
+                        <div className={styles.projectContent}>
+                          <h1>Título 1 2 3</h1>
+
+                          <span>Analista de Sistemas</span>
+                          <p>Operações internacionais</p>
+
+                          <div className={styles.projectSkillsBx}>
+                            <p>Python</p>
+                            <p>Excel</p>
+                            <p>JavaScript</p>
+                          </div>
+                        </div>
+
+                        <div className={styles.detailBtnBx}>
+                          <button onClick={showModalHandler}>Detalhes</button>
+                        </div>
+                      </li>
+                      <li className={styles.projectContainer}>
+
+                        <div className={styles.projectPictureBx}>
+                          <img
+                            src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
+                            alt="project"
+                          />
+                        </div>
+
+                        <div className={styles.projectContent}>
+                          <h1>Título 1 2 3</h1>
+
+                          <span>Analista de Sistemas</span>
+                          <p>Operações internacionais</p>
+
+                          <div className={styles.projectSkillsBx}>
+                            <p>Python</p>
+                            <p>Excel</p>
+                            <p>JavaScript</p>
+                          </div>
+                        </div>
+
+                        <div className={styles.detailBtnBx}>
+                          <button onClick={showModalHandler}>Detalhes</button>
+                        </div>
+                      </li>
+                      <li className={styles.projectContainer}>
+
+                        <div className={styles.projectPictureBx}>
+                          <img
+                            src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
+                            alt="project"
+                          />
+                        </div>
+
+                        <div className={styles.projectContent}>
+                          <h1>Título 1 2 3</h1>
+
+                          <span>Analista de Sistemas</span>
+                          <p>Operações internacionais</p>
+
+                          <div className={styles.projectSkillsBx}>
+                            <p>Python</p>
+                            <p>Excel</p>
+                            <p>JavaScript</p>
+                          </div>
+                        </div>
+
+                        <div className={styles.detailBtnBx}>
+                          <button onClick={showModalHandler}>Detalhes</button>
+                        </div>
+                      </li>
+                      <li className={styles.projectContainer}>
+
+                        <div className={styles.projectPictureBx}>
+                          <img
+                            src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
+                            alt="project"
+                          />
+                        </div>
+
+                        <div className={styles.projectContent}>
+                          <h1>Título 1 2 3</h1>
+
+                          <span>Analista de Sistemas</span>
+                          <p>Operações internacionais</p>
+
+                          <div className={styles.projectSkillsBx}>
+                            <p>Python</p>
+                            <p>Excel</p>
+                            <p>JavaScript</p>
+                          </div>
+                        </div>
+
+                        <div className={styles.detailBtnBx}>
+                          <button onClick={showModalHandler}>Detalhes</button>
+                        </div>
+                      </li>
+                    </ul>
+                  )}
+                  {!showPortifolioFirstPage && (
+                    <div className={styles.skillColumnsWraper}>
+
+                      <div className={styles.skillsColumn}>
+                        <h2>Hard Skills</h2>
+                        
+                        <div>
+                          <p>Python</p>
+                          <p>SQL</p>
+                          <p>Excel</p>
+                          <p>C#</p>
+                          <p>AWS</p>
+                        </div>
+                      </div>
+
+                      <div className={styles.skillsColumn}>
+                        <h2>Soft Skills</h2>
+                      
+                        <div>
+                          <p>Comunicação</p>
+                          <p>Liderança</p>
+                          <p>Estratégia</p>
+                          <p>Adaptabilidade</p>
+                          <p>Disciplina</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
+              <div className={styles.secondColumn}>
+                <Ranking />
+              </div>
+
             </div>
+
           </div>
 
         </div>
 
-        <div className={styles.secondColumn}>
-          <Ranking />
-        </div>
         </div>       
-      </main>
+      
       
       {showModal && <Modal onClose={showModalHandler}/>}
     </>);
