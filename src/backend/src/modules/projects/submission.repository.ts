@@ -1,7 +1,12 @@
+// Description: requests structure
+
+
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { Prisma, Submission } from '@prisma/client';
 
+
+// CRUD - Submission
 @Injectable()
 export class SubmissionRepository {
   constructor(private prisma: PrismaService) {}

@@ -1,3 +1,5 @@
+// Description: data for submission table creation requests
+
 export class CreateSubmission{
     id_submission: number;
      name: string;

@@ -1,9 +1,12 @@
+/*Description: It handles the incoming HTTP requests and sends the response back to the caller, specifically from the Profile table */
+
 import { Body, Controller, Get, Post, Patch, Param, Delete } from '@nestjs/common';
 import { ApiOperation, ApiTags, ApiParam } from '@nestjs/swagger';
 import { ProfilesService } from 'src/service/profiles.service';
 import { CreateProfile } from 'src/dto/create.profile.dto';
 import { DeleteProfile } from 'src/dto/delete.profile.dto';
 
+// CRUD - Profile
 @ApiTags ('Profile')
 @Controller('api')
 export class ProfileController {

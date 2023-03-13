@@ -1,9 +1,12 @@
+/*Description: It handles the incoming HTTP requests and sends the response back to the caller, specifically from the Submission table */
+
 import { Body, Controller, Get, Post, Patch, Param, Delete } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { SubmissionsService } from 'src/service/submissions.service';
 import { CreateSubmission } from 'src/dto/create.submission.dto';
 import { DeleteSubmission } from 'src/dto/delete.submission.dto';
 
+// CRUD - Submission
 @ApiTags('Submission')
 @Controller('submission')
 export class SubmissionController {

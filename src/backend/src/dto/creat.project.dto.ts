@@ -1,3 +1,5 @@
+// Description: data for project table creation requests
+
 export class CreateProject{
     idProject: number;
     title: string;

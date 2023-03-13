@@ -1,3 +1,5 @@
+// Description: data for profile table deletion requests
+
 import {IsNotEmpty} from 'class-validator';
 
 export class DeleteProfile{

@@ -1,3 +1,5 @@
+// Description: requests structure
+
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { Prisma, Profile } from '@prisma/client';

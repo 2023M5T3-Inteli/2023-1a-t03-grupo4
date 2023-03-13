@@ -1,15 +1,16 @@
-// // This is your Prisma schema file,
-// // learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Description: Prisma file - This is the structure of the database tables.
 
 generator client {
   provider = "prisma-client-js"
 }
 
+// To database, it is used PostgreSQL
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+// Table to Projects
 model Project {
   idProject    Int     @default(autoincrement()) @id
   title String  @unique
@@ -31,6 +32,7 @@ model Project {
   project_team Project_Team[]
 }
 
+// Table to Submissions
 model Submission {
   id_submission        Int      @default(autoincrement()) @id
   name String?
@@ -43,6 +45,7 @@ model Submission {
   position_submission Position_Submission[] 
 }
 
+// Table to Profile
 model Profile {
   id_profile Int @default(autoincrement()) @id
   name String?
@@ -56,6 +59,7 @@ model Profile {
   project Project[]
 }
 
+// Relational table of skills and profiles
 model Skill_Profile {
  id Int @default(autoincrement())@id
  id_skill_rel Skill? @relation(fields: [id_skill], references: [id_skill])
@@ -64,6 +68,7 @@ model Skill_Profile {
  email Int
 }
 
+// Table to skills
 model Skill {
   id_skill Int @default(autoincrement()) @id
   skill String? 
@@ -71,7 +76,7 @@ model Skill {
   project_skill Project_skill[]
 }
 
-
+// Relational table of skills and projects
 model Project_skill {
   id_project_rel Project @relation(fields: [id_project], references: [idProject])
   id_project Int
@@ -81,6 +86,7 @@ model Project_skill {
   @@id([id_project, id_skill])
 }
 
+// Relational table of projects and profiles
 model Project_Profile {
   id_project_rel Project? @relation(fields: [id_project], references: [idProject])
   id_project Int
@@ -89,6 +95,7 @@ model Project_Profile {
   @@id([id_project, id_profile])
 }
 
+// Relational table of managers and profiles
 model Profile_Manager {
   manager_email_rel Manager? @relation(fields: [manager_email], references: [id])
   manager_email Int
@@ -97,6 +104,7 @@ model Profile_Manager {
   @@id([manager_email, email])
 }
 
+//Table to managers
 model Manager {
   id Int @default(autoincrement())@id
   email String @unique
@@ -105,6 +113,7 @@ model Manager {
   manager_email Profile_Manager[]
 }
 
+// Relational table of position and submissions
 model Position_Submission {
   id_position_rel Position? @relation(fields: [id_position], references: [id_position])
   id_position Int
@@ -113,6 +122,7 @@ model Position_Submission {
   @@id([id_position, id_submission])
 }
 
+// Relational table of projects and positions
 model Project_Position {
   id_project_rel Project? @relation(fields: [id_project], references: [idProject])
   id_project Int
@@ -121,6 +131,7 @@ model Project_Position {
   @@id([id_project, id_position])
 }
 
+// Relational table of projects and technology
 model Project_Technology{
   id_project_rel Project? @relation(fields: [id_project], references: [idProject])
   id_project Int
@@ -129,6 +140,7 @@ model Project_Technology{
   @@id([id_project, id_technology])
 }
 
+// Relational table of project and teams
 model Project_Team{
   id_project_rel Project? @relation(fields: [id_project], references: [idProject])
   id_project Int
@@ -138,7 +150,7 @@ model Project_Team{
   @@id([id_project, email])
 }
 
-
+// Relational table of technology and profiles
 model Technology_Profile{
   id_technology_rel Technology? @relation(fields: [id_technology], references: [id_technology])
   id_technology Int
@@ -147,6 +159,7 @@ model Technology_Profile{
   @@id([id_technology, id_profile])
 }
 
+// Table to technologies
 model Technology{
   id_technology Int @default(autoincrement())@id
   Technology String?
@@ -154,7 +167,7 @@ model Technology{
   technology_profile Technology_Profile[]
 }
 
-
+// Table to positions
 model Position{
   id_position Int @default(autoincrement())@id
   position String?
