@@ -1,7 +1,10 @@
 // Description: data for profile creation table requests
-
-export class CreateProfile{
-    id_profile: number;
-    name: string;
-    email: string;
+import { IsNotEmpty, IsEnum, IsDateString } from 'class-validator';
+export class CreateProfile {
+  @IsNotEmpty()
+  id_profile: number;
+  @IsNotEmpty()
+  name: string;
+  @IsNotEmpty()
+  email: string;
 }
