@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@nestjs/swagger": "^6.2.1",
+    "@prisma/client": "^4.11.0"
+  }
+}
