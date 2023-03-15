@@ -41,3 +41,5 @@ export class Project {
   public auth: boolean;
 }
 
+export default Project;
+
