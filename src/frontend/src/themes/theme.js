@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material';
 
 export const appTheme = createTheme({
     palette: {
@@ -61,4 +61,6 @@ export const appTheme = createTheme({
         }
     },
 });
+
+export default appTheme
   

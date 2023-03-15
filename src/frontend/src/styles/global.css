@@ -68,6 +68,34 @@ p::first-letter{
     text-transform:capitalize;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+border-radius: 5px;
+background: var(--grey2);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: var(--accent-color);
+}
+
+/* Handle on active */
+::-webkit-scrollbar-thumb:active {
+    background-color: var(--secondary-color);
+}
+
 .MuiOutlinedInput-notchedOutline{
     border-color: var(--accent-color) !important;
 }

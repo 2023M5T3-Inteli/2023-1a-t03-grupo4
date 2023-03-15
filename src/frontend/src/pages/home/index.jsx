@@ -1,23 +1,64 @@
 import './home.css'
 
-import { Parallax, ParallaxLayer } from '@react-spring/parallax'
+import $ from 'jquery'
 import NavBar from '../../components/NavBar';
-import HomeImage from '../../assets/images/WallpaperHome.png'
+import ProjectCard from '../../components/ProjectCard';
+import PrimaryBtn from '../../components/PrimaryBtn';
 
 
 function Home() {
+    var techList = [
+         'Next.js' ,
+         'AWS' ,
+         'JavaScript' ,
+         'Python' ,
+    ]
+
+    const scrollDown = () => {
+        $('html, body').animate({scrollTop:700}, 'slow');
+        return false;
+    }
+
     return(<div>
         <NavBar/>
         <div style={{paddingLeft: 0, paddingRight: 0, top:"92px"}}>
             <section className="homeImage"></section>
             <section className="mainScreen pt-20" style={{marginTop: 0,background:"var(--base)", borderTop:"2px solid var(--grey1)"}}>
+                <div className="absolute flex justify-center items-center cursor-pointer h-16 w-24 -mt-36 left-0" style={{marginLeft:"50%", transform:"translateX(-45%)"}} onClick={scrollDown}>
+                    <i className="fa-solid fa-angles-down text-6xl pb-5" style={{color:"var(--primary-color)"}}></i>
+                </div>
+
                 <h1 className=" font-light text-6xl">PROJETOS EM DESTAQUE</h1>
 
                 <br /><br /><br />
 
-                <div className="shadow-sm w-full h-fit p-10" style={{background:"white", minHeight:"20rem" , maxHeight:"100rem", borderRadius:"20px", border:"1px solid var(--grey1)"}}>
-                    <h1>ksjdksjdksjdk skjdjsdhj jskd</h1>
+                <div className="flex flex-col items-center shadow-sm w-full h-fit p-10 py-20" style={{background:"white", minHeight:"20rem" , maxHeight:"fit-content", borderRadius:"20px", border:"1px solid var(--grey1)"}}>
+                    <div className="flex flex-wrap items-center justify-center gap-28">
+                        <ProjectCard title={"teste"} techList={techList}/>
+                        <ProjectCard title={"teste"} techList={techList}/>
+                        <ProjectCard title={"teste"} techList={techList}/>
+                        <ProjectCard title={"teste"} techList={techList}/>
+                        <ProjectCard title={"teste"} techList={techList}/>
+                        <ProjectCard title={"teste"} techList={techList}/>
+                        <ProjectCard title={"teste"} techList={techList}/>
+                        <ProjectCard title={"teste"} techList={techList}/>
+                        <ProjectCard title={"teste"} techList={techList}/>
+
+                    </div>
+
+                    <br /><br /><br />
+
+                    <PrimaryBtn text={"Ver mais"}/>
                 </div>
+            </section>
+
+            <section className="flex flex-col items-center w-full h-96 p-16" style={{borderTop:"2px solid var(--grey1)"}}>
+                <div className="flex flex-col items-center justify-center w-full pb-10" style={{maxWidth:"40rem"}}>
+                    <h1 className="text-6xl font-semibold" style={{color:"var(--primary-color)"}}>SOBRE A SOLUÇÃO</h1>
+                    <br />
+                    <p className="text-center">Lorem ipsum dolor sit amet consectetur. Faucibus mauris consequat purus ullamcorper ut sit. Duis consequat eu libero tellus tincidunt morbi interdum semper cras. Sit lorem nunc non convallis. </p>
+                </div>
+                <PrimaryBtn text={"Saiba mais"}/>
             </section>
         </div>
             
