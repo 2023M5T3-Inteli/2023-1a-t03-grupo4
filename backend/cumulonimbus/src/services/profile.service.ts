@@ -11,12 +11,12 @@ export class profileService {
   ) {}
 
   // find all
-  getAllTodos() {
+  getAllProfiles() {
     return this.profileRepository.find();
   }
 
   // find by id
-  async getTodoById(id: number) {
+  async getProfileById(id: number) {
     const profile = await this.profileRepository.findOneById(id);
     if (profile) {
       return profile;

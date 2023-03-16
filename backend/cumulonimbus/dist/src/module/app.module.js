@@ -11,24 +11,32 @@ const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const app_controller_1 = require("../controller/app.controller");
 const app_service_1 = require("../services/app.service");
-const Joi = require("joi");
 const database_module_1 = require("./database.module");
+const typeorm_1 = require("@nestjs/typeorm");
+const project_module_1 = require("./project.module");
+const project_entity_1 = require("../module/entities/project.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            config_1.ConfigModule.forRoot({
-                envFilePath: '../../.env',
-                validationSchema: Joi.object({
-                    POSTGRES_HOST: Joi.number().required(),
-                    POSTGRES_PORT: Joi.number().required(),
-                    POSTGRES_USER: Joi.string().required(),
-                    POSTGRES_PASSWORD: Joi.string().required(),
-                    POSTGRES_DB: Joi.string().required(),
+            config_1.ConfigModule.forRoot({ isGlobal: true }),
+            typeorm_1.TypeOrmModule.forRootAsync({
+                imports: [config_1.ConfigModule],
+                useFactory: (configService) => ({
+                    type: 'postgres',
+                    host: configService.get('POSTGRES_HOST'),
+                    port: +configService.get('POSTGRES_PORT'),
+                    username: configService.get('POSTGRES_USER'),
+                    password: configService.get('POSTGRES_PASSWORD'),
+                    database: configService.get('POSTGRES_DB'),
+                    entities: [project_entity_1.Project],
+                    synchronize: true,
                 }),
+                inject: [config_1.ConfigService],
             }),
-            database_module_1.DatabaseModule,
+            project_module_1.ProjectModule,
+            database_module_1.DatabaseModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

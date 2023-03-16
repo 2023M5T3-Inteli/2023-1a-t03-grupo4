@@ -26,10 +26,10 @@ export class Project {
   @Column()
   public date_end: Date;
 
-  @Column()
-  @OneToOne((type)=> Profile, (profile) => profile.idProfile)
-  @JoinColumn()
-  public creator: Profile['idProfile'];
+  // @Column()
+  // @OneToOne((type)=> Profile, (profile) => profile.idProfile)
+  // @JoinColumn()
+  // public creator: Profile['idProfile'];
 
   @Column()
   public area: string;
