@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, Index, OneToOne, JoinColumn} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, Index, ManyToOne, JoinColumn} from 'typeorm';
 import { Profile } from './profile.entity';
 
 @Entity()
@@ -26,10 +26,8 @@ export class Project {
   @Column()
   public date_end: Date;
 
-  // @Column()
-  // @OneToOne((type)=> Profile, (profile) => profile.idProfile)
-  // @JoinColumn()
-  // public creator: Profile['idProfile'];
+  @ManyToOne(() => Profile, (profile) => profile.idProfile)
+  profile: Profile
 
   @Column()
   public area: string;
