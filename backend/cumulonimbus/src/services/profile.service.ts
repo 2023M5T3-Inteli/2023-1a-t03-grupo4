@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import CreateProfile from '../module/dto/createProfile.dto';
-import { Profile } from '../module/entities/profile.entity';
+import { Profile } from '../../myDB/src/entity/profile.entity';
 
 @Injectable()
 export class profileService {

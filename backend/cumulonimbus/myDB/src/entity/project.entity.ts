@@ -1,3 +1,5 @@
+import { profile } from 'console';
+import { type } from 'os';
 import { Column, Entity, PrimaryGeneratedColumn, Index, ManyToOne, JoinColumn} from 'typeorm';
 import { Profile } from './profile.entity';
 
@@ -26,8 +28,8 @@ export class Project {
   @Column()
   public date_end: Date;
 
-  @ManyToOne(() => Profile, (profile) => profile.idProfile)
-  profile: Profile
+  @ManyToOne(() => Profile, (coreator) => coreator.projects, {eager: true})
+  creator : Profile;
 
   @Column()
   public area: string;

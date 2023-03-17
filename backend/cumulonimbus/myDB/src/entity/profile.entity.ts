@@ -3,13 +3,16 @@ import {Project} from './project.entity'
 
 @Entity()
 export class Profile{
-    @PrimaryGeneratedColumn()
-    @OneToMany(() => Project, (project) => project.profile)
-    profile: Project[];
+
+    @PrimaryGeneratedColumn()   
+    profile: number;
     
-    public idProfile: number;
     @Column()
     public name: string;
+
+    @OneToMany(() => Project, (creator) => creator.creator)
+    projects : Project[];
+
     @Column()
     @Index({ unique: true })
     public email: string;

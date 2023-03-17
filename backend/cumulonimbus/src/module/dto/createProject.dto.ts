@@ -1,3 +1,5 @@
+import { Profile } from '../../../myDB/src/entity/profile.entity'
+
 export class CreateProject{
     idProject: number;
     title: string;
@@ -6,7 +8,7 @@ export class CreateProject{
     submission_date: Date;
     date_initial: Date;
     date_end: Date;
-    creator: number;
+    creator: Profile;
     area: string;
     role: string;
     auth: boolean;
