@@ -3,7 +3,7 @@ import './home.css'
 import $ from 'jquery'
 import NavBar from '../../components/NavBar';
 import ProjectCard from '../../components/ProjectCard';
-import PrimaryBtn from '../../components/PrimaryBtn';
+import PrimaryBtn from '../../components/Btn';
 
 
 function Home() {

@@ -1,6 +1,6 @@
 import './components_css/ProjectCard.css'
 
-import PrimaryBtn from '../components/PrimaryBtn'
+import PrimaryBtn from './Btn'
 import { Stack, Chip } from '@mui/material';
 
 function ProjectCard({img, title, status, techList, color}) {

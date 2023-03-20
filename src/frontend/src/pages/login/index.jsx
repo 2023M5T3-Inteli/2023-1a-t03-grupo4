@@ -5,7 +5,7 @@ import * as React from 'react';
 import { useState } from 'react';
 
 import TextInput from '../../components/TextInput'
-import PrimaryBtn from '../../components/PrimaryBtn'
+import PrimaryBtn from '../../components/Btn'
 import CheckBox from '../../components/CheckBox'
 import DellLogo from '../../assets/svg/DellLogo/export';
 import CNLogoName from '../../assets/images/CNLogoName.png'
@@ -32,9 +32,9 @@ function Login() {
 
     //Define o que será feito quando o botão de entrar é pressionado (Redireciona diretamente para a Home para fins demonstrativos)
     const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submit", {email, password});
-    window.location.href = '/home'
+        e.preventDefault();
+        console.log("Submit", {email, password});
+        window.location.href = '/home'
     }
 
 

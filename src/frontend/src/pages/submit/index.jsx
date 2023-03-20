@@ -3,7 +3,7 @@ import './submit.css'
 import * as React from 'react'
 import NavBar from '../../components/NavBar'
 import CheckBox from '../../components/CheckBox'
-import PrimaryBtn from '../../components/PrimaryBtn'
+import PrimaryBtn from '../../components/Btn'
 import userPlaceholder from '../../assets/images/user_placeholder.jpeg'
 import { TextField,Box, Autocomplete, Chip, IconButton} from '@mui/material'
 import Add from '@mui/icons-material/Add';

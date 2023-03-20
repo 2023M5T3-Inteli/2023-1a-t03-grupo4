@@ -8,6 +8,13 @@
     min-width: fit-content;
 }
 
-@media screen and (max-width:900px) {
+.modal-content:focus {
+    outline: none;
+}
 
+
+@media screen and (max-width:500px) {
+    .modal-content {
+        padding-top: 15rem;
+    }
 }

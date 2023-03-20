@@ -1,14 +1,21 @@
 import './addProject.css'
 
 import * as React from 'react';
+import  Modal from "react-modal"
+import ReactModal from 'react-modal';
 import { TextField, Box , Chip, Autocomplete, MenuItem, IconButton} from '@mui/material';
 import Add from '@mui/icons-material/Add';
 import NavBar from '../../components/NavBar'
-import PrimaryBtn from '../../components/PrimaryBtn'
+import Btn from '../../components/Btn'
 import timeZones from "../../scripts/time_zones"
+import { useEffect } from 'react';
+import  CheckBox  from '../../components/CheckBox';
 
 
 function AddProject() {
+
+    ReactModal.setAppElement('*');
+
 
     function capitalizeFirstLetter(string){
         string = string.toLowerCase().split(' ').map((a) => a.charAt(0).toUpperCase() + a.substr(1)).join(' ');
@@ -106,8 +113,19 @@ function AddProject() {
     }
 
     const [value, setValue] = React.useState([]);
+    const [inputValue, setInputValue] = React.useState(true);
+    const [modalIsOpen, setIsOpen] = React.useState(true);
 
-    return(<div>
+    function closeModal()
+    {
+        setIsOpen(false);
+    }
+
+    const handleProceed = () => {
+        setInputValue(false)
+    }
+
+    return(<div>    
         <NavBar/>
         <div className="mainScreen">
             <div>
@@ -290,7 +308,7 @@ function AddProject() {
                 <br />
                 
                 <div className="flex flex-row w-full justify-center">
-                    <PrimaryBtn text={"Salvar"} className=""/>
+                    <Btn text={"Salvar"} variant={"primaryBtn"} className=""/>
                 </div>
 
 
@@ -298,6 +316,36 @@ function AddProject() {
 
             </Box>
         </div>
+        
+        <Modal
+            isOpen={modalIsOpen}
+            
+            contentLabel="Example Modal"
+            overlayClassName="modal-overlay fixed w-full h-full bg-gray-900 bg-opacity-50 z-40 overflow-y-auto justify-center items-center flex top-0"
+            className="modal-content absolute"
+            ariaHideApp={true}
+            appElement={document.getElementById('app')}
+        >
+            <div className="shadow-md p-10" style={{background:"var(--base)", borderRadius:"20px", maxWidth:"70rem"}}>
+                <h1 className="text-3xl">Termos de criação de projeto</h1>
+                <br />
+                <div className="p-3">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quam pellentesque nec nam aliquam sem et tortor. Tempor nec feugiat nisl pretium fusce id. Molestie at elementum eu facilisis. Dolor purus non enim praesent elementum facilisis leo. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum.
+                    
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quam pellentesque nec nam aliquam sem et tortor. Tempor nec feugiat nisl pretium fusce id. Molestie at elementum eu facilisis. Dolor purus non enim praesent elementum facilisis leo. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum.</p>
+                </div>
+                <br />
+                <div className="flex flex-row items-center w-full" style={{width:"100%", justifyContent:"space-between"}}>
+                    <div>
+                        <CheckBox label={"Estou ciente dos  termos de uso e criação de projeto."} onChange={(e) => {setInputValue(!inputValue)}} checkFunction={handleProceed}/>
+                    </div>
+                    
+                    {inputValue ? <Btn text={"Prosseguir"} variant={"disabledBtn"} disabled={inputValue} onClick={closeModal}/> : <Btn text={"Prosseguir"} variant={"primaryBtn"} disabled={inputValue} onClick={closeModal}/>}
+                    
+                </div>
+            </div>
+        </Modal>
+
     </div>)
 }
 

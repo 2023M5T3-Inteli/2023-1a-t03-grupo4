@@ -4,7 +4,7 @@ import { useState } from "react";
 import './components_css/Checkbox.css'
 
 //Cria o componente com suas variáveis e referenciando as informações necessárias
-function CheckBox({label,count,checkFunction}) {
+function CheckBox({label,count,checkFunction,onChange}) {
 
   //Cria e define as informações de checagem do checkbox para false
   const [isChecked, setIsChecked] = useState(false);
@@ -16,6 +16,7 @@ function CheckBox({label,count,checkFunction}) {
   //Marca ou desmarca (check) quando o checkbox é pressionado
   const handleCheck = () => {
     setIsChecked(!isChecked)
+    onChange()
     if(!isChecked){
       checkFunction()
     }
