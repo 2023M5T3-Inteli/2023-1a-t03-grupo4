@@ -1,11 +1,13 @@
 import './addProject.css'
 
 import * as React from 'react';
+import Modal from "react-modal"
 import { TextField, Box , Chip, Autocomplete, MenuItem, IconButton} from '@mui/material';
 import Add from '@mui/icons-material/Add';
 import NavBar from '../../components/NavBar'
 import PrimaryBtn from '../../components/PrimaryBtn'
 import timeZones from "../../scripts/time_zones"
+import { useEffect } from 'react';
 
 
 function AddProject() {
@@ -107,7 +109,23 @@ function AddProject() {
 
     const [value, setValue] = React.useState([]);
 
-    return(<div>
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+    useEffect(() => openModal(), console.log(modalIsOpen))
+    
+
+    function openModal()
+    {
+        setIsOpen(true)
+    }
+    
+    function closeModal()
+    {
+        setIsOpen(false);
+    }
+
+    
+
+    return(<div>    
         <NavBar/>
         <div className="mainScreen">
             <div>
@@ -298,6 +316,24 @@ function AddProject() {
 
             </Box>
         </div>
+        
+        <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            contentLabel="Example Modal"
+            overlayClassName="modal-overlay"
+            className="modal-content"
+            ariaHideApp={true}
+        >
+            <div className="shadow-md" style={{background:"var(--base)", borderRadius:"20px"}}>
+                <h1>Termos de criação de projeto</h1>
+                <br />
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quam pellentesque nec nam aliquam sem et tortor. Tempor nec feugiat nisl pretium fusce id. Molestie at elementum eu facilisis. Dolor purus non enim praesent elementum facilisis leo. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum.
+                
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quam pellentesque nec nam aliquam sem et tortor. Tempor nec feugiat nisl pretium fusce id. Molestie at elementum eu facilisis. Dolor purus non enim praesent elementum facilisis leo. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum.</p>
+            </div>
+        </Modal>
+
     </div>)
 }
 
