@@ -24,6 +24,6 @@ jobs:
           TARGET: ${{ secrets.TARGET_DIR }}
           SCRIPT_AFTER:   |
             cd ~/2023-1a-t03-grupo4/backend/cumulonimbus/src/
-            npm install
+            sudo npm install
             npm run start:dev
 
