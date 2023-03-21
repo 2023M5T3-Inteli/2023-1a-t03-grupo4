@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn, Index, OneToOne, JoinColumn} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, Index, ManyToOne, JoinColumn} from 'typeorm';
+import { Positions } from './positions.entity';
 import { Profile } from './profile.entity';
 import { Project } from './project.entity';
 
@@ -11,10 +12,6 @@ export class Submission {
     @Column()
     public name: string;
 
-    @OneToOne(()=> Project, (project) => project.idProject)
-    @JoinColumn()
-    public idProject: Project["idProject"]
-
     @Column()
     public reason: string;
 
@@ -25,5 +22,17 @@ export class Submission {
     @Column()
     public stt: string;
 
+
+    @ManyToOne(()=> Project, (project) => project.idProject, {eager: true})
+    @JoinColumn()
+    public idProject: Project["idProject"]
+
+    @ManyToOne(()=> Profile, (profile) => profile.id_profile, {eager: true})
+    @JoinColumn()
+    public id_profile: Profile["id_profile"]
+
+    @ManyToOne(()=> Positions, (position) => position.id_position, {eager: true})
+    @JoinColumn()
+    public position: Positions["id_position"]
     
 }

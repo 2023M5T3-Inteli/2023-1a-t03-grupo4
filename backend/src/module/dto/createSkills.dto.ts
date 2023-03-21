@@ -1,6 +1,6 @@
-export class createSkills{
+export class CreateSkills{
     idSkill: number;
     skill: string;
 }
 
-export default createSkills;
+export default CreateSkills;

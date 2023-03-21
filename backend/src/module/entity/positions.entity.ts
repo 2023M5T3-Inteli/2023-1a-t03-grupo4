@@ -1,10 +1,14 @@
-import { Column, PrimaryGeneratedColumn, Index, Entity, OneToMany, ManyToMany, JoinTable} from 'typeorm';
+import { Column, PrimaryGeneratedColumn,Entity, OneToMany} from 'typeorm';
+import { Submission } from './submission.entity'
 
+@Entity()
 export class Positions{
     @PrimaryGeneratedColumn()
-    @Column()
     public id_position: number;
 
     @Column()
     public position: string;
+
+    // @OneToMany(() => Submission, (position) => position.position)
+    // submissions:Submission[]
 }

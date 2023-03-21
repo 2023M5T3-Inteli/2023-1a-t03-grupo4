@@ -25,15 +25,10 @@ export class profileController {
     return this.profileService.createProfile(profile);
   }
 
-//   // update todo
-//   @Put(':id')
-//   async updateProject(@Param('id') id:number, @Body() updateProjectDto: UpdateProjectDto) {
-//     return this.projectService.updateProject(Number(id), updateProjectDto);
-//   }
 
-//   //delete todo
-//   @Delete(':id')
-//   async deleteTodo(@Param('id') id: string) {
-//     this.todosService.deleteTodo(Number(id));
-//   }
+  //delete todo
+  @Delete(':id')
+  async deleteprofile(@Param('id') id: string) {
+    this.profileService.deleteprofile(Number(id));
+  }
 }

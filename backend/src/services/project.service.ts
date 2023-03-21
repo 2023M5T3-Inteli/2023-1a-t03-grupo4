@@ -33,22 +33,11 @@ export class ProjectService {
     return newProject;
   }
 
-//   // update
-//   async updateProject(id: number, post: UpdateProjectDto) {
-//     await this.projectRepository.update(id, post);
-//     const updatedTodo = await this.projectRepository.findOne(id);
-//     if (updatedProject) {
-//       return updatedProject;
-//     }
-
-//     throw new HttpException('Todo not found', HttpStatus.NOT_FOUND);
-//   }
-
-//   // delete
-//   async deleteTodo(id: number) {
-//     const deletedTodo = await this.todoRepository.delete(id);
-//     if (!deletedTodo.affected) {
-//       throw new HttpException('Todo not found', HttpStatus.NOT_FOUND);
-//     }
-//   }
+  // delete
+  async deleteProject(id: number) {
+    const deleteProject = await this.projectRepository.delete(id);
+    if (!deleteProject.affected) {
+      throw new HttpException('Project not found', HttpStatus.NOT_FOUND);
+    }
+  }
 }

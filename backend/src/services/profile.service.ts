@@ -33,22 +33,11 @@ export class profileService {
     return newProfile;
   }
 
-  // // update
-  // async updateTodo(id: number, post: UpdateTodoDto) {
-  //   await this.todoRepository.update(id, post);
-  //   const updatedTodo = await this.todoRepository.findOne(id);
-  //   if (updatedTodo) {
-  //     return updatedTodo;
-  //   }
-
-  //   throw new HttpException('Todo not found', HttpStatus.NOT_FOUND);
-  // }
-
-  // // delete
-  // async deleteTodo(id: number) {
-  //   const deletedTodo = await this.todoRepository.delete(id);
-  //   if (!deletedTodo.affected) {
-  //     throw new HttpException('Todo not found', HttpStatus.NOT_FOUND);
-  //   }
-  // }
+  // delete
+  async deleteprofile(id: number) {
+    const deleteProfile = await this.profileRepository.delete(id);
+    if (!deleteProfile.affected) {
+      throw new HttpException('Profile not found', HttpStatus.NOT_FOUND);
+    }
+  }
 }

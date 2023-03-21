@@ -1,8 +1,11 @@
 import { profile } from 'console';
 import { type } from 'os';
-import { Column, Entity, PrimaryGeneratedColumn, Index, ManyToOne, JoinColumn, ManyToMany, JoinTable} from 'typeorm';
+import { join } from 'path';
+import { Column, Entity, PrimaryGeneratedColumn, Index, ManyToOne, ManyToMany, JoinTable} from 'typeorm';
+import { Positions } from './positions.entity';
 import { Profile } from './profile.entity';
 import Skills from './skills.entity';
+import { Technologies } from './technologies.entity';
 
 @Entity()
 export class Project {
@@ -29,7 +32,7 @@ export class Project {
   @Column()
   public date_end: Date;
 
-  @ManyToOne(() => Profile, (coreator) => coreator.projects, {eager: true})
+  @ManyToOne(() => Profile, (creator) => creator.id_profile, {eager: true})
   creator : Profile;
 
   @Column()
@@ -44,6 +47,14 @@ export class Project {
   @ManyToMany(() => Skills)
   @JoinTable()
   skills: Skills[]
+
+  @ManyToMany(() => Positions)
+  @JoinTable()
+  positions: Positions[]
+
+  @ManyToMany(() => Technologies)
+  @JoinTable()
+  technologies: Technologies[]
 }
 
 export default Project;

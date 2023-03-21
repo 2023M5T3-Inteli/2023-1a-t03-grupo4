@@ -1,18 +1,16 @@
-import { Column, PrimaryGeneratedColumn, Index, Entity, OneToMany, ManyToMany, JoinTable} from 'typeorm';
+import { Column, PrimaryGeneratedColumn, Index, Entity, ManyToMany, JoinTable, OneToOne, JoinColumn} from 'typeorm';
 import {Project} from './project.entity'
 import {Skills} from './skills.entity';
+import { Technologies } from './technologies.entity';
 
 @Entity()
 export class Profile{
 
     @PrimaryGeneratedColumn()   
-    profile: number;
+    id_profile: number;
     
     @Column()
     public name: string;
-
-    @OneToMany(() => Project, (creator) => creator.creator)
-    projects : Project[];
 
     @Column()
     @Index({ unique: true })
@@ -22,5 +20,16 @@ export class Profile{
     @JoinTable()
     skills: Skills[]
 
+    @ManyToMany(() => Technologies)
+    @JoinTable()
+    technologies: Technologies[]
+  
+    @OneToOne(()=> Profile, (profile) => profile.id_profile)
+    @JoinColumn()
+    manager: Profile["id_profile"]
+
+    @ManyToMany(() => Profile)
+    @JoinTable()
+    team: Profile[]
 }
 export default Profile;
