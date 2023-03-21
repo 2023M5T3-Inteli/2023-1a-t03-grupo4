@@ -18,9 +18,9 @@ jobs:
         with:
           script: |
             cd ~/2023-1a-t03-grupo4/backend/
-            rm -rf node_modules
-            npm install
-            npm run start:dev > build.log
+            sudo rm -rf node_modules
+            sudo npm install
+            sudo npm run start:dev > build.log
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
