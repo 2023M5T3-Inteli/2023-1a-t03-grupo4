@@ -15,14 +15,13 @@ jobs:
 
       - name: Deploy to Server 1
         uses: easingthemes/ssh-deploy@main
-        with:
-          script: |
-            cd ~/2023-1a-t03-grupo4/backend/
-            sudo rm -rf node_modules
-            sudo npm install
-            sudo npm run start:dev > build.log
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
+          SCRIPT_AFTER: |
+            cd ~/2023-1a-t03-grupo4/backend/
+            sudo rm -rf node_modules
+            sudo npm install
+            sudo npm run start:dev > build.log
