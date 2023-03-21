@@ -1,7 +1,8 @@
 import { profile } from 'console';
 import { type } from 'os';
-import { Column, Entity, PrimaryGeneratedColumn, Index, ManyToOne, JoinColumn} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, Index, ManyToOne, JoinColumn, ManyToMany, JoinTable} from 'typeorm';
 import { Profile } from './profile.entity';
+import Skills from './skills.entity';
 
 @Entity()
 export class Project {
@@ -39,6 +40,10 @@ export class Project {
 
   @Column()
   public auth: boolean;
+
+  @ManyToMany(() => Skills)
+  @JoinTable()
+  skills: Skills[]
 }
 
 export default Project;

@@ -6,7 +6,7 @@ import { ProjectModule } from './project.module';
 import { ProfileModule } from '../module/profile.module';
 import { DataSource } from 'typeorm';
 import Skills from './entity/skills.entity';
-
+import { Positions } from './entity/positions.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -16,7 +16,7 @@ import Skills from './entity/skills.entity';
       username: 'postgres',
       password: 'grupo4123',
       database: 'postgres',
-      entities: [Project, Profile, Skills],
+      entities: [Project, Profile, Skills, Positions],
       synchronize: true,
     }),
     ProjectModule,
