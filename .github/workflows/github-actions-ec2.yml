@@ -17,6 +17,7 @@ jobs:
         with:
           script: |
             cd ~/2023-1a-t03-grupo4/backend/src
+            rm -rf node_modules
             npm install
             npm run start > build.log
         env:
