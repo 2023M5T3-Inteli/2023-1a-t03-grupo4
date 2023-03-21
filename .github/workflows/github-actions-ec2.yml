@@ -24,4 +24,6 @@ jobs:
             cd ~/backend
             sudo rm -rf node_modules
             sudo npm install
+            sudo npm i -g @nestjs/cli
+            sudo npm i --save @nestjs/typeorm typeorm
             sudo npm run start:dev > build.log
