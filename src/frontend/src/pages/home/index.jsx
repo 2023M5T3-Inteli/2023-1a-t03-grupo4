@@ -3,6 +3,7 @@ import './home.css'
 import $ from 'jquery'
 import NavBar from '../../components/NavBar';
 import ProjectCard from '../../components/ProjectCard';
+import Footer from '../../components/Footer';
 import PrimaryBtn from '../../components/Btn';
 
 
@@ -61,7 +62,7 @@ function Home() {
                 <PrimaryBtn text={"Saiba mais"}/>
             </section>
         </div>
-            
+        <Footer/>    
     </div>)
 }
 
