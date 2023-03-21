@@ -7,6 +7,7 @@ import { ProfileModule } from '../module/profile.module';
 import { SubmissionModule } from '../module/submission.module';
 import { technologieModule } from '../module/technologies.module'
 import { SkillsModule } from './skills.module';
+import { PositionsModule } from './position.module'
 import { DataSource } from 'typeorm';
 import Skills from './entity/skills.entity';
 import { Positions } from './entity/positions.entity';
@@ -31,7 +32,8 @@ import { Submission } from './entity/submission.entity';
     ProfileModule,
     SubmissionModule,
     SkillsModule,
-    technologieModule
+    technologieModule,
+    PositionsModule
   ],
 })
 export class AppModule {

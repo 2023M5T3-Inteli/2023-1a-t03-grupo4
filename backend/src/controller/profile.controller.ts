@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, } from '@nestjs/common';
 import createProfileDto from '../module/dto/createProfile.dto';
 import { profileService } from '../services/profile.service'; 
-import updateProfileDto from '../module/dto/updateProfile.dto';
+
 
 @Controller('profile')
 export class profileController {
