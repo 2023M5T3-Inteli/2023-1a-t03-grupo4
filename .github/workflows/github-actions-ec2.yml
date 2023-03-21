@@ -21,8 +21,7 @@ jobs:
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
           SCRIPT_AFTER: |
-            nvm use 16
-            cd ~/2023-1a-t03-grupo4/backend/
+            cd ~/2023-1a-t03-grupo4
             sudo rm -rf node_modules
             sudo npm install
             sudo npm run start:dev > build.log
