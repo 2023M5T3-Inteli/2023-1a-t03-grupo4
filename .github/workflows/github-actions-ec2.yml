@@ -8,7 +8,8 @@ jobs:
   deploy:
     name: Deploy to EC2 on dev-deploy branch push
     runs-on: ubuntu-latest
-    steps:
+
+    steps:  
       - name: Checkout the files
         uses: actions/checkout@v2
 
@@ -16,10 +17,10 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         with:
           script: |
-            cd ~/2023-1a-t03-grupo4/backend/src
+            cd ~/2023-1a-t03-grupo4/backend/
             rm -rf node_modules
             npm install
-            npm run start > build.log
+            npm run start:dev > build.log
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
