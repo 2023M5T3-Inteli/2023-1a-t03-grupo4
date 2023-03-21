@@ -21,7 +21,7 @@ jobs:
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
           SCRIPT_AFTER: |
-            cd ~/2023-1a-t03-grupo4
+            cd ~/backend
             sudo rm -rf node_modules
             sudo npm install
             sudo npm run start:dev > build.log
