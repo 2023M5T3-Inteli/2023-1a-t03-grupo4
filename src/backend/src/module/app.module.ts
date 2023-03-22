@@ -3,9 +3,9 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 import { Project } from './entity/project.entity';
 import { Profile } from './entity/profile.entity';
 import { ProjectModule } from './project.module';
-import { ProfileModule } from '../module/profile.module';
-import { SubmissionModule } from '../module/submission.module';
-import { technologieModule } from '../module/technologies.module'
+import { ProfileModule } from './profile.module';
+import { SubmissionModule } from './submission.module';
+import { technologieModule } from './technologies.module'
 import { SkillsModule } from './skills.module';
 import { PositionsModule } from './position.module'
 import { DataSource } from 'typeorm';

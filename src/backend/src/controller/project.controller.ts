@@ -1,44 +1,32 @@
-/*Description: It handles the incoming HTTP requests and sends the response back to the caller, specifically from the Projects table */
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import CreateProject from '../module/dto/createProject.dto';
+import { ProjectService } from '../services/project.service';
 
-import { Body, Controller, Get, Post, Patch, Param, Delete } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-import { ProjectsService } from 'src/service/projects.service';
-import { CreateProject } from 'src/dto/create.project.dto';
-import { DeleteProject } from 'src/dto/delete.project.dto';
+@Controller('project')
+export class projectController {
+  constructor(private readonly projectService: ProjectService) {}
 
-// CRUD - Projects
-@ApiTags ('Project')
-@Controller('api')
-export class ApiController {
-  constructor(private readonly projectsService: ProjectsService) {}
-
-  @Post(`project`)
-  async createProject(@Body() creatProject: CreateProject) {
-    const {idProject, title, description, submission_date, period, specification, area, role, auth, creator} = creatProject;
-    return this.projectsService.createProject({
-        idProject,
-        title,
-        description,
-        submission_date,
-        period,
-        specification,
-        area,
-        role,
-        auth,
-        creator
-    });
-  }
-
-  @Get('project')
+  // Get all the projects
+  @Get()
   getProject() {
-    return this.projectsService.getProject();
+    return this.projectService.getAllProjects();
   }
 
-  @Delete(`project`)
-  async deleteProfile(@Body() deleteProject:DeleteProject) {
-    const idProject = deleteProject;
-    return this.projectsService.deleteProject(idProject);
+  // Get a project by id
+  @Get(':id')
+  getProjectById(@Param('id') id: number) {
+    return this.projectService.getProjectById(Number(id));
   }
 
+  // Create a project
+  @Post()
+  async createProject(@Body() project: CreateProject) {
+    return this.projectService.createProject(project);
+  }
+
+  //Delete a project
+  @Delete(':id')
+  async deleteProject(@Param('id') id: number) {
+    this.projectService.deleteProject(Number(id));
+  }
 }
-
