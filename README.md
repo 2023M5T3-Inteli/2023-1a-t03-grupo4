@@ -17,7 +17,11 @@
 O projeto é uma aplicação web em cloud, baseado na arquitetura de 3 camadas, contendo: front-end, back-end e banco de dados hospedados na AWS.
 <br><br>
 <p align="center">
+<<<<<<< HEAD
 <img src="imagens/Logo-Full_Name_NoBG.png" alt="Cumulonimbus" border="0" style="max-width: 100px;"g>
+=======
+<img src="imagens/Logo-Full_Name_NoBG.png" alt="Cumulonimbus" border="0">
+>>>>>>> dev-typeORM
 </p>
 
 
@@ -62,6 +66,7 @@ Neste sentido, com o objetivo de manter o engajamento de seus funcionários, o g
 
 A cada atualização os detalhes devem ser lançados aqui.
 
+<<<<<<< HEAD
 * Sprint 1 - 10/02/2023
     * Wireframe
     * Arquitetura do sistema V1
@@ -96,6 +101,20 @@ A cada atualização os detalhes devem ser lançados aqui.
     * 
     *
     *
+=======
+* 0.2.1 - 25/01/2022
+    * MUDANÇA: Atualização de docs (código do módulo permanece inalterado)
+* 0.2.0 - 15/01/2022
+    * MUDANÇA: Remove `setDefaultXYZ()`
+    * ADD: Adiciona `init()`
+* 0.1.1 - 11/01/2022
+    * CONSERTADO: Crash quando chama `baz()` (Obrigado @NomeDoContribuidorGeneroso!)
+* 0.1.0 - 10/01/2022
+    * O primeiro lançamento adequado
+    * MUDANÇA: Renomeia `foo()` para `bar()`
+* 0.0.1 - 01/01/2022
+    * Trabalho em andamento
+>>>>>>> dev-typeORM
 
 ## 🎓 Referências
 

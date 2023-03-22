@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/backend/src/controller/profile.controller.ts
 /*Description: It handles the incoming HTTP requests and sends the response back to the caller, specifically from the Profile table */
 
 import { Body, Controller, Get, Post, Patch, Param, Delete } from '@nestjs/common';
@@ -21,17 +22,39 @@ export class ProfileController {
         email
     });
   }
+=======
+import { Body, Controller, Delete, Get, Param, Post, Put, } from '@nestjs/common';
+import createProfileDto from '../module/dto/createProfile.dto';
+import { profileService } from '../services/profile.service'; 
 
-  @Get('profile')
+>>>>>>> dev-typeORM:backend/src/controller/profile.controller.ts
+
+@Controller('profile')
+export class profileController {
+  constructor(private readonly profileService: profileService) {}
+
+  // get all todos
+  @Get()
   getProfile() {
-    return this.profilesService.getProfile();
-  }
-  
-  @Delete(`profile`)
-  async deleteProfile(@Body() deleteProfile:DeleteProfile) {
-    const id_profile = deleteProfile;
-    return this.profilesService.deleteProfile(id_profile);
+    return this.profileService.getAllProfiles();
   }
 
+  // get todo by id
+  @Get(':id')
+  getProfileById(@Param('id') id: number) {
+    return this.profileService.getProfileById(Number(id));
+  }
+
+  // create todo
+  @Post()
+  async createProfile(@Body() profile: createProfileDto) {
+    return this.profileService.createProfile(profile);
+  }
+
+
+  //delete todo
+  @Delete(':id')
+  async deleteprofile(@Param('id') id: string) {
+    this.profileService.deleteprofile(Number(id));
+  }
 }
-

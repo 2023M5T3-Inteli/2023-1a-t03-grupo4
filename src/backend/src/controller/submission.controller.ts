@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/backend/src/controller/submission.controller.ts
 /*Description: It handles the incoming HTTP requests and sends the response back to the caller, specifically from the Submission table */
 
 import { Body, Controller, Get, Post, Patch, Param, Delete } from '@nestjs/common';
@@ -8,33 +9,38 @@ import { DeleteSubmission } from 'src/dto/delete.submission.dto';
 
 // CRUD - Submission
 @ApiTags('Submission')
+=======
+import { Body, Controller, Delete, Get, Param, Post, Put, } from '@nestjs/common';
+import { Submission } from 'src/module/entity/submission.entity';
+import CreateSubmission from '../module/dto/createSubmission.dto';
+import { submissionService } from '../services/submission.service';
+
+>>>>>>> dev-typeORM:backend/src/controller/submission.controller.ts
 @Controller('submission')
-export class SubmissionController {
-  constructor(private readonly profilesService: SubmissionsService) {}
+export class submissionController {
+  constructor(private readonly submissionService: submissionService) {}
 
-  @Post(`submission`)
-  async createSubmission(@Body() createSubmission:CreateSubmission) {
-    const { id_submission, name, id_project, reason,  email, status} = createSubmission;
-    return this.profilesService.createSubmission({
-        id_submission,
-        name,
-        id_project,
-        reason,
-        email,
-        status
-    });
+  // Get all the submissions
+  @Get()
+  getsubmission() {
+    return this.submissionService.getAllSubmission();
   }
 
-  @Get('submission')
-  getSubmission() {
-    return this.profilesService.getSubmission();
+  // Get a submission by id
+  @Get(':id')
+  getsubmissionById(@Param('id') id: number) {
+    return this.submissionService.getSubmissionById(Number(id));
   }
 
-  @Delete(`submission`)
-  async deleteSubmission(@Body() deleteSubmission:DeleteSubmission) {
-    const id_submission = deleteSubmission;
-    return this.profilesService.deleteSubmission(id_submission);
+  // Create a submission
+  @Post()
+  async createsubmission(@Body() submission: Submission) {
+    return this.submissionService.createSubmission(submission);
   }
 
+  //Delete a submission
+  @Delete(':id')
+  async deletesubmission(@Param('id') id: number) {
+    this.submissionService.deleteSubmission(Number(id));
+  }
 }
-
