@@ -1,0 +1,35 @@
+.footer-container {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 9rem;
+    background-color: #d8d8d8;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .footer-text {
+    margin-right: 30px;
+    margin-top: 20px; 
+  }
+
+  .footer-text2 {
+    margin: 23px;
+    margin-right: 80px;
+
+  }
+
+  .footer-img1
+  {
+    margin: 20px;
+    margin-right: 60px;
+    
+
+  }
+
+  .footer-img2
+  {
+    margin: 30px;
+    width: 7rem;
+    margin-right: 600px;
+  }
