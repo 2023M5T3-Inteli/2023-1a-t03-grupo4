@@ -1,9 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, } from '@nestjs/common';
 import createPositionDto from '../module/dto/createPosition';
 import { PositionsService } from '../services/position.service';
-
+import { ApiTags } from "@nestjs/swagger";
 
 @Controller('position')
+@ApiTags('Position')
 export class positionController {
   constructor(private readonly PositionsService: PositionsService ) {}
 
