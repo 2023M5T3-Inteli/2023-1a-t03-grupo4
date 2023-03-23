@@ -8,11 +8,14 @@ import { SubmissionModule } from './submission.module';
 import { technologieModule } from './technologies.module'
 import { SkillsModule } from './skills.module';
 import { PositionsModule } from './position.module'
+import { LoginModule } from './login.module';
 import { DataSource } from 'typeorm';
 import Skills from './entity/skills.entity';
 import { Positions } from './entity/positions.entity';
 import { Technologies } from './entity/technologies.entity';
 import { Submission } from './entity/submission.entity';
+import { Login } from './entity/login.entity';
+import { AuthModule } from 'src/auth/auth.module';
 
 
 
@@ -25,7 +28,7 @@ import { Submission } from './entity/submission.entity';
       username: 'postgres',
       password: 'grupo4123',
       database: 'postgres',
-      entities: [Project, Profile, Skills, Positions, Submission, Technologies],
+      entities: [Project, Profile, Skills, Positions, Submission, Technologies, Login],
       synchronize: true,
     }),
     ProjectModule,
@@ -33,7 +36,8 @@ import { Submission } from './entity/submission.entity';
     SubmissionModule,
     SkillsModule,
     technologieModule,
-    PositionsModule
+    PositionsModule,
+    AuthModule
   ],
 })
 export class AppModule {
