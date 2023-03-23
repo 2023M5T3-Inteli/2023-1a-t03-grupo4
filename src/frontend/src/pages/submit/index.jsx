@@ -2,6 +2,7 @@ import './submit.css'
 
 import * as React from 'react'
 import NavBar from '../../components/NavBar'
+import Footer from '../../components/Footer';
 import CheckBox from '../../components/CheckBox'
 import PrimaryBtn from '../../components/Btn'
 import userPlaceholder from '../../assets/images/user_placeholder.jpeg'
@@ -191,6 +192,7 @@ function Submit()
             </div>
 
         </div>
+            <Footer/>
     </div>)
 }
 
