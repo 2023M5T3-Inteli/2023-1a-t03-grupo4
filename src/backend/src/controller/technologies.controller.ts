@@ -1,9 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, } from '@nestjs/common';
 import CreateTechnologiesDto from '../module/dto/createTechnologies.dto';
 import { technologiesService } from '../services/technologies.service'; 
+import { ApiTags } from "@nestjs/swagger";
 
 
 @Controller('technologie')
+@ApiTags('Technologies')
 export class technologieController {
   constructor(private readonly technologiesService : technologiesService) {}
 
