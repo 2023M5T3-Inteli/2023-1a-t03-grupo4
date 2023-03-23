@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
+import Footer from '../../components/Footer';
 import NavBar from "../../components/NavBar";
 import Ranking from "../../components/Ranking/Ranking";
 import styles from "./Profile.module.scss";
@@ -241,10 +242,11 @@ function Profile() {
           </div>
 
         </div>
-
+         
         </div>       
       
-      
+        <Footer/>
+        
       {showModal && <Modal onClose={showModalHandler}/>}
     </>);
 }
