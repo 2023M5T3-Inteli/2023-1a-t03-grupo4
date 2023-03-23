@@ -6,6 +6,7 @@ import ReactModal from 'react-modal';
 import { TextField, Box , Chip, Autocomplete, MenuItem, IconButton} from '@mui/material';
 import Add from '@mui/icons-material/Add';
 import NavBar from '../../components/NavBar'
+import Footer from '../../components/Footer'
 import Btn from '../../components/Btn'
 import timeZones from "../../scripts/time_zones"
 import { useEffect } from 'react';
@@ -345,7 +346,7 @@ function AddProject() {
                 </div>
             </div>
         </Modal>
-
+        <Footer/>
     </div>)
 }
 

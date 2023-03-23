@@ -10,7 +10,7 @@ import Home from '../pages/home';
 import Profile from '../pages/profile';
 import Submit from '../pages/submit/index'
 import AddProject from '../pages/addProject/index'
-import Footer from '../components/Footer';
+import Projects from '../pages/projects';
 
 //Cria rotas e direciona uma página para cada rota criada
 export function AppRoutes() {
@@ -22,7 +22,6 @@ export function AppRoutes() {
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/submit' element={<Submit/>} />
                 <Route path='/addproject' element={<AddProject/>} />
-                <Route path='/Footer' element={<Footer/>} />
             </Routes>
         </Router>
     );
