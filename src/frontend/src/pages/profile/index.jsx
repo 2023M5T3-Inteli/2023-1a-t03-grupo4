@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
+import Footer from '../../components/Footer';
 import NavBar from "../../components/NavBar";
 import Ranking from "../../components/Ranking/Ranking";
+import UserPlaceholder from '../../assets/images/user_placeholder.jpeg';
 import styles from "./Profile.module.scss";
+import { Chip } from "@mui/material";
 
 function Profile() {
   const [showPortifolioFirstPage, setShowPortifolioFirstPage] = useState(true);
@@ -30,7 +33,7 @@ function Profile() {
 
               <div className={styles.profilePictureBx}>
                 <img
-                  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-973460__340.png"
+                  src={UserPlaceholder}
                   alt="profile"
                 />
               </div>
@@ -41,10 +44,12 @@ function Profile() {
                 <span>Analista de Sistemas</span>
                 <p>Operações internacionais</p>
 
-                <div className={styles.profileSkillsBx}>
-                  <p>Excel</p>
-                  <p>Python</p>
-                  <p>PowerBI</p>
+                <br />
+
+                <div className="flex flex-wrap w-full gap-2">
+                  <Chip className="shadow-md" label={"Excel"} color={"primary"}/>
+                  <Chip className="shadow-md" label={"Python"} color={"primary"}/>
+                  <Chip className="shadow-md" label={"Power BI"} color={"primary"}/> 
                 </div>
               </div>
             </div>
@@ -203,21 +208,37 @@ function Profile() {
                     </ul>
                   )}
                   {!showPortifolioFirstPage && (
-                    <div className={styles.skillColumnsWraper}>
+                    <div className="sm-screen-no-padding-x flex flex-row justify-between items-start space-x-10 pt-10 px-24">
 
-                      <div className={styles.skillsColumn}>
+                      <div className="flex flex-col justify-center items-center">
                         <h2>Hard Skills</h2>
+
+                        <br />
                         
-                        <div>
-                          <p>Python</p>
-                          <p>SQL</p>
-                          <p>Excel</p>
-                          <p>C#</p>
-                          <p>AWS</p>
+                        <div className="profile-tagBox flex flex-wrap gap-2 justify-between items-start" style={{maxWidth:"15rem"}}>
+                          <Chip className="shadow-md" label={"Python"} color={"primary"} style={{minWidth:"7rem"}}/>
+                          <Chip className="shadow-md" label={"SQL"} color={"primary"} style={{minWidth:"7rem"}}/> 
+                          <Chip className="shadow-md" label={"Excel"} color={"primary"} style={{minWidth:"7rem"}}/> 
+                          <Chip className="shadow-md" label={"C#"} color={"primary"} style={{minWidth:"7rem"}}/> 
+                          <Chip className="shadow-md" label={"AWS"} color={"primary"} style={{minWidth:"7rem"}}/> 
                         </div>
                       </div>
 
-                      <div className={styles.skillsColumn}>
+                      <div className="flex flex-col justify-center items-center">
+                        <h2>Soft Skills</h2>
+
+                        <br />
+                        
+                        <div className="profile-tagBox flex flex-wrap gap-2 justify-between items-start" style={{maxWidth:"15rem"}}>
+                          <Chip className="shadow-md" label={"Comunicação"} color={"primary"} style={{minWidth:"7rem"}}/>
+                          <Chip className="shadow-md" label={"Liderança"} color={"primary"} style={{minWidth:"7rem"}}/> 
+                          <Chip className="shadow-md" label={"Estratégia"} color={"primary"} style={{minWidth:"7rem"}}/> 
+                          <Chip className="shadow-md" label={"Adaptabilidade"} color={"primary"} style={{minWidth:"7rem"}}/> 
+                          <Chip className="shadow-md" label={"Disciplina"} color={"primary"} style={{minWidth:"7rem"}}/> 
+                        </div>
+                      </div>
+
+                      {/* <div className={styles.skillsColumn}>
                         <h2>Soft Skills</h2>
                       
                         <div>
@@ -227,7 +248,7 @@ function Profile() {
                           <p>Adaptabilidade</p>
                           <p>Disciplina</p>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   )}
                 </div>
@@ -241,10 +262,11 @@ function Profile() {
           </div>
 
         </div>
-
+         
         </div>       
       
-      
+        <Footer/>
+        
       {showModal && <Modal onClose={showModalHandler}/>}
     </>);
 }

@@ -53,8 +53,8 @@ function Home() {
                 </div>
             </section>
 
-            <section className="flex flex-col items-center w-full h-96 p-16" style={{borderTop:"2px solid var(--grey1)"}}>
-                <div className="flex flex-col items-center justify-center w-full pb-10" style={{maxWidth:"40rem"}}>
+            <section className="flex flex-col items-center w-full h-fit p-16" style={{borderTop:"2px solid var(--grey1)"}}>
+                <div className="flex flex-col items-center justify-center text-center w-full pb-10" style={{maxWidth:"40rem"}}>
                     <h1 className="text-6xl font-semibold" style={{color:"var(--primary-color)"}}>SOBRE A SOLUÇÃO</h1>
                     <br />
                     <p className="text-center">Lorem ipsum dolor sit amet consectetur. Faucibus mauris consequat purus ullamcorper ut sit. Duis consequat eu libero tellus tincidunt morbi interdum semper cras. Sit lorem nunc non convallis. </p>
