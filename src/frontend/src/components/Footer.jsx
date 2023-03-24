@@ -4,31 +4,30 @@ import CNL from '../assets/images/CNLogoName.png'
 import './components_css/Footer.css'; 
 
 function Footer() {
-  return (
-    <div className="footer-container">
+  return (<div className="footer-container md-screen-to-column px-10 self-end">
     
-    <div className="footer-img1">
+      <div className="flex flex-row justify-between items-center space-x-12">
         <Dell width={"6rem"}/>
-    </div>
 
-    <div className="footer-img2">
-        <img src={CNL} alt="" />
-    
-    </div>
+        <img src={CNL} alt="" style={{width:"7rem"}} />
+      </div>
 
-    <div className="flex-col">
-      <p className="footer-text2">Entre em Contato</p>
-      <p className="footer-text2">Sobre os desenvolvedores</p>
-    </div> 
+      <br /><br /><br />
 
-    <div className="flex-col">
-      <p className="footer-text">Entre em Contato</p>
-      <p className="footer-text">Políticas de segurança</p>
-      <p className="footer-text">FAC</p>
-    </div> 
+      <div className="footer-text flex flex-row justify-between space-x-12 pt-6">
+        <div className="flex flex-col gap-3">
+          <a className="">Entre em Contato</a>
+          <a className="">Políticas de segurança</a>
+          <a className="">FAC</a>
+        </div> 
 
-    </div>
-  );
+        <div className="flex flex-col gap-3">
+          <a className="">Entre em Contato</a>
+          <a className="">Sobre os desenvolvedores</a>
+        </div>
+      </div>
+
+    </div>);
 }
 
 export default Footer;
