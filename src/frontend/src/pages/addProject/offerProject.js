@@ -7,7 +7,7 @@ const OfferProject = () => {
   
   const submitHandler = (event) => {
     event.preventdefault()
-    
+      
     
       const fetchData = {
         name: nameInputRef.current.value,
