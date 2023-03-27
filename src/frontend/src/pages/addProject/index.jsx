@@ -11,6 +11,8 @@ import Btn from '../../components/Btn'
 import timeZones from "../../scripts/time_zones"
 import { useEffect } from 'react';
 import CheckBox from '../../components/CheckBox';
+import { Api } from '@mui/icons-material';
+import { api } from '../../api';
 
 
 function AddProject() {
@@ -113,6 +115,33 @@ function AddProject() {
 
     }
 
+    async function test1(){
+        var title = document.getElementById('tituloProjeto').value
+        var area = document.getElementById('area').value
+        var description = document.getElementById('descricao').value
+        var periodo = document.getElementById('periodo').value
+
+
+
+        await api.post("/project",{
+        title: title,
+        description: description,
+        stt: "disponível",
+        submission_date: new Date(periodo), 
+        date_initial: "2013-11-21T13:28:06.419Z",
+        date_end: "2022-10-21T13:28:06.419Z",
+        creator: {
+            id_profile : 1
+        },
+        area: "dev",
+        role: "backend",
+        auth: true}).then(()=>{
+            console.log("works")
+        }).catch((e)=>{
+            alert(e)
+        })
+    }
+
     const [value, setValue] = React.useState([]);
     const [inputValue, setInputValue] = React.useState(true);
     const [modalIsOpen, setIsOpen] = React.useState(true);
@@ -145,16 +174,16 @@ function AddProject() {
                 <div className="flex flex-wrap justify-between gap-3">
                     <div className="md-screen-w-full flex flex-col w-7/12 gap-7">
 
-                        <TextField ref={test} className="textInputBR20" fullWidth label="Título do Projeto:" sx={{ background: "white", borderRadius: "20px", boxShadow: "0px 1px 9px rgba(0, 0, 0, 0.21)" }} />
-                        <TextField className="textInputBR20" fullWidth label="Área:" sx={{ background: "white", borderRadius: "20px", boxShadow: "0px 1px 9px rgba(0, 0, 0, 0.21)" }} />
-                        <TextField className="textInputBR20" fullWidth rows={5} multiline label="Descrição:" sx={{ background: "white", borderRadius: "20px", boxShadow: "0px 1px 9px rgba(0, 0, 0, 0.21)" }} />
+                        <TextField id='tituloProjeto' ref={test} className="textInputBR20" fullWidth label="Título do Projeto:" sx={{ background: "white", borderRadius: "20px", boxShadow: "0px 1px 9px rgba(0, 0, 0, 0.21)" }} />
+                        <TextField id='area' className="textInputBR20" fullWidth label="Área:" sx={{ background: "white", borderRadius: "20px", boxShadow: "0px 1px 9px rgba(0, 0, 0, 0.21)" }} />
+                        <TextField id='descricao' className="textInputBR20" fullWidth rows={5} multiline label="Descrição:" sx={{ background: "white", borderRadius: "20px", boxShadow: "0px 1px 9px rgba(0, 0, 0, 0.21)" }} />
 
                     </div>
                     <div className="md-screen-w-full sm-screen-w-full sm-screen-no-padding-x flex flex-col w-2/6" style={{ minWidth: "14rem" }}>
                         <div className="flex flex-col justify-between">
                             <label className='text' htmlFor="schedule">Período:</label>
                             <div id='schedule' className="flex flex-row items-center justify-between">
-                                <TextField type={"date"} className="textInputBR20" /> <h6>até</h6> <TextField type={"date"} className="textInputBR20" />
+                                <TextField id='periodo' type={"date"} className="textInputBR20" /> <h6>até</h6> <TextField type={"date"} className="textInputBR20" />
                             </div>
                             <br />
                             <label className='text' htmlFor="subscribeLimit">Data e horário limite de inscrição:</label>
@@ -312,7 +341,7 @@ function AddProject() {
                 <br />
 
                 <div className="flex flex-row w-full justify-center">
-                    <Btn text={"Salvar"} variant={"primaryBtn"} className="" />
+                    <Btn text={"Salvar"} variant={"primaryBtn"} className="" onClick={test1} />
                 </div>
 
 

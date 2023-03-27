@@ -14,7 +14,7 @@ function Home() {
     window.addEventListener('load',() => {
         const fetchUserData = async () => {
           setLoading(true);
-          const response = await fetch("http://localhost:3001/project");
+          const response = await fetch("http://dev-loadbalancer-1136620238.us-east-1.elb.amazonaws.com/project");
           const responseData = await response.json();
     
           setUserData(responseData);

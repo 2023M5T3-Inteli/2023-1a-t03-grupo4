@@ -15,11 +15,11 @@ const OfferProject = () => {
       }
 
       console.log(fetchData)
-    // fetch("http://localhost:3000/project", {
-    //   method: 'post',
-    //   headers: {},
-    //   body: {fetchData}
-    // })
+    fetch("http://localhost:3000/project", {
+      method: 'post',
+      headers: {},
+      body: {fetchData}
+    })
 
   }
 

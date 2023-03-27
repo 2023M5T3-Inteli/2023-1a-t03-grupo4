@@ -25,6 +25,7 @@ export class projectController {
   // Create a project
   @Post()
   async createProject(@Body() project: CreateProject) {
+    console.log(project)
     return this.projectService.createProject(project);
   }
 
