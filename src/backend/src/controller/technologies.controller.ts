@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards, } from '@nestjs/common';
 import CreateTechnologiesDto from '../module/dto/createTechnologies.dto';
 import { technologiesService } from '../services/technologies.service'; 
 import { ApiTags } from "@nestjs/swagger";
+import { JwtAuthGuard } from 'src/auth/wt-auth.guard';
 
 
 @Controller('technologie')
@@ -10,6 +11,7 @@ export class technologieController {
   constructor(private readonly technologiesService : technologiesService) {}
 
   // get all todos
+  @UseGuards(JwtAuthGuard)
   @Get()
   gettechnologie() {
     return this.technologiesService.getAllTechnologies();

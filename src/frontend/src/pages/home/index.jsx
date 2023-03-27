@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import './home.css'
-
 import $ from 'jquery'
 import NavBar from '../../components/NavBar';
 import ProjectCard from '../../components/ProjectCard';
@@ -8,6 +8,33 @@ import PrimaryBtn from '../../components/Btn';
 
 
 function Home() {
+    const [loading, setLoading] = useState(false);
+    const [userData, setUserData] = useState();
+
+    window.addEventListener('load',() => {
+        const fetchUserData = async () => {
+          setLoading(true);
+          const response = await fetch("http://localhost:3001/project");
+          const responseData = await response.json();
+    
+          setUserData(responseData);
+    
+          setLoading(false);
+        };
+
+        fetchUserData();
+    }, []); 
+
+    var User
+    window.addEventListener('load', User = userData) 
+
+    const handleDetails = (e) => {
+        e.preventDefault();
+        window.location.href = "/submit"
+    }
+
+
+
     var techList = [
          'Next.js' ,
          'AWS' ,
@@ -35,15 +62,8 @@ function Home() {
 
                 <div className="flex flex-col items-center shadow-sm w-full h-fit p-10 py-20" style={{background:"white", minHeight:"20rem" , maxHeight:"fit-content", borderRadius:"20px", border:"1px solid var(--grey1)"}}>
                     <div className="flex flex-wrap items-center justify-center gap-28">
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
+
+                        {User ? User.map((e, index) => (<ProjectCard key={index} title={e.title} techList={techList} handleClick={handleDetails} color={e.color}/>)) : <h1>Carregando...</h1>}
 
                     </div>
 

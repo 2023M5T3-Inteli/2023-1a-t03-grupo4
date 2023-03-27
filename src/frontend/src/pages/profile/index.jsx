@@ -6,6 +6,7 @@ import Ranking from "../../components/Ranking/Ranking";
 import UserPlaceholder from "../../assets/images/user_placeholder.jpeg";
 import styles from "./Profile.module.scss";
 import { Chip } from "@mui/material";
+import { And } from "typeorm";
 
 function Profile() {
   const [showPortifolioFirstPage, setShowPortifolioFirstPage] = useState(true);
@@ -17,7 +18,7 @@ function Profile() {
   useEffect(() => {
     const fetchUserData = async () => {
       setLoading(true);
-      const response = await fetch("http://localhost:3000/profile/2");
+      const response = await fetch("http://localhost:3001/profile/2");
       const responseData = await response.json();
 
       setUserData(responseData);
@@ -31,7 +32,7 @@ function Profile() {
   useEffect(() => {
     const fetchSkillData = async () => {
       setLoading(true);
-      const response = await fetch("http://localhost:3000/skills/2");
+      const response = await fetch("http://localhost:3001/skills/2");
       const responseData = await response.json();
 
       setSkillData(responseData);
@@ -58,9 +59,7 @@ function Profile() {
         {loading && <p>Loading...</p>}
         <NavBar />
         <div className="mainScreen">
-          <div className={styles.profilePictureBx}>
-            <img src={UserPlaceholder} alt="profile" />
-          </div>
+          
 
           <div
             className="flex flex-col h-4/5 justify-start"
@@ -69,10 +68,7 @@ function Profile() {
             <div>
               <div className={styles.profileContainer}>
                 <div className={styles.profilePictureBx}>
-                  <img
-                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-973460__340.png"
-                    alt="profile"
-                  />
+                  <img src={UserPlaceholder} alt="profile" />
                 </div>
 
                 <div className={styles.profileInfos}>

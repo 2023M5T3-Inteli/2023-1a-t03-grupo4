@@ -10,7 +10,7 @@ export class projectController {
   constructor(private readonly projectService: ProjectService) {}
 
   // Get all the projects
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Get()
   getProject() {
     return this.projectService.getAllProjects();
