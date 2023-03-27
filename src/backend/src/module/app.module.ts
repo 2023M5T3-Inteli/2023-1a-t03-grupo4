@@ -16,6 +16,7 @@ import { Technologies } from './entity/technologies.entity';
 import { Submission } from './entity/submission.entity';
 import { Login } from './entity/login.entity';
 import { AuthModule } from 'src/auth/auth.module';
+import { HealthModule } from './health.module';
 
 
 
@@ -37,7 +38,8 @@ import { AuthModule } from 'src/auth/auth.module';
     SkillsModule,
     technologieModule,
     PositionsModule,
-    AuthModule
+    AuthModule,
+    HealthModule
   ],
 })
 export class AppModule {
