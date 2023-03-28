@@ -9,8 +9,18 @@ import userPlaceholder from '../../assets/images/user_placeholder.jpeg'
 import { TextField,Box, Autocomplete, Chip, IconButton} from '@mui/material'
 import Add from '@mui/icons-material/Add';
 
+
+
+function submitProject(e){
+     e.preventDefault();
+    const tecnology = document.getElementById('tecnology').value;
+}
+
+
+
 function Submit() 
 { 
+    var nome = ""
     const checkedFunc = () => {
         console.log('checked')
     }
@@ -144,9 +154,9 @@ function Submit()
                     <Box className="shadow p-10" sx={{background:"var(--base)", borderRadius:"15px", gap: 5 }}>
                         
                         <div className="flex flex-col gap-10">
-                            <TextField className="textInputBR20" fullWidth label="Nome completo:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/> 
+                            <TextField value={nome} className="textInputBR20" fullWidth label="Nome completo:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/> 
 
-                            <TextField className="textInputBR20" fullWidth label="Email institucional:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/> 
+                            <TextField value={emailInstitucional} className="textInputBR20" fullWidth label="Email institucional:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/> 
 
                             <div id='roleSelector' className="flex flex-row justify-between items-center w-full">
                                 <Autocomplete multiple id="fixed-tags-Role"
@@ -168,7 +178,7 @@ function Submit()
                                     style={{ width: "100%" }}
                                     filterSelectedOptions
                                     renderInput={(params) => (
-                                        <TextField {...params} label="Vagas" placeholder="Select" className="techList textInputBR20" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}} />)}
+                                        <TextField {...params} value={vagas} label="Vagas" placeholder="Select" className="techList textInputBR20" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}} />)}
                                 />
 
                                 
@@ -178,12 +188,12 @@ function Submit()
                                         </IconButton> 
                                     </div>
 
-                                    <TextField id="addTagRole" className="textInputBR20" fullWidth label="Adicionar Vagas:" sx={{width:"57%",background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>    
+                                    <TextField value={addVagas} id="addTagRole" className="textInputBR20" fullWidth label="Adicionar Vagas:" sx={{width:"57%",background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>    
                                 
                             </div>
-                            <TextField className="textInputBR20" fullWidth rows={5} multiline label="Justificativa:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>
+                            <TextField id='reason' value={justificativa} className="textInputBR20" fullWidth rows={5} multiline label="Justificativa:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>
                             <div className="flex flex-row justify-between items-center">
-                                <CheckBox checkFunction={checkedFunc} label="Meu gestor está ciente e concorda com minha participação no projeto."/>
+                                <CheckBox valuenp={auth} checkFunction={checkedFunc} label="Meu gestor está ciente e concorda com minha participação no projeto."/>
                                 <PrimaryBtn text="SUBMETER"/>
                             </div>
                         </div>
