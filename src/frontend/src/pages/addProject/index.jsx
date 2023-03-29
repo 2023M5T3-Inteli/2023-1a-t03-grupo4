@@ -120,6 +120,7 @@ function AddProject() {
         var title = document.getElementById('tituloProjeto').value
         var area = document.getElementById('area').value
         var description = document.getElementById('descricao').value
+        var techArray, roleArray, skillArray
         var start = document.getElementById('start').value
         var end = document.getElementById('end').value
         var submision = document.getElementById('submision').value
