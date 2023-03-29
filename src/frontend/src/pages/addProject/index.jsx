@@ -1,6 +1,7 @@
 import './addProject.css'
 
 import * as React from 'react';
+import { useState } from "react";
 import Modal from "react-modal"
 import ReactModal from 'react-modal';
 import { TextField, Box, Chip, Autocomplete, MenuItem, IconButton } from '@mui/material';
@@ -119,12 +120,30 @@ function AddProject() {
         var title = document.getElementById('tituloProjeto').value
         var area = document.getElementById('area').value
         var description = document.getElementById('descricao').value
+        var techArray, roleArray, skillArray
         var start = document.getElementById('start').value
         var end = document.getElementById('end').value
         var submision = document.getElementById('submision').value
-        var tech = document.getElementById('fixed-tags-tech').value
-        var creator = sessionStorage.getItem('idUser')
-    
+        var status = document.getElementById('dropdown-statusList').value
+        var tech = document.getElementById('techInput').getElementsByClassName('MuiChip-label')
+        var role = document.getElementById('roleInput').getElementsByClassName('MuiChip-label')
+        var skill = document.getElementById('skillInput').getElementsByClassName('MuiChip-label')
+        function getTags(arr, tags){
+            arr = []
+            for (var i = 0; i < tags.length; i++){
+                arr.push(tags[i].innerHTML)
+            }
+            return arr
+        }
+        roleArray = getTags(roleArray, role)
+        techArray = getTags(techArray, tech)
+        skillArray = getTags(skillArray, skill)
+
+        console.log(roleArray)
+        console.log(techArray)
+        console.log(skillArray)
+        console.log(status)
+
         await api.post("/project",{
         title: title,
         description: description,
@@ -145,7 +164,6 @@ function AddProject() {
     }
 
     const [value, setValue] = React.useState([]);
-    //const [val, setVal] = useState<string | null>(options[0]);
     const [inputValue, setInputValue] = React.useState(true);
     const [modalIsOpen, setIsOpen] = React.useState(true);
 
@@ -217,7 +235,7 @@ function AddProject() {
                     </div>
                 </div>
 
-                <div className="flex flex-row justify-between items-end" style={{ gap: "8.4%" }}>
+                <div id='roleInput' className="flex flex-row justify-between items-end" style={{ gap: "8.4%" }}>
                     <div className="flex flex-row justify-between items-center w-full">
                         <Autocomplete multiple id="fixed-tags-Role"
                             onChange={(event, newValue) => {
@@ -259,15 +277,14 @@ function AddProject() {
                                 disablePortal
                                 id="dropdown-statusList"
                                 options={statusList}
-                                sx={{ width: 200 }}
-                                renderInput={(params) => <TextField className="textInputBR20" {...params} label="Área de atuação" style={{background:"white", borderRadius:"20px"}}/>}
-                                ref={dropdownRef}
+                                sx={{ width: "100%" }}
+                                renderInput={(params) => <TextField className="textInputBR20" {...params} style={{background:"white", borderRadius:"20px"}}/>}
                             />
                         </div>
                     </div>
                 </div>
 
-                <div className="flex flex-row justify-between items-center w-full">
+                <div id='techInput' className="flex flex-row justify-between items-center w-full">
                     <Autocomplete multiple id="fixed-tags-tech"
                         onChange={(event, newValue) => {
                             setValue([
@@ -301,7 +318,7 @@ function AddProject() {
 
                 </div>
 
-                <div className="flex flex-row justify-between items-center w-full">
+                <div id='skillInput' className="flex flex-row justify-between items-center w-full">
                     <Autocomplete multiple id="fixed-tags-skill"
                         onChange={(event, newValue) => {
                             setValue([
