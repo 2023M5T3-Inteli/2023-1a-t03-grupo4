@@ -113,33 +113,29 @@ function AddProject() {
         }
 
 
-    }
+    }        
 
     async function test1(){
         var title = document.getElementById('tituloProjeto').value
         var area = document.getElementById('area').value
         var description = document.getElementById('descricao').value
-        var periodo = document.getElementById('periodo').value
-        var status = document.getElementById('dropdown-statusList').value
+        var start = document.getElementById('start').value
+        var end = document.getElementById('end').value
+        var submision = document.getElementById('submision').value
         var tech = document.getElementById('fixed-tags-tech').value
-        console.log(tech)
-
-        
-
-
-
-
+        var creator = sessionStorage.getItem('idUser')
+    
         await api.post("/project",{
         title: title,
         description: description,
         stt: "disponível",
-        submission_date: new Date(periodo), 
-        date_initial: "2013-11-21T13:28:06.419Z",
-        date_end: "2022-10-21T13:28:06.419Z",
+        submission_date: new Date(submision), 
+        date_initial: new Date(start),  
+        date_end: new Date(end),
         creator: {
-            id_profile : 1
+            id_profile : creator
         },
-        area: "dev",
+        area: area,
         role: "backend",
         auth: true}).then(()=>{
             console.log("works")
@@ -149,7 +145,7 @@ function AddProject() {
     }
 
     const [value, setValue] = React.useState([]);
-    const [val, setVal] = useState<string | null>(options[0]);
+    //const [val, setVal] = useState<string | null>(options[0]);
     const [inputValue, setInputValue] = React.useState(true);
     const [modalIsOpen, setIsOpen] = React.useState(true);
 
@@ -162,6 +158,7 @@ function AddProject() {
     }
 
     const test = React.useRef()
+    const dropdownRef = React.useRef();
 
     return (<div>
         <NavBar />
@@ -190,12 +187,12 @@ function AddProject() {
                         <div className="flex flex-col justify-between">
                             <label className='text' htmlFor="schedule">Período:</label>
                             <div id='schedule' className="flex flex-row items-center justify-between">
-                                <TextField id='periodo' type={"date"} className="textInputBR20" /> <h6>até</h6> <TextField type={"date"} className="textInputBR20" />
+                                <TextField id='start' type={"date"} className="textInputBR20" /> <h6>até</h6> <TextField id='end' type={"date"} className="textInputBR20" />
                             </div>
                             <br />
                             <label className='text' htmlFor="subscribeLimit">Data e horário limite de inscrição:</label>
                             <div id='subscribeLimit' className="flex flex-row items-center justify-between gap-6">
-                                <TextField type={"date"} className="textInputBR20" sx={{ width: "47%" }} />  <TextField type={"time"} className="textInputBR20" sx={{ width: "47%" }} />
+                                <TextField id="submision" type={"date"} className="textInputBR20" sx={{ width: "47%" }} />  <TextField type={"time"} className="textInputBR20" sx={{ width: "47%" }} />
                             </div>
                             <br />
                             <label className='text' htmlFor="timeZones">Fuso-horário:</label>
@@ -264,6 +261,7 @@ function AddProject() {
                                 options={statusList}
                                 sx={{ width: 200 }}
                                 renderInput={(params) => <TextField className="textInputBR20" {...params} label="Área de atuação" style={{background:"white", borderRadius:"20px"}}/>}
+                                ref={dropdownRef}
                             />
                         </div>
                     </div>
