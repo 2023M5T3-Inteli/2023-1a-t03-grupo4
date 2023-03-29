@@ -10,14 +10,7 @@ export class Submission {
     public idSubmission: number;
 
     @Column()
-    public name: string;
-
-    @Column()
     public reason: string;
-
-    @Index({unique:true})
-    @Column()
-    public email: string;
 
     @Column()
     public stt: string;
