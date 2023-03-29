@@ -8,6 +8,9 @@ import PrimaryBtn from '../../components/Btn'
 import userPlaceholder from '../../assets/images/user_placeholder.jpeg'
 import { TextField,Box, Autocomplete, Chip, IconButton} from '@mui/material'
 import Add from '@mui/icons-material/Add';
+import { api } from '../../api';
+import { create } from '@mui/material/styles/createTransitions';
+
 
 function Submit() 
 { 
@@ -24,6 +27,7 @@ function Submit()
         { role: 'Back-end' },
         { role: 'Designer' },
         { role: 'Software Engineer' },
+        { role: 'Shadow' }
     ]
     const addTagRole = () => {
         var tagInput
@@ -75,6 +79,35 @@ function Submit()
         roleSelector.classList.toggle('hidden')
     }
 
+ async function createSubmit(){
+        var role = document.getElementById('role').value;
+        if (role == 'Back-end'){
+            role = 1;
+        };
+        
+
+        var reason = document.getElementById('reason').value;
+        
+        await api.post("/submission", {
+            reason: reason,
+            stt: "em avaliação",
+            idProject: 4,
+            id_profile: 1,
+            position: role,
+            
+        })
+        console.log("teste");
+    }
+// async function getProject(){
+//     axios.get('http://localhost:3001/project/1')
+//     .then((response: AxiosResponse) => {
+//         console.log(response.data);
+//         setUserList( response.data );
+
+// }
+
+
+
     return(<div>
         <NavBar/>
         <div className="mainScreen px-40">
@@ -119,21 +152,21 @@ function Submit()
             {/* fim 1o bloco */}
             <br></br>
             <div className="flex flex-col justify-center items-center w-full">
-                <div className="flex flex-row justify-center items-center h-fit gap-3" style={{width:"100%"}}>
+                {/* <div className="flex flex-row justify-center items-center h-fit gap-3" style={{width:"100%"}}>
                     <label className="cursor-pointer" htmlFor="standardDev">
                         <h1 className="text-2xl font-medium text-center break-words">Participar no desenvolvimento</h1>
                         <div id='standardBar' className="selectedBar"></div>
                     </label>
                     <input checked={!IsChecked} onChange={standardDev} className="hidden" id="standardDev" type = "radio" name="radio"></input>
 
-                    <div className="divider"></div> 
+                     <div className="divider"></div>  
 
                     <label className="cursor-pointer" htmlFor="shadowDev">
                         <h1 className="text-2xl font-medium text-center">Participar como shadow</h1>
                         <div id='shadowBar' className="selectedBar hidden"></div>
-                    </label>
+                    </label> 
                     <input checked={IsChecked} onChange={shadowDev} className="hidden" id="shadowDev" type = "radio" name="radio"></input>
-                </div>
+                </div> */}
                 <br></br>
                 <div className="w-full">
                     <div>
@@ -144,17 +177,21 @@ function Submit()
                     <Box className="shadow p-10" sx={{background:"var(--base)", borderRadius:"15px", gap: 5 }}>
                         
                         <div className="flex flex-col gap-10">
-                            <TextField className="textInputBR20" fullWidth label="Nome completo:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/> 
+                            <select name="Vaga" id= "role">
+                                <option value = "Back-end">Back-end</option>
+                                <option value = "Front-end">Front-end</option>
+                            </select>
+                            {/* <TextField className="textInputBR20" fullWidth label="Nome completo:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/> 
 
-                            <TextField className="textInputBR20" fullWidth label="Email institucional:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/> 
+                            <TextField className="textInputBR20" fullWidth label="Email institucional:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>  */}
 
                             <div id='roleSelector' className="flex flex-row justify-between items-center w-full">
-                                <Autocomplete multiple id="fixed-tags-Role"
-                                    onChange={(event, newValue) => {
-                                        setValue([
-                                        ...newValue.filter((option) => roleList.indexOf(option)),
-                                        ]);
-                                    }}
+                                {/* <Autocomplete multiple id="fixed-tags-Role"
+                                    // onChange={(event, newValue) => {
+                                    //     setValue([
+                                    //     ...newValue.filter((option) => roleList.indexOf(option)),
+                                    //     ]);
+                                    // }}
                                     options={roleList}
                                     getOptionLabel={(option) => option.role}
                                     renderTags={(tagValue, getTagProps) =>
@@ -168,23 +205,22 @@ function Submit()
                                     style={{ width: "100%" }}
                                     filterSelectedOptions
                                     renderInput={(params) => (
-                                        <TextField {...params} label="Vagas" placeholder="Select" className="techList textInputBR20" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}} />)}
-                                />
-
+                                        <TextField {...params} label="Vagas" placeholder="Select" id= "role" className="techList textInputBR20" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}} />)}
+                                /> */}
                                 
-                                    <div style={{paddingLeft:"2.5%", paddingRight:"2.5%"}}>
+                                    {/* <div style={{paddingLeft:"2.5%", paddingRight:"2.5%"}}>
                                         <IconButton color="primary" onClick={addTagRole} aria-label="add" sx={{background:"var(--base)", border:"1px solid var(--accent-color)"}}>
                                             <Add color="accent_color" />
                                         </IconButton> 
-                                    </div>
+                                    </div> */}
 
-                                    <TextField id="addTagRole" className="textInputBR20" fullWidth label="Adicionar Vagas:" sx={{width:"57%",background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>    
+                                    {/* <TextField id="addTagRole" className="textInputBR20" fullWidth label="Adicionar Vagas:" sx={{width:"57%",background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>     */}
                                 
                             </div>
-                            <TextField className="textInputBR20" fullWidth rows={5} multiline label="Justificativa:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>
+                            <TextField id="reason" className="textInputBR20" fullWidth rows={5} multiline label="Por que você quer aplicar para a vaga?" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>
                             <div className="flex flex-row justify-between items-center">
                                 <CheckBox checkFunction={checkedFunc} label="Meu gestor está ciente e concorda com minha participação no projeto."/>
-                                <PrimaryBtn text="SUBMETER"/>
+                                <PrimaryBtn onClick={createSubmit} text="SUBMETER"/>
                             </div>
                         </div>
                     </Box>

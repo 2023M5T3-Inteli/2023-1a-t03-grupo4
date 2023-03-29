@@ -10,13 +10,6 @@ export class CreateSubmissionDto {
     })
     idSubmission: number;
     
-    // Esse vai apagar
-    @ApiProperty({
-        description: 'Name',
-        example: 1,
-    })
-    name: string;
-    
     @ApiProperty({
         description: 'Id of the Profile',
         example: 1,
@@ -34,13 +27,6 @@ export class CreateSubmissionDto {
         example: 'I want to work in this project because I want to learn more about the subject',
     })
     reason: string;
-    
-    //Esse vai apagar
-    @ApiProperty({
-        description: 'teste@gmail.com',
-        example: 1,
-    })
-    email: string;
     
     @ApiProperty({
         description: 'Status of the Submission',
