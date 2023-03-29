@@ -48,10 +48,10 @@ function AddProject() {
     ]
 
     var statusList = [
-        { status: 'Aberto' },
-        { status: 'Encerrado' },
-        { status: 'Em progresso' },
-        { status: 'Em análise' },
+        { label: 'Aberto' },
+        { label: 'Encerrado' },
+        { label: 'Em progresso' },
+        { label: 'Em análise' },
     ]
 
 
@@ -120,6 +120,12 @@ function AddProject() {
         var area = document.getElementById('area').value
         var description = document.getElementById('descricao').value
         var periodo = document.getElementById('periodo').value
+        var status = document.getElementById('dropdown-statusList').value
+        var tech = document.getElementById('fixed-tags-tech').value
+        console.log(tech)
+
+        
+
 
 
 
@@ -143,6 +149,7 @@ function AddProject() {
     }
 
     const [value, setValue] = React.useState([]);
+    const [val, setVal] = useState<string | null>(options[0]);
     const [inputValue, setInputValue] = React.useState(true);
     const [modalIsOpen, setIsOpen] = React.useState(true);
 
@@ -194,7 +201,7 @@ function AddProject() {
                             <label className='text' htmlFor="timeZones">Fuso-horário:</label>
                             <div id='timeZones' className="flex flex-row justify-center">
                                 <TextField
-                                    id="outlined-select-currency"
+                                    id="outlined-select-timeZones"
                                     select
                                     className="textInputBR20 w-full"
                                     defaultValue="America/Sao Paulo"
@@ -251,21 +258,13 @@ function AddProject() {
                     <div style={{ width: "57%" }}>
                         <label className='text' htmlFor="statusList">Status:</label>
                         <div id='statusList' className="flex flex-row justify-center">
-                            <TextField
-                                id="outlined-select-currency"
-                                select
-                                className="textInputBR20 w-full"
-                                defaultValue="Aberto"
-
-                                variant="outlined"
-                                sx={{ background: "white", borderRadius: "20px", boxShadow: "0px 1px 9px rgba(0, 0, 0, 0.21)" }}
-                            >
-                                {statusList.map((option) => (
-                                    <MenuItem key={option.status} value={option.status}>
-                                        {option.status}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
+                            <Autocomplete
+                                disablePortal
+                                id="dropdown-statusList"
+                                options={statusList}
+                                sx={{ width: 200 }}
+                                renderInput={(params) => <TextField className="textInputBR20" {...params} label="Área de atuação" style={{background:"white", borderRadius:"20px"}}/>}
+                            />
                         </div>
                     </div>
                 </div>
@@ -340,14 +339,14 @@ function AddProject() {
 
                 <br />
 
-                <div className="flex flex-row w-full justify-center">
-                    <Btn text={"Salvar"} variant={"primaryBtn"} className="" onClick={test1} />
-                </div>
 
 
 
 
             </Box>
+                <div className="flex flex-row w-full justify-center">
+                    <Btn text={"Salvar"} variant={"primaryBtn"} className="" onClick={test1} />
+                </div>
         </div>
 
         <Modal

@@ -40,4 +40,15 @@ export class profileService {
       throw new HttpException('Profile not found', HttpStatus.NOT_FOUND);
     }
   }
+
+  async findUserIdByUsername(name: string){
+    const user = await this.profileRepository.findOneBy({name:name});
+    if (user){
+      return user;
+    }
+
+    throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+  }
+
+
 }
