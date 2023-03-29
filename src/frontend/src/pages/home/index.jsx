@@ -33,6 +33,11 @@ function Home() {
         window.location.href = "/submit"
     }
 
+    const showMore = (e) => {
+        e.preventDefault();
+        window.location.href = "/projects"
+    }
+
 
 
     var techList = [
@@ -69,7 +74,7 @@ function Home() {
 
                     <br /><br /><br />
 
-                    <PrimaryBtn text={"Ver mais"}/>
+                    <PrimaryBtn onClick={showMore} text={"Ver mais"}/>
                 </div>
             </section>
 
