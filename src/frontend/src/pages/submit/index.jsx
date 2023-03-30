@@ -127,9 +127,57 @@ function Submit()
         }
 
         getProject()
+        console.log(submission)
     }, [])
 
+    useEffect(() => {
+        async function getSubmission(){
+            await api.get('/submission/').then(res => {
+                setSubmission(res.data)
+                console.log(res.data)
+            }).catch(err => {
+                window.location.href = '/home'
+            })
+        }
+        
+        if (!id) {
+            window.location.href = '/home'
+        }
+
+        getSubmission()
+    }, [])
+
+    async function deleteProject(){
+        console.log("apagar projeto")
+        await api.delete('/project/'+id).then(res => {
+            window.location.href = '/home'
+        }).catch(err => {
+            window.location.href = '/project/'+id
+        })
+    }
+
+
+    const {id} = params
+    async function deleteSubmission(){
+
+        if(submission.length != 0){
+            for(var i = 0; i < submission.length; i++){
+                if(submission[i].idProject.idProject == id){
+                    await api.delete('/submission/'+submission[i].idSubmission).then(res => {
+                        console.log(res.data)
+                    }).catch(err => {
+                        console.log(err)
+                    })
+                }
+            }
+            
+        }
+        deleteProject()
+
+    }
+
     const [project, setProject] = React.useState({})
+    const [submission, setSubmission] = React.useState({})
 
     console.log(project.technologies)
 
@@ -266,7 +314,7 @@ function Submit()
                     </Box>
                 </div>
                 <br /><br />
-                <Btn text="Apagar" variant={"secondaryBtn"}/>
+                <Btn text="Apagar" variant={"secondaryBtn"} onClick={deleteSubmission}/>
             </div>
 
         </div>
