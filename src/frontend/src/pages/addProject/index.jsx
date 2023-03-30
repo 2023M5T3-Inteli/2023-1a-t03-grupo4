@@ -116,7 +116,7 @@ function AddProject() {
 
     }        
 
-    async function test1(){
+    async function createProject(){
         var title = document.getElementById('tituloProjeto').value
         var area = document.getElementById('area').value
         var description = document.getElementById('descricao').value
@@ -142,15 +142,49 @@ function AddProject() {
         techArray = getTags(techArray, tech)
         skillArray = getTags(skillArray, skill)
 
-        console.log(roleArray)
-        console.log(techArray)
-        console.log(skillArray)
-        console.log(status)
+        var getskills
+        await api.get("/skills").then((response)=>{getskills=response.data})
 
+        var skillsArr = [];
+        for (var i = 0; i < skillArray.length; i++) {
+            for (var j = 0; j < getskills.length; j++) {
+                if (skillArray[i] === getskills[j].skill) {
+                    var skillObj = { idSkill: getskills[j].idSkill };
+                    skillsArr.push(skillObj);
+                }
+            }
+        }
+
+        var getTech
+        await api.get("/technologie").then((response)=>{getTech=response.data})
+
+        var techArr = [];
+        for (var i = 0; i < techArray.length; i++) {
+            for (var j = 0; j < getTech.length; j++) {
+                if (techArray[i] === getTech[j].technology) {
+                    var techObj = { id_technology: getTech[j].id_technology };
+                    techArr.push(techObj);
+                }
+            }
+        }
+
+        var getRole
+        await api.get("/position").then((response)=>{getRole=response.data})
+
+        var roleArr = [];
+        for (var i = 0; i < roleArray.length; i++) {
+            for (var j = 0; j < getRole.length; j++) {
+                if (roleArray[i] === getRole[j].position) {
+                    var roleObj = { id_position: getRole[j].id_position };
+                    roleArr.push(roleObj);
+                }
+            }
+        }
+    
         await api.post("/project",{
         title: title,
         description: description,
-        stt: "disponível",
+        stt: status,
         submission_date: new Date(submision), 
         date_initial: new Date(start),  
         date_end: new Date(end),
@@ -158,8 +192,12 @@ function AddProject() {
             id_profile : creator
         },
         area: area,
-        role: "backend",
-        auth: true}).then(()=>{
+        role:"backend",
+        skills: skillsArr,
+        technologies: techArr,
+        positions: roleArr,
+        auth: true
+        }).then(()=>{
             console.log("works")
         }).catch((e)=>{
             alert(e)
@@ -363,7 +401,7 @@ function AddProject() {
 
             </Box>
                 <div className="flex flex-row w-full justify-center">
-                    <Btn text={"Salvar"} variant={"primaryBtn"} className="" onClick={test1} />
+                    <Btn text={"Salvar"} variant={"primaryBtn"} className="" onClick={createProject} />
                 </div>
         </div>
 

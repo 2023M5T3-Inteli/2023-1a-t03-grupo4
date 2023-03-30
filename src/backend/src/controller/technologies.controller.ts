@@ -11,7 +11,7 @@ export class technologieController {
   constructor(private readonly technologiesService : technologiesService) {}
 
   // get all todos
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Get()
   gettechnologie() {
     return this.technologiesService.getAllTechnologies();
