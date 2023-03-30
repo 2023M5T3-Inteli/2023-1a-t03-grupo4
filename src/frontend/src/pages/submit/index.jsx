@@ -4,16 +4,21 @@ import * as React from 'react'
 import NavBar from '../../components/NavBar'
 import Footer from '../../components/Footer';
 import CheckBox from '../../components/CheckBox'
-import PrimaryBtn from '../../components/Btn'
+import Btn from '../../components/Btn'
 import userPlaceholder from '../../assets/images/user_placeholder.jpeg'
 import { TextField,Box, Autocomplete, Chip, IconButton} from '@mui/material'
 import Add from '@mui/icons-material/Add';
 import { api } from '../../api';
 import { create } from '@mui/material/styles/createTransitions';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { border } from '@mui/system';
 
 
 function Submit() 
 { 
+    const params = useParams();
+
     const checkedFunc = () => {
         console.log('checked')
     }
@@ -106,6 +111,29 @@ function Submit()
 
 // }
 
+    useEffect(() => {
+        const {id } = params
+        async function getProject(){
+            await api.get('/project/'+id).then(res => {
+                setProject(res.data)
+                console.log(res.data)
+            }).catch(err => {
+                window.location.href = '/home'
+            })
+        }
+        
+        if (!id) {
+            window.location.href = '/home'
+        }
+
+        getProject()
+    }, [])
+
+    const [project, setProject] = React.useState({})
+
+    console.log(project.technologies)
+
+    var projectPositions = []
 
 
     return(<div>
@@ -113,8 +141,10 @@ function Submit()
         <div className="mainScreen px-40">
             <div className="div1 flex flex-col justify-between w-full">
                 <div className='flex flex-row justify-between'>
-                    <h1 className=" text-7xl">Título</h1>
-                    <div className="inproglabel"> <h1>In progress</h1></div>
+                    <h1 className=" text-7xl">
+                        {project.title || "Loading..."}
+                    </h1>
+                    <div className="inproglabel">{project.stt || "Loading..."}</div>
                 </div>
                 <br></br>
                 <p className="" style={{width:"78%"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quam pellentesque nec nam aliquam sem et tortor. Tempor nec feugiat nisl pretium fusce id. Molestie at elementum eu facilisis. Dolor purus non enim praesent elementum facilisis leo. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum.</p>
@@ -125,13 +155,16 @@ function Submit()
             <div className="flex flex-row gap-2 justify-between">
                 <div className="flex flex-col justify-between">
                     <div className="flex flex-row items-center">
-                        <p className="font-bold text-lg pr-1">Area:</p><p>Automations</p>
+                        <p className="font-bold text-lg pr-1">Area:</p><p>{project.area || "Loading..."}</p>
                     </div>
                     <div className="flex flex-row items-center">
-                        <p className="font-bold text-lg pr-1">Vagas:</p> <p>Back-end</p>
+                        <p className="font-bold text-lg">Vagas:</p>
+                        {project.positions && project.positions.map((e, index) => (<p className="mx-1" key={index}>{e.position}</p>)) || "Loading..."}
                     </div>
                     <div className="flex flex-row items-center">
-                        <p className="font-bold text-lg pr-1">Período:</p> <p>14/02/23 à 25/03/23</p>
+                        <p className="font-bold text-lg pr-1">Período:</p>
+                        {project.date_initial && <p>{`De ${project.date_initial.replace(/:00.000Z/g, "").replace(/-/g,'/').replace(/T/g,' - ') } até ${project.date_end.replace(/:00.000Z/g, "").replace(/-/g,'/').replace(/T/g,' - ')}`}</p> || "Loading..."}
+                        
                     </div>
                     <div className="flex flex-row items-center">
                         <p className="font-bold text-lg pr-1">Time:</p> 
@@ -143,10 +176,8 @@ function Submit()
                     </div>
                 </div>
 
-                <div className="flex flex-wrap justify-end">
-                    <div className="teclabel">Tecnologia I</div> 
-                    <div className="teclabel">Tecnologia I</div> 
-                    <div className="teclabel">Tecnologia I</div> 
+                <div className="flex flex-wrap justify-end gap-2">
+                    {project.technologies && project.technologies.map((e, index) => (<div key={index}> <Chip label={e.technology} className="shadow-lg" sx={{minWidth:"5rem", background:"var(--accent-color)", color:"var(--base)"}} /> </div>)) || "Loading..."} 
                 </div>
             </div> 
             {/* fim 1o bloco */}
@@ -176,11 +207,20 @@ function Submit()
                     <br></br>
                     <Box className="shadow p-10" sx={{background:"var(--base)", borderRadius:"15px", gap: 5 }}>
                         
-                        <div className="flex flex-col gap-10">
-                            <select name="Vaga" id= "role">
-                                <option value = "Back-end">Back-end</option>
-                                <option value = "Front-end">Front-end</option>
-                            </select>
+                        <div className="flex flex-col gap-5">
+                            <div className="hidden">
+                                {project.positions && project.positions.map((e, index) => (projectPositions.push({label:e.position}))) || "Loading..."}
+                            </div>
+
+                            <div id='role' className="flex flex-row justify-center">
+                                <Autocomplete
+                                    disablePortal
+                                    id="dropdown-roleList"
+                                    options={projectPositions}
+                                    sx={{ width: "100%" }}
+                                    renderInput={(params) => <TextField label="Vaga" className="textInputBR20" {...params} style={{background:"white", borderRadius:"20px"}}/>}
+                                />
+                            </div>
                             {/* <TextField className="textInputBR20" fullWidth label="Nome completo:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/> 
 
                             <TextField className="textInputBR20" fullWidth label="Email institucional:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>  */}
@@ -220,11 +260,13 @@ function Submit()
                             <TextField id="reason" className="textInputBR20" fullWidth rows={5} multiline label="Por que você quer aplicar para a vaga?" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>
                             <div className="flex flex-row justify-between items-center">
                                 <CheckBox checkFunction={checkedFunc} label="Meu gestor está ciente e concorda com minha participação no projeto."/>
-                                <PrimaryBtn onClick={createSubmit} text="SUBMETER"/>
+                                <Btn onClick={createSubmit} text="SUBMETER"/>
                             </div>
                         </div>
                     </Box>
                 </div>
+                <br /><br />
+                <Btn text="Apagar" variant={"secondaryBtn"}/>
             </div>
 
         </div>

@@ -23,7 +23,7 @@ export function AppRoutes() {
                 <Route path='/' element={<Login />} />
                 <Route path='/home' element={<Home/>} />
                 <Route path='/profile' element={<Profile />} />
-                <Route path='/submit' element={<Submit/>} />
+                <Route path='/submit/:id' element={<Submit/>} />
                 <Route path='/addproject' element={<AddProject/>} />
                 <Route path='/footer' element={<Footer/>} />
                 <Route path='/projects' element={<Projects/>} />

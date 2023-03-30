@@ -5,6 +5,7 @@ import NavBar from '../../components/NavBar';
 import ProjectCard from '../../components/ProjectCard';
 import Footer from '../../components/Footer';
 import PrimaryBtn from '../../components/Btn';
+import { api } from "../../api";
 
 
 function Home() {
@@ -14,10 +15,11 @@ function Home() {
     window.addEventListener('load',() => {
         const fetchUserData = async () => {
           setLoading(true);
-          const response = await fetch("http://dev-loadbalancer-1136620238.us-east-1.elb.amazonaws.com/project");
-          const responseData = await response.json();
+          var getProjects
+          await api.get('/project').then((response) => {getProjects=response.data});
+          
     
-          setUserData(responseData);
+          setUserData(getProjects);
     
           setLoading(false);
         };
@@ -25,17 +27,16 @@ function Home() {
         fetchUserData();
     }, []); 
 
+
     var User
-    window.addEventListener('load', User = userData) 
-
-    const handleDetails = (e) => {
-        e.preventDefault();
-        window.location.href = "/submit"
-    }
-
+    window.addEventListener('load', User = userData)
+    
     const showMore = (e) => {
         e.preventDefault();
         window.location.href = "/projects"
+    }
+
+    const handleDetails = (e) => {
     }
 
 
@@ -67,8 +68,7 @@ function Home() {
 
                 <div className="flex flex-col items-center shadow-sm w-full h-fit p-10 py-20" style={{background:"white", minHeight:"20rem" , maxHeight:"fit-content", borderRadius:"20px", border:"1px solid var(--grey1)"}}>
                     <div className="flex flex-wrap items-center justify-center gap-28">
-
-                        {User ? User.map((e, index) => (<ProjectCard key={index} title={e.title} techList={techList} handleClick={handleDetails} color={e.color}/>)) : <h1>Carregando...</h1>}
+                    {User ? User.map((e, index) => (<ProjectCard id={e.idProject} key={index} title={e.title} techList={e.technologies} handleClick={handleDetails} windowLocaion={"/submit"} color={e.color}/>)) : <h1>Carregando...</h1>}
 
                     </div>
 
