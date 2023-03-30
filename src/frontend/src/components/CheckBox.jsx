@@ -16,7 +16,9 @@ function CheckBox({label,count,checkFunction,onChange}) {
   //Marca ou desmarca (check) quando o checkbox é pressionado
   const handleCheck = () => {
     setIsChecked(!isChecked)
-    onChange()
+    if(onChange){
+      onChange()
+    }
     if(!isChecked){
       checkFunction()
     }
