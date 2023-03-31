@@ -24,10 +24,10 @@ import { HealthModule } from './health.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'grupo4-dev.cd53msdn47fe.us-east-1.rds.amazonaws.com',
+      host: 'mike-db.c9rsydni6nfk.us-east-1.rds.amazonaws.com',
       port: 5432,
       username: 'postgres',
-      password: 'grupo4123',
+      password: 'senhamike',
       database: 'postgres',
       entities: [Project, Profile, Skills, Positions, Submission, Technologies, Login],
       synchronize: true,
