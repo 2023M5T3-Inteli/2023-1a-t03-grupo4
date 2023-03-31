@@ -1,7 +1,9 @@
-import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, UseGuards, Patch} from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/wt-auth.guard';
 import CreateProject from '../module/dto/createProject.dto';
+import UpdateProjectDto from '../module/dto/updateProject.dto';
 import { ProjectService } from '../services/project.service';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ApiTags } from "@nestjs/swagger";
 
 @Controller('project')
@@ -34,4 +36,11 @@ export class projectController {
   async deleteProject(@Param('id') id: number) {
     this.projectService.deleteProject(Number(id));
   }
+
+    // update a project
+    @Patch(':id')
+    async updateProject(@Param('id') id: string, @Body() project: UpdateProjectDto) {
+      return this.projectService.updateProject(Number(id), project);
+    }
+
 }

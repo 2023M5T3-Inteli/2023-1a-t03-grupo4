@@ -20,7 +20,8 @@
     align-items: center;
     border: 1px solid var(--grey2);
     border-radius: 30px;
-    color: var(--yellow);
+    color: #e2b511;
+    font-weight: 800;
 }
 
 .divider
@@ -36,6 +37,20 @@
     height: 3px;
     width: 100%;
     background-color: var(--accent-color);
+}
+
+.editstt{
+    display: none;
+}
+
+.inputstt{
+    margin-bottom: 10px;
+    border-radius:20px;
+    padding: 10px;
+}
+
+.feito{
+    display: block;
 }
 
 #standardDev:checked ~ .selectedBar {

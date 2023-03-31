@@ -14,11 +14,10 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { border } from '@mui/system';
 
-
 function Submit() 
 { 
     const params = useParams();
-
+    const [project, setProject] = React.useState({})
     const checkedFunc = () => {
         console.log('checked')
     }
@@ -84,11 +83,22 @@ function Submit()
         roleSelector.classList.toggle('hidden')
     }
 
+
+    // Create a submit
  async function createSubmit(){
         var role = document.getElementById('role').value;
-        if (role == 'Back-end'){
+        if (role == 'Front-end'){
             role = 1;
-        };
+        }
+        else if (role == 'Back-end'){
+            role = 2;
+        }
+        else if (role == 'Back-end'){
+            role = 2;
+        }
+        else if (role == 'Back-end'){
+            role = 2;
+        }
         
 
         var reason = document.getElementById('reason').value;
@@ -103,13 +113,55 @@ function Submit()
         })
         console.log("teste");
     }
-// async function getProject(){
-//     axios.get('http://localhost:3001/project/1')
-//     .then((response: AxiosResponse) => {
-//         console.log(response.data);
-//         setUserList( response.data );
 
-// }
+
+
+//Edit stt
+
+function showEditStt(){
+    document.getElementById('editstt').style.display ='block';
+}
+    async function editStt(){
+        const id = project.idProject;
+        const title = project.title;
+        const description = project.description;
+        var stt = document.getElementById('stt').value;
+        const submissionDate = project.submission_date;
+        const endDate = project.date_initial;
+        const initialDate = project.date_end;
+        const creator = project.creator;
+        const area = project.area;
+        const role = project.role;
+        const auth = project.auth;
+
+        document.getElementById('editstt').style.display ='none';
+        await api.patch(`/project/${id}`, {
+            idProject: id,
+            title: title,
+            description: description,
+            stt: stt,
+            submission_date: submissionDate,
+            date_initial: initialDate,
+            date_end: endDate,
+            creator: creator,
+            area: area,
+            role: role,
+            auth: auth
+        });
+
+        window.location.reload();
+
+}
+
+// async function editStt(id, stt) {
+//     try {
+//       const response = await axios.patch(`/project/${id}`, stt);
+//       return response.data;
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   }
+
 
     useEffect(() => {
         const {id } = params
@@ -129,7 +181,7 @@ function Submit()
         getProject()
     }, [])
 
-    const [project, setProject] = React.useState({})
+ 
 
     console.log(project.technologies)
 
@@ -144,7 +196,13 @@ function Submit()
                     <h1 className=" text-7xl">
                         {project.title || "Loading..."}
                     </h1>
-                    <div className="inproglabel">{project.stt || "Loading..."}</div>
+                    <div className="inproglabel">{project.stt || "Loading..."} 
+                    </div>
+                    <Btn text="EDITAR STATUS" onClick = {showEditStt}></Btn>
+                    <div className='editstt' id='editstt'>
+                    <input id='stt' placeholder='Status' className='inputstt' style={{borderRadius:"20px"}}></input>
+                    <Btn text="SALVAR STATUS" onClick= {editStt} ></Btn>
+                    </div>
                 </div>
                 <br></br>
                 <p className="" style={{width:"78%"}}>{project.description || "Loading..."}</p>
