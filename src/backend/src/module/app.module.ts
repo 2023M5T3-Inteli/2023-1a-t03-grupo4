@@ -24,7 +24,7 @@ import { HealthModule } from './health.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'felipe-database-prova.cd53msdn47fe.us-east-1.rds.amazonaws.com',
+      host: 'felipe-prova-pratica-db.cbbriucuyu7x.us-east-1.rds.amazonaws.com',
       port: 5432,
       username: 'postgres',
       password: 'senhafelipe',
