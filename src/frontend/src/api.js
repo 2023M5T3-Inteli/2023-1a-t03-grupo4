@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const api = axios.create({
-    baseURL: 'http://localhost:3001',
+    baseURL: 'http://wags-lb-566112077.us-east-1.elb.amazonaws.com',
 });
