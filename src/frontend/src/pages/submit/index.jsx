@@ -179,6 +179,7 @@ function showEditStt(){
         }
 
         getProject()
+        console.log(submission)
     }, [])
 
  
@@ -324,7 +325,7 @@ function showEditStt(){
                     </Box>
                 </div>
                 <br /><br />
-                <Btn text="Apagar" variant={"secondaryBtn"}/>
+                <Btn text="Apagar" variant={"secondaryBtn"} onClick={deleteSubmission}/>
             </div>
 
         </div>
