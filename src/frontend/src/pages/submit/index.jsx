@@ -18,6 +18,9 @@ function Submit()
 { 
     const params = useParams();
     const [project, setProject] = React.useState({})
+    const [submission, setSubmission] = React.useState({})
+
+
     const checkedFunc = () => {
         console.log('checked')
     }
@@ -123,44 +126,35 @@ function showEditStt(){
 }
     async function editStt(){
         const id = project.idProject;
-        const title = project.title;
-        const description = project.description;
+        // const title = project.title;
+        // const description = project.description;
         var stt = document.getElementById('stt').value;
-        const submissionDate = project.submission_date;
-        const endDate = project.date_initial;
-        const initialDate = project.date_end;
-        const creator = project.creator;
-        const area = project.area;
-        const role = project.role;
-        const auth = project.auth;
+        // const submissionDate = project.submission_date;
+        // const endDate = project.date_initial;
+        // const initialDate = project.date_end;
+        // const creator = project.creator;
+        // const area = project.area;
+        // const role = project.role;
+        // const auth = project.auth;
 
         document.getElementById('editstt').style.display ='none';
         await api.patch(`/project/${id}`, {
-            idProject: id,
-            title: title,
-            description: description,
+            // idProject: id,
+            // title: title,
+            // description: description,
             stt: stt,
-            submission_date: submissionDate,
-            date_initial: initialDate,
-            date_end: endDate,
-            creator: creator,
-            area: area,
-            role: role,
-            auth: auth
+            // submission_date: submissionDate,
+            // date_initial: initialDate,
+            // date_end: endDate,
+            // creator: creator,
+            // area: area,
+            // role: role,
+            // auth: auth
         });
 
         window.location.reload();
 
 }
-
-// async function editStt(id, stt) {
-//     try {
-//       const response = await axios.patch(`/project/${id}`, stt);
-//       return response.data;
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   }
 
 
     useEffect(() => {
@@ -182,6 +176,35 @@ function showEditStt(){
         console.log(submission)
     }, [])
 
+
+    async function deleteProject(){
+        console.log("apagar projeto")
+        await api.delete('/project/'+id).then(res => {
+            window.location.href = '/home'
+        }).catch(err => {
+            window.location.href = '/project/'+id
+        })
+    }
+
+
+    const {id} = params
+    async function deleteSubmission(){
+
+        if(submission.length != 0){
+            for(var i = 0; i < submission.length; i++){
+                if(submission[i].idProject.idProject == id){
+                    await api.delete('/submission/'+submission[i].idSubmission).then(res => {
+                        console.log(res.data)
+                    }).catch(err => {
+                        console.log(err)
+                    })
+                }
+            }
+
+        }
+        deleteProject()
+
+    }
  
 
     console.log(project.technologies)
