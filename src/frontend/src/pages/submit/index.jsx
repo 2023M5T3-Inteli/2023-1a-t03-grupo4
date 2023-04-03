@@ -281,7 +281,7 @@ function showEditStt(){
                     <input checked={IsChecked} onChange={shadowDev} className="hidden" id="shadowDev" type = "radio" name="radio"></input>
                 </div> */}
                 <br></br>
-                <div className="w-full">
+                <div className="w-full pb-10">
                     <div>
                         <h1 className="font-semibold text-3xl">Preencha as informações abaixo para se inscrever:</h1>
                     </div>

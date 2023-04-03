@@ -5,6 +5,7 @@ import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import Btn from '../../components/Btn';
 import ProjectCard from '../../components/ProjectCard';
+import { api } from "../../api";
 import { TextField, FormControl, InputAdornment, InputLabel,OutlinedInput,IconButton, Autocomplete, Stack, Pagination } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
@@ -18,10 +19,11 @@ function Projects() {
     window.addEventListener('load',() => {
         const fetchUserData = async () => {
           setLoading(true);
-          const response = await fetch("http://dev-loadbalancer-1136620238.us-east-1.elb.amazonaws.com/project");
-          const responseData = await response.json();
+          var getProjects
+          await api.get('/project').then((response) => {getProjects=response.data});
+          
     
-          setUserData(responseData);
+          setUserData(getProjects);
     
           setLoading(false);
         };
@@ -29,18 +31,15 @@ function Projects() {
         fetchUserData();
     }, []); 
 
+
     var User
     window.addEventListener('load', User = userData)
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [projectsPerPage, setProjectPerPage] = useState(10);
+    const [projectsPerPage, setProjectPerPage] = useState(9);
 
     const indexOfLastProject = currentPage * projectsPerPage;
     const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-
-    // window.addEventListener('load', () => {
-    //     const currentProjects = User.slice(indexOfFirstProject, indexOfLastProject)
-    // })
 
     const handleDetails = (e) => {
         e.preventDefault();
@@ -204,15 +203,22 @@ function Projects() {
                 <br />
 
                 <div className="flex flex-col items-center justify-between shadow-sm w-full h-fit p-10 pt-20" style={{background:"white", minHeight:"20rem" , maxHeight:"fit-content", borderRadius:"20px", border:"1px solid var(--grey1)"}}>
-                    <div className="flex flex-wrap items-center justify-center gap-28">
+                    <div className="flex flex-wrap items-center justify-center gap-28 pb-20">
 
-                        {User ? User.map((e, index) => (<ProjectCard key={index} title={e.title} techList={techList} handleClick={handleDetails} color={e.color}/>)) : <h1>Carregando...</h1>}
+                        {/* {User ? User.map((e, index) => (<ProjectCard id={e.idProject} key={index} title={e.title} techList={e.technologies} handleClick={handleDetails} windowLocaion={"/submit"} color={e.color}/>)) : <h1>Carregando...</h1>} */}
+
+                        {User ? User.map((e, index) => {if(index < indexOfLastProject && index >= indexOfFirstProject) {return(<ProjectCard id={e.idProject} key={index} title={e.title} techList={e.technologies} windowLocaion={"/submit"} color={e.color}/>)}}) : <h1>Carregando...</h1>}
 
                     </div>
 
-                    <Stack spacing={2}>
-                        <Pagination count={10} shape="rounded" />
-                    </Stack>
+                    {
+                        User &&
+
+                        <Stack spacing={2}>
+                            <Pagination count={Math.ceil(User.length / projectsPerPage)} shape="rounded" onChange={(e, value) => setCurrentPage(value)} />
+                        </Stack>
+                    }
+
                 </div>
             </div>
         </div>

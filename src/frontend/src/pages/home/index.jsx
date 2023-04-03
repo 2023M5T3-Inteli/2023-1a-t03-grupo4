@@ -6,6 +6,7 @@ import ProjectCard from '../../components/ProjectCard';
 import Footer from '../../components/Footer';
 import PrimaryBtn from '../../components/Btn';
 import { api } from "../../api";
+import { renderMatches } from "react-router-dom";
 
 
 function Home() {
@@ -36,8 +37,6 @@ function Home() {
         window.location.href = "/projects"
     }
 
-    const handleDetails = (e) => {
-    }
 
 
 
@@ -67,9 +66,10 @@ function Home() {
                 <br /><br /><br />
 
                 <div className="flex flex-col items-center shadow-sm w-full h-fit p-10 py-20" style={{background:"white", minHeight:"20rem" , maxHeight:"fit-content", borderRadius:"20px", border:"1px solid var(--grey1)"}}>
-                    <div className="flex flex-wrap items-center justify-center gap-28">
-                    {User ? User.map((e, index) => (<ProjectCard id={e.idProject} key={index} title={e.title} techList={e.technologies} handleClick={handleDetails} windowLocaion={"/submit"} color={e.color}/>)) : <h1>Carregando...</h1>}
-
+                    <div className="flex flex-wrap items-center justify-center gap-28 pb-20">
+                        {User ? User.map((e, index) => {if(index < 9) {return(<ProjectCard id={e.idProject} key={index} title={e.title} techList={e.technologies} windowLocaion={"/submit"} color={e.color}/>)}}) : <h1>Carregando...</h1>}
+                        
+                        
                     </div>
 
                     <br /><br /><br />
