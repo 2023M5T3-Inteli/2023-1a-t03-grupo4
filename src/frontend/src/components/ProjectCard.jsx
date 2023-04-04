@@ -5,7 +5,7 @@ import { Link, useHistory} from 'react-router-dom';
 import { Stack, Chip } from '@mui/material';
 import DellLogo from '../assets/svg/DellLogo/export';
 
-function ProjectCard({id,img, windowLocaion, title, status, techList, color, handleClick, disabled}) {
+function ProjectCard({id, img, windowLocaion, title, status, techList, color, handleClick, disabled}) {
 
 
     return(<Link id={id} to={`/submit/${id}`} className="flex flex-col overflow-clip items-center justify-center" style={{width:"20rem", height:"23rem", minWidth:"20rem", border:"2px solid var(--grey1)", borderRadius:"20px", background:{color}}}>
@@ -27,12 +27,12 @@ function ProjectCard({id,img, windowLocaion, title, status, techList, color, han
 
             <div className="w-fit h-fit overflow-x-scroll" style={{maxWidth:"17.3rem"}}>
                 <Stack direction={"row"} spacing={1} className="pb-2">
-                    {
+                    {techList ?
                         techList.map((e, index) => (<div key={index}>
 
                             <Chip label={e.technology} className="shadow-lg" sx={{minWidth:"5rem", background:"var(--grey4)", color:"var(--base)"}} />
                         </div>
-                        ))
+                        )) : "Loading..."
                     }
                 </Stack>
             </div>

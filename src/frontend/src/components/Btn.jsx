@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import './components_css/Btns.css'
 
 //Cria o componente com suas variáveis e referenciando as informações necessárias
-function Btn({href,type, text, onClick, onSubmit, onChange, width, disabled, variant}) {
+function Btn({href , type, text, onClick, onSubmit, onChange, width, disabled, variant}) {
 
     if(!width) {
         width = "10rem"
