@@ -68,17 +68,15 @@ function Profile() {
     getOwnProjects(projects)
    : console.log("no projectData");
 
-
-
   const portifolioPageHandler = () => {
     setShowPortifolioFirstPage((prevState) => {
       return !prevState;
     });
   };
 
-  const showModalHandler = () => {
-    setShowModal((prevState) => !prevState);
-  };
+  function showModalHandler(text) {
+    console.log(text)
+  }
 
   if (userData) {
     return (
@@ -156,7 +154,7 @@ function Profile() {
                             </div>
 
                             <div className={styles.detailBtnBx}>
-                            <Btn text={"Detalhes"} onClick={showModalHandler} width={120}/>
+                            <Btn text={"Detalhes"} onChange={showModalHandler("123")} width={120}/>
                             </div>
                           </li>
 
@@ -168,19 +166,21 @@ function Profile() {
                       </ul>
                     )}
                     {!showPortifolioFirstPage && (
-                      <div className="flex flex-row w-full justify-cente ite=">
-                        <div>
+                      <div className="flex flex-row w-full justify-center items-start pt-12 gap-40">
+                        <div className="flex flex-col justify-center items-center h-fit" style={{width:"15em"}}>
                           <h2>Hard Skills</h2>
+                          <br />
 
-                          <div>
-                            {userData.skills && userData.skills.map((e, index) => (<div key={index}> <Chip label={e.skill} className="shadow-lg" sx={{minWidth:"5rem", background:"var(--accent-color)", color:"var(--base)"}} /> </div>)) || "Loading..."} 
+                          <div className="flex flex-wrap ">
+                            {userData.technologies && userData.technologies.map((e, index) => (<div key={index}> <Chip label={e.skill} className="shadow-lg" sx={{minWidth:"5rem", background:"var(--accent-color)", color:"var(--base)"}} /> </div>)) || "Loading..."} 
                           </div>
                         </div>
 
-                        <div>
+                        <div className="flex flex-col justify-center items-center h-fit" style={{width:"15em"}}>
                           <h2>Soft Skills</h2>
+                          <br />
 
-                          <div>
+                          <div className="flex flex-wrap">
                             {userData.skills && userData.skills.map((e, index) => (<div key={index}> <Chip label={e.skill} className="shadow-lg" sx={{minWidth:"5rem", background:"var(--accent-color)", color:"var(--base)"}} /> </div>)) || "Loading..."} 
                           </div>
                         </div>
@@ -198,7 +198,7 @@ function Profile() {
 
         <Footer />
 
-        {showModal && <Modal onClose={showModalHandler} />}
+        {showModal && <Modal projectDescription={"sapequinha esse mateus"} onClose={showModalHandler} />}
       </>
     );
   }
