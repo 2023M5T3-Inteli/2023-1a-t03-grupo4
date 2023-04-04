@@ -33,20 +33,43 @@ Neste sentido, com o objetivo de manter o engajamento de seus funcionários, o g
 <br><br>
 
 ## 💾 Estrutura de pastas
-
--Raiz<br>
-|<br>
-|-->docs<br>
-|-->documentos<br>
-  &emsp;|-->antigos<br>
-  &emsp;|GDD.docx ou Documentação.docx<br>
-|-->executáveis<br>
-  &emsp;|-->windows<br>
-  &emsp;|-->android<br>
-  &emsp;|-->HTML<br>
-|-->imagens<br>
-|-->src<br>
-|readme.md<br>
+|📂[imagens](/imagens)<br>
+|📂[src](/src)<br>
+  &emsp;|📂[Back-end](/src/backend)<br>
+      &emsp; &emsp;|📂[src](/src/backend/src)<br>
+      &emsp; &emsp; &emsp;|📂[auth](/src/backend/src/auth)<br>
+      &emsp; &emsp; &emsp;|📂[controller](/src/backend/src/controller)<br>
+      &emsp; &emsp; &emsp;|📂[module](/src/backend/src/module)<br>
+      &emsp; &emsp; &emsp; &emsp;|📂[dto](/src/backend/src/module/dto)<br>
+      &emsp; &emsp; &emsp; &emsp;|📂[entity](/src/backend/src/module/entity)<br>
+      &emsp; &emsp; &emsp;|📂[services](/src/backend/src/services)<br>
+  &emsp;|📂 [Front-end](/src/frontend)<br>
+  &emsp; &emsp;|📂[build](/src/frontend/build)<br>
+  &emsp; &emsp; &emsp;|📂[static](/src/frontend/build/static)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[css](/src/frontend/build/static/css)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[js](/src/frontend/build/static/js)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[media](/src/frontend/build/static/media)<br>
+  &emsp; &emsp;|📂[public](/src/frontend/public)<br>
+  &emsp; &emsp;|📂[src](/src/frontend/src)<br>
+  &emsp; &emsp; &emsp;|📂[assets](/src/frontend/src/assets)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[images](/src/frontend/src/assets/images)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[svg/DellLogo](/src/frontend/src/assets/svg/DellLogo)<br>
+  &emsp; &emsp; &emsp;|📂[components](/src/frontend/src/components)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[Modal](/src/frontend/src/components/Modal)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[Ranking](/src/frontend/src/components/Ranking)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[components_css](/src/frontend/src/components/components_css)<br>
+  &emsp; &emsp; &emsp;|📂[pages](/src/frontend/src/pages)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[addProject](/src/frontend/src/pages/addProject)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[home](/src/frontend/src/pages/home)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[login](/src/frontend/src/pages/login)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[profile](/src/frontend/src/pages/profile)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[projects](/src/frontend/src/pages/projects)<br>
+  &emsp; &emsp; &emsp; &emsp;|📂[submit](/src/frontend/src/pages/submit)<br>
+  &emsp; &emsp; &emsp;|📂[routes](/src/frontend/src/routes)<br>
+  &emsp; &emsp; &emsp;|📂[scripts](/src/frontend/src/scripts)<br>
+  &emsp; &emsp; &emsp;|📂[styles](/src/frontend/src/styles)<br>
+  &emsp; &emsp; &emsp;|📂[themes](/src/frontend/src/themes)<br>
+|📄[readme.md](/README.md)<br>
 
 
 ## 🛠 Instalação
@@ -95,12 +118,12 @@ A cada atualização os detalhes devem ser lançados aqui.
     * Arquitetura da solução V3
     * Produção de banco de dados no RDS
 * Sprint 4 - 24/03/2023
-    * 
-    * 
+    * Mudança de ORM (TypeORM)
+    * Parte da integração
 * Sprint 5 - 07/04/2023
-    * 
-    *
-    *
+    * Finalização da integração
+    * Ajuste de erros
+    * Manual do usuário
 =======
 * 0.2.1 - 25/01/2022
     * MUDANÇA: Atualização de docs (código do módulo permanece inalterado)
