@@ -7,21 +7,28 @@ import UserPlaceholder from "../../assets/images/user_placeholder.jpeg";
 import styles from "./Profile.module.scss";
 import { Chip } from "@mui/material";
 import { And } from "typeorm";
+import { api } from "../../api";
+import Btn from "../../components/Btn";
 
 function Profile() {
   const [showPortifolioFirstPage, setShowPortifolioFirstPage] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState();
+  const [projectData, setProjectData] = useState();
   const [skillData, setSkillData] = useState();
 
   useEffect(() => {
     const fetchUserData = async () => {
       setLoading(true);
-      const response = await fetch("http://localhost:3001/profile/2");
-      const responseData = await response.json();
+      var profileid = sessionStorage.getItem("idUser");
 
-      setUserData(responseData);
+      var getProfile
+      await api.get(`/profile/${profileid}`).then((response)=>{getProfile=response.data})
+    
+    
+
+      setUserData(getProfile);
 
       setLoading(false);
     };
@@ -30,18 +37,38 @@ function Profile() {
   }, []);
 
   useEffect(() => {
-    const fetchSkillData = async () => {
+    const fetchProjectData = async () => {
       setLoading(true);
-      const response = await fetch("http://localhost:3001/skills/2");
-      const responseData = await response.json();
+      var getProject;
+      await api.get(`/project`).then((response)=>{getProject=response.data});
 
-      setSkillData(responseData);
+      setProjectData(getProject);
 
       setLoading(false);
     };
 
-    fetchSkillData();
+    fetchProjectData();
+
   }, []);
+
+  function getOwnProjects(proj) {
+    for(var i = 0; i < proj.length; i++){
+      if(proj[i].creator.id_profile == profileid){
+        ownProjects.push(proj[i])
+      };
+    };
+    console.log(ownProjects)
+  }
+
+  var profileid = sessionStorage.getItem("idUser");
+  var ownProjects = [];
+  var projects
+  window.addEventListener("load", projects = projectData)
+  projects ? 
+    getOwnProjects(projects)
+   : console.log("no projectData");
+
+
 
   const portifolioPageHandler = () => {
     setShowPortifolioFirstPage((prevState) => {
@@ -74,13 +101,9 @@ function Profile() {
                 <div className={styles.profileInfos}>
                   <h1>{userData.name}</h1>
 
-                  <span>Analista de Sistemas</span>
-                  <p>Operações internacionais</p>
 
                   <div className={styles.profileSkillsBx}>
-                    <p>Excel</p>
-                    <p>Python</p>
-                    <p>PowerBI</p>
+                    {userData.skills && userData.skills.map((e, index) => (<div key={index}> <Chip label={e.skill} className="shadow-lg" sx={{minWidth:"5rem", background:"var(--accent-color)", color:"var(--base)"}} /> </div>)) || "Loading..."} 
                   </div>
                 </div>
               </div>
@@ -113,153 +136,52 @@ function Profile() {
                   <div className={styles.portfolioContent}>
                     {showPortifolioFirstPage && (
                       <ul className={styles.projectList}>
-                        <li className={styles.projectContainer}>
-                          <div className={styles.projectPictureBx}>
+
+                        {ownProjects && ownProjects.map((e, index) => {return(
+
+                          <li className={styles.projectContainer}>
+                            <div className={styles.projectPictureBx}>
                             <img
                               src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
                               alt="project"
                             />
-                          </div>
+                            </div>
 
-                          <div className={styles.projectContent}>
-                            <h1>Título 1 2 3</h1>
-
-                            <span>Analista de Sistemas</span>
-                            <p>Operações internacionais</p>
+                            <div className={styles.projectContent}>
+                            <h1>{e.title}</h1>
 
                             <div className={styles.projectSkillsBx}>
-                              <p>Python</p>
-                              <p>Excel</p>
-                              <p>JavaScript</p>
+                              {e.skills && e.skills.map((e, index) => (<div key={index}> <Chip label={e.skill} className="shadow-lg" sx={{minWidth:"5rem", background:"var(--base)", color:"var(--primary-color)", border:"2px solid var(--accent-color)"}} /> </div>)) || "Loading..."}
                             </div>
-                          </div>
-
-                          <div className={styles.detailBtnBx}>
-                            <button onClick={showModalHandler}>Detalhes</button>
-                          </div>
-                        </li>
-                        <li className={styles.projectContainer}>
-                          <div className={styles.projectPictureBx}>
-                            <img
-                              src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
-                              alt="project"
-                            />
-                          </div>
-                          <div className={styles.projectContent}>
-                            <h1>Título 1 2 3</h1>
-
-                            <span>Analista de Sistemas</span>
-                            <p>Operações internacionais</p>
-
-                            <div className={styles.projectSkillsBx}>
-                              <p>Python</p>
-                              <p>Excel</p>
-                              <p>JavaScript</p>
                             </div>
-                          </div>
 
-                          <div className={styles.detailBtnBx}>
-                            <button onClick={showModalHandler}>Detalhes</button>
-                          </div>
-                        </li>
-                        <li className={styles.projectContainer}>
-                          <div className={styles.projectPictureBx}>
-                            <img
-                              src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
-                              alt="project"
-                            />
-                          </div>
-
-                          <div className={styles.projectContent}>
-                            <h1>Título 1 2 3</h1>
-
-                            <span>Analista de Sistemas</span>
-                            <p>Operações internacionais</p>
-
-                            <div className={styles.projectSkillsBx}>
-                              <p>Python</p>
-                              <p>Excel</p>
-                              <p>JavaScript</p>
+                            <div className={styles.detailBtnBx}>
+                            <Btn text={"Detalhes"} onClick={showModalHandler} width={120}/>
                             </div>
-                          </div>
+                          </li>
 
-                          <div className={styles.detailBtnBx}>
-                            <button onClick={showModalHandler}>Detalhes</button>
-                          </div>
-                        </li>
-                        <li className={styles.projectContainer}>
-                          <div className={styles.projectPictureBx}>
-                            <img
-                              src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
-                              alt="project"
-                            />
-                          </div>
+                        )}) || "Loading..."}
 
-                          <div className={styles.projectContent}>
-                            <h1>Título 1 2 3</h1>
+                        
 
-                            <span>Analista de Sistemas</span>
-                            <p>Operações internacionais</p>
-
-                            <div className={styles.projectSkillsBx}>
-                              <p>Python</p>
-                              <p>Excel</p>
-                              <p>JavaScript</p>
-                            </div>
-                          </div>
-
-                          <div className={styles.detailBtnBx}>
-                            <button onClick={showModalHandler}>Detalhes</button>
-                          </div>
-                        </li>
-                        <li className={styles.projectContainer}>
-                          <div className={styles.projectPictureBx}>
-                            <img
-                              src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
-                              alt="project"
-                            />
-                          </div>
-
-                          <div className={styles.projectContent}>
-                            <h1>Título 1 2 3</h1>
-
-                            <span>Analista de Sistemas</span>
-                            <p>Operações internacionais</p>
-
-                            <div className={styles.projectSkillsBx}>
-                              <p>Python</p>
-                              <p>Excel</p>
-                              <p>JavaScript</p>
-                            </div>
-                          </div>
-
-                          <div className={styles.detailBtnBx}>
-                            <button onClick={showModalHandler}>Detalhes</button>
-                          </div>
-                        </li>
+                        
                       </ul>
                     )}
                     {!showPortifolioFirstPage && (
-                      <div className={styles.skillColumnsWraper}>
-                        <div className={styles.skillsColumn}>
+                      <div className="flex flex-row w-full justify-cente ite=">
+                        <div>
                           <h2>Hard Skills</h2>
 
                           <div>
-                            {skillData.map((element) => (
-                              <p>{element.skill}</p>
-                            ))}
+                            {userData.skills && userData.skills.map((e, index) => (<div key={index}> <Chip label={e.skill} className="shadow-lg" sx={{minWidth:"5rem", background:"var(--accent-color)", color:"var(--base)"}} /> </div>)) || "Loading..."} 
                           </div>
                         </div>
 
-                        <div className={styles.skillsColumn}>
+                        <div>
                           <h2>Soft Skills</h2>
 
                           <div>
-                            <p>Comunicação</p>
-                            <p>Liderança</p>
-                            <p>Estratégia</p>
-                            <p>Adaptabilidade</p>
-                            <p>Disciplina</p>
+                            {userData.skills && userData.skills.map((e, index) => (<div key={index}> <Chip label={e.skill} className="shadow-lg" sx={{minWidth:"5rem", background:"var(--accent-color)", color:"var(--base)"}} /> </div>)) || "Loading..."} 
                           </div>
                         </div>
                       </div>

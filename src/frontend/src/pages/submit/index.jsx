@@ -89,32 +89,29 @@ function Submit()
 
     // Create a submit
  async function createSubmit(){
-        var role = document.getElementById('role').value;
-        if (role == 'Front-end'){
-            role = 1;
-        }
-        else if (role == 'Back-end'){
-            role = 2;
-        }
-        else if (role == 'Back-end'){
-            role = 2;
-        }
-        else if (role == 'Back-end'){
-            role = 2;
-        }
-        
-
+        var role = document.getElementById('dropdown-roleList').value
         var reason = document.getElementById('reason').value;
+        var profile = sessionStorage.getItem("idUser");
+
+        var getPosition
+        await api.get("/position").then((response)=>{getPosition=response.data})
         
+        for(var i = 0; i < getPosition.length; i++){
+            if(getPosition[i].position == role){
+                role = getPosition[i].id_position
+            }
+        }
+        
+        console.log(role)
         await api.post("/submission", {
             reason: reason,
             stt: "em avaliação",
-            idProject: 4,
-            id_profile: 1,
+            idProject: id,
+            id_profile: profile,
             position: role,
             
         })
-        console.log("teste");
+        
     }
 
 
@@ -222,7 +219,7 @@ function showEditStt(){
                     </h1>
                     <div className="inproglabel">{project.stt || "Loading..."} 
                     </div>
-                    <Btn text="EDITAR STATUS" onClick = {showEditStt}></Btn>
+                    {/* <Btn text="EDITAR STATUS" onClick = {showEditStt}></Btn> */}
                     <div className='editstt' id='editstt'>
                     <input id='stt' placeholder='Status' className='inputstt' style={{borderRadius:"20px"}}></input>
                     <Btn text="SALVAR STATUS" onClick= {editStt} ></Btn>
@@ -241,7 +238,7 @@ function showEditStt(){
                     </div>
                     <div className="flex flex-row items-center">
                         <p className="font-bold text-lg">Vagas:</p>
-                        {project.positions && project.positions.map((e, index) => (<p className="mx-1" key={index}>{e.position}</p>)) || "Loading..."}
+                        {project.positions ? project.positions.map((e, index) => (<p className="mx-1" key={index}>{e.position}</p>)) : "Loading..."}
                     </div>
                     <div className="flex flex-row items-center">
                         <p className="font-bold text-lg pr-1">Período:</p>

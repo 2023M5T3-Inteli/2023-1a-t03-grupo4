@@ -128,8 +128,9 @@ function AddProject() {
         var tech = document.getElementById('techInput').getElementsByClassName('MuiChip-label')
         var role = document.getElementById('roleInput').getElementsByClassName('MuiChip-label')
         var skill = document.getElementById('skillInput').getElementsByClassName('MuiChip-label')
-        var creator = localStorage.getItem('id_profile')
+        var creator = sessionStorage.getItem('idUser')
         var techArray, roleArray, skillArray
+
         
         function getTags(arr, tags){
             arr = []
