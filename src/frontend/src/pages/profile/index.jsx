@@ -137,20 +137,20 @@ function Profile() {
 
                         {ownProjects && ownProjects.map((e, index) => {return(
 
-                          <li className={styles.projectContainer}>
+                          <li className={styles.projectContainer} style={{alignItems:"center"}}>
                             <div className={styles.projectPictureBx}>
-                            <img
-                              src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
-                              alt="project"
-                            />
+                              <img
+                                src="https://static.cloud-boxloja.com/lojas/wyfyg/produtos/cf02b27f-ab1b-4a50-ad17-4aa4e0368a94.jpg"
+                                alt="project"
+                              />
                             </div>
 
                             <div className={styles.projectContent}>
                             <h1>{e.title}</h1>
 
-                            <div className={styles.projectSkillsBx}>
-                              {e.skills && e.skills.map((e, index) => (<div key={index}> <Chip label={e.skill} className="shadow-lg" sx={{minWidth:"5rem", background:"var(--base)", color:"var(--primary-color)", border:"2px solid var(--accent-color)"}} /> </div>)) || "Loading..."}
-                            </div>
+                              <div className={styles.projectSkillsBx}>
+                                {e.technologies && e.technologies.map((e, index) => (<div key={index}> <Chip label={e.technology} className="shadow-lg" sx={{minWidth:"5rem", background:"var(--base)", color:"var(--primary-color)", border:"2px solid var(--accent-color)"}} /> </div>)) || "Loading..."}
+                              </div>
                             </div>
 
                             <div className={styles.detailBtnBx}>
