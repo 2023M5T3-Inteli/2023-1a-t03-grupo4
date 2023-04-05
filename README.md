@@ -98,7 +98,6 @@ Neste sentido, com o objetivo de manter o engajamento de seus funcionários, o g
 
 A cada atualização os detalhes devem ser lançados aqui.
 
-<<<<<<< HEAD
 * Sprint 1 - 10/02/2023
     * Wireframe
     * Arquitetura do sistema V1
