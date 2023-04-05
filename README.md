@@ -17,11 +17,8 @@
 O projeto é uma aplicação web em cloud, baseado na arquitetura de 3 camadas, contendo: front-end, back-end e banco de dados hospedados na AWS.
 <br><br>
 <p align="center">
-<<<<<<< HEAD
 <img src="imagens/Logo-Full_Name_NoBG.png" alt="Cumulonimbus" border="0" style="max-width: 100px;"g>
 =======
-<img src="imagens/Logo-Full_Name_NoBG.png" alt="Cumulonimbus" border="0">
->>>>>>> dev-typeORM
 </p>
 
 
@@ -74,22 +71,33 @@ Neste sentido, com o objetivo de manter o engajamento de seus funcionários, o g
 
 ## 🛠 Instalação
 
-1 -
-2 - 
-3 - 
+1 - Clone do GitHub atual
+<br>
+2 - Para rodar localmente o projeto, é necessário:
+&emsp 2.1 - Rodar no prompt de comando dentro da pasta backend/src o comando ```npm run start:dev``` ;
+&emsp 2.2 - Rodar no prompt de comando dentro da pasta frontend/src o comando ```npm start``` ;
+<br>
+3 - O projeto já está pronto para teste local.
+<br>
 
-## 💻 Configuração para Desenvolvimento
+## 💻 Configuração para Aplicação
 
-1 - 
-2 - 
-3 - 
-4 - 
+1 - Criação de VPC e subredes na AWS
+<br>
+2 - Criação de EC2 na AWS
+<br>
+3 - Criação de LoadBalancer na AWS
+<br>
+4 - Criação de RDS na AWS
+<br>
+5 - Configuração de variáveis de ambiente para a ligação com os serviços AWS
+<br>
+6 - Criação de S3 na AWS
 
 ## 📄 Histórico de lançamentos
 
 A cada atualização os detalhes devem ser lançados aqui.
 
-<<<<<<< HEAD
 * Sprint 1 - 10/02/2023
     * Wireframe
     * Arquitetura do sistema V1
@@ -124,20 +132,6 @@ A cada atualização os detalhes devem ser lançados aqui.
     * Finalização da integração
     * Ajuste de erros
     * Manual do usuário
-=======
-* 0.2.1 - 25/01/2022
-    * MUDANÇA: Atualização de docs (código do módulo permanece inalterado)
-* 0.2.0 - 15/01/2022
-    * MUDANÇA: Remove `setDefaultXYZ()`
-    * ADD: Adiciona `init()`
-* 0.1.1 - 11/01/2022
-    * CONSERTADO: Crash quando chama `baz()` (Obrigado @NomeDoContribuidorGeneroso!)
-* 0.1.0 - 10/01/2022
-    * O primeiro lançamento adequado
-    * MUDANÇA: Renomeia `foo()` para `bar()`
-* 0.0.1 - 01/01/2022
-    * Trabalho em andamento
->>>>>>> dev-typeORM
 
 ## 🎓 Referências
 
