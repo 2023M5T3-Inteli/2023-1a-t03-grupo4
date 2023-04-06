@@ -19,6 +19,7 @@ function Submit()
     const params = useParams();
     const [project, setProject] = React.useState({})
     const [submission, setSubmission] = React.useState({})
+    const [statusColor, setStatusColor] = React.useState("")
 
 
     const checkedFunc = () => {
@@ -211,18 +212,18 @@ function showEditStt(){
 
     return(<div>
         <NavBar/>
-        <div className="mainScreen px-40">
+        <div className="mainScreen px-40 pt-10">
             <div className="div1 flex flex-col justify-between w-full">
                 <div className='flex flex-row justify-between'>
                     <h1 className=" text-7xl">
                         {project.title || "Loading..."}
                     </h1>
-                    <div className="inproglabel">{project.stt || "Loading..."} 
-                    </div>
+                    <Chip className="shadow-inner" label={project.stt || "Loading..."} sx={{fontSize:"18px", padding:"10px", background:"var(--base)", border:"1px solid var(--base_dark)"}}/>
+                    {/* <div className="">{project.stt || "Loading..."} </div> */}
                     {/* <Btn text="EDITAR STATUS" onClick = {showEditStt}></Btn> */}
                     <div className='editstt' id='editstt'>
-                    <input id='stt' placeholder='Status' className='inputstt' style={{borderRadius:"20px"}}></input>
-                    <Btn text="SALVAR STATUS" onClick= {editStt} ></Btn>
+                        <input id='stt' placeholder='Status' className='inputstt' style={{borderRadius:"20px"}}></input>
+                        <Btn text="SALVAR STATUS" onClick= {editStt} ></Btn>
                     </div>
                 </div>
                 <br></br>
@@ -345,7 +346,7 @@ function showEditStt(){
                     </Box>
                 </div>
                 <br /><br />
-                <Btn text="Apagar" variant={"secondaryBtn"} onClick={deleteSubmission}/>
+                {/* <Btn text="Apagar" variant={"secondaryBtn"} onClick={deleteSubmission}/> */}
             </div>
 
         </div>

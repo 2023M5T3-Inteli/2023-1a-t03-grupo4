@@ -11,9 +11,11 @@ import Btn from '../../components/Btn';
 
 import UserPlaceholder from "../../assets/images/user_placeholder.jpeg";
 import { api } from "../../api";
-import { Chip, IconButton } from '@mui/material';
+import { Chip, IconButton, Autocomplete, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
+import SaveIcon from '@mui/icons-material/Save';
 
 function Profile2() {
 
@@ -33,19 +35,28 @@ function Profile2() {
     const [modalTechs, setModalTechs] = React.useState([]);
     const [statusColor, setStatusColor] = React.useState("");
     const [submission, setSubmission] = React.useState({})
+    const [statusDisabled, setStatusDisabled] = React.useState(true)
+    const reloadFunction = React.useRef(null)
     const params = useParams();
 
     var profileid = sessionStorage.getItem("idUser");
+    var statusBox, editStatus, saveStatus
+
+    var statusList = [
+        { label: 'Aberto' },
+        { label: 'Encerrado' },
+        { label: 'Em progresso' },
+        { label: 'Em análise' },
+    ]
+    
 
     function getOwnProjects(proj) {
         ownProjects = []
         for(var i = 0; i < proj.length; i++){
             if(proj[i].creator.id_profile == profileid){
                 ownProjects.push(proj[i])
-                console.log("tesssteeee")
             };
         };
-        console.log(ownProjects)
     }
 
     useEffect(() => {
@@ -77,6 +88,8 @@ function Profile2() {
     
           setLoading(false);
         };
+
+        reloadFunction.current = fetchProjectData;
     
         fetchProjectData();
     
@@ -118,12 +131,11 @@ function Profile2() {
     async function deleteProject(id){
         console.log("apagar projeto")
         await api.delete('/project/'+id).then(res => {
-            window.location.href = '/home'
+            window.location.href = '/profile'
         }).catch(err => {
             setOpenModal(false)
         })
     }
-
 
     async function deleteSubmission(id){
 
@@ -131,7 +143,7 @@ function Profile2() {
             for(var i = 0; i < submission.length; i++){
                 if(submission[i].idProject.idProject == id){
                     await api.delete('/submission/'+submission[i].idSubmission).then(res => {
-                        console.log(res.data)
+                        
                     }).catch(err => {
                         console.log(err)
                     })
@@ -141,6 +153,14 @@ function Profile2() {
         }
         deleteProject(id)
 
+    }
+
+    async function editStt(id) {
+        var stt = document.getElementById("statusBox").value
+        await api.patch(`/project/${id}`, {
+            stt: stt,
+        });
+        console.log(stt)
     }
 
     if (userData && projectData) {
@@ -163,7 +183,7 @@ function Profile2() {
 
                 <br /><br />
 
-                <div className="shadow-md overflow-clip w-4/6 px-10 pb-28 pt-5 -ml-40" style={{background:"var(--base)", borderRadius:"0 20px 20px 0", height:"35rem"}}>
+                <div className="profileContentBox shadow-md overflow-clip w-4/6 px-10 pb-28 pt-5 -ml-40" style={{background:"var(--base)", borderRadius:"0 20px 20px 0", height:"35rem"}}>
 
                     <div className="flex flex-row justify-center items-center h-fit gap-3" style={{width:"100%"}}>
                         <label className="cursor-pointer" htmlFor="yourProjects">
@@ -184,13 +204,13 @@ function Profile2() {
                     <br />
 
                     <div id='profileContentSlide' className="flex flex-row justify-between h-full yourProjects gap-20" style={{width:"200%"}}>
-                        <div className="overflow-y-scroll w-1/2 h-full">
+                        <div className="flex flex-col items-center overflow-y-scroll w-1/2 h-full">
 
                         {getOwnProjects(projectData)}
 
                         {ownProjects && ownProjects.map((e, index) => {return(
 
-                            <li key={index} className="flex flex-row justify-between items-center pr-10 pl-5">
+                            <li key={index} className="projectCard flex flex-row justify-between items-center" style={{paddingRight:"2.5rem", paddingLeft:"1.25rem", width:"100%"}}>
 
                                 <div className="flex flex-row items-center">
                                     <img
@@ -200,10 +220,10 @@ function Profile2() {
                                         style={{borderRadius:"100%"}}
                                     />
 
-                                    <div className="flex flex-col justify-start items-center gap-5">
+                                    <div className="flex flex-col justify-center items-start gap-5">
                                         <h1>{e.title}</h1>
 
-                                        <div className="flex flex-wrap">
+                                        <div className="flex flex-wrap gap-2">
                                             {e.technologies && e.technologies.map((e, index) => (<div key={index}> <Chip label={e.technology} className="shadow-lg" sx={{minWidth:"5rem", background:"var(--base)", color:"var(--primary-color)", border:"2px solid var(--accent-color)"}} /> </div>)) || "Loading..."}
                                         </div>
                                     </div>
@@ -212,7 +232,7 @@ function Profile2() {
 
                                 <Btn text={"Detalhes"} onClick={() => {
                                     setOpenModal(true)
-                                    console.log(openModal)
+                                    setStatusDisabled(true)
                                     setModalId(e.idProject)
                                     setModalText(e.description)
                                     setModalTitle(e.title)
@@ -220,19 +240,14 @@ function Profile2() {
                                     setModalRoles(e.positions)
                                     setModalDateInitial(e.date_initial.replace(/:00.000Z/g, "").replace(/-/g,'/').replace(/T/g,' - '))
                                     setModalDateEnd(e.date_end.replace(/:00.000Z/g, "").replace(/-/g,'/').replace(/T/g,' - '))
-                                    setModalStatus(e.stt)
                                     setModalTechs(e.technologies)
-                                    if(e.stt == "Em progresso") {
-                                        setStatusColor("var(--grey2)")
-                                    } else if(e.stt == "Encerrado") {
-                                        setStatusColor("var(--red)")
-                                    } else if(e.stt == "Em análise") {
-                                        setStatusColor("var(--yellow)")
-                                    } else if(e.stt == "Aberto") {
-                                        setStatusColor("var(--green)")
-                                    } else {
-                                        setStatusColor("var(--grey3)")
+                                    
+                                    for(var i = 0; i < projectData.length; i++){
+                                        if(projectData[i].idProject == e.idProject){
+                                            setModalStatus(projectData[i].stt)
+                                        }
                                     }
+                                    
                                 }} width={120}/>
 
                             </li>
@@ -246,7 +261,7 @@ function Profile2() {
 
                         <div className="w-1/2 h-full" style={{}}>
 
-                        <div className="flex flex-row w-full justify-center items-start pt-12 gap-40">
+                        <div className="profileSkillsBox flex flex-row w-full justify-center items-start pt-12 gap-40">
                             <div className="flex flex-col justify-center items-center h-fit gap-5" style={{width:"15em"}}>
                                 <h2 className="text-2xl">Hard Skills</h2>
 
@@ -275,21 +290,25 @@ function Profile2() {
             <Modal
 
             isOpen={openModal}
-
+            onRequestClose={() => {setOpenModal(false)}}
             contentLabel="Example Modal"
             overlayClassName="modal-overlay fixed w-full h-full bg-gray-900 bg-opacity-50 z-40 overflow-y-auto justify-center items-center flex top-0"
             className="modal-content absolute"
-            ariaHideApp={true}
+            ariaHideApp={false}
             appElement={document.getElementById('app')}
         >
             <div className="shadow-md pb-10 pt-5 px-10" style={{ background: "var(--base)", borderRadius: "30px", maxWidth: "70rem", minWidth: "30rem" }}>
 
                 <div className="flex flex-row justify-end w-full ml-5 gap-3">
                     <IconButton className="shadow-md" color="primary" onClick={() => {deleteSubmission(modalId)}} aria-label="add" sx={{background: "white", border: "1px solid var(--accent-color)" }}>
-                        <DeleteForeverIcon color="accent_color"  />
+                        <DeleteForeverIcon sx={{color:"var(--red)"}}  />
                     </IconButton>
 
-                    <IconButton className="shadow-md" color="primary" onClick={() => {setOpenModal(false)}} aria-label="add" sx={{background: "white", border: "1px solid var(--accent-color)" }}>
+                    <IconButton className="shadow-md" color="primary" onClick={() => {
+                        setOpenModal(false)
+                        reloadFunction.current()
+                    }} 
+                    aria-label="add" sx={{background: "white", border: "1px solid var(--accent-color)" }}>
                         <CloseIcon color="accent_color"  />
                     </IconButton>
                 </div>
@@ -297,7 +316,49 @@ function Profile2() {
 
                 <div className="flex flex-row justify-between w-full">
                     <h1 className="text-3xl">{modalTitle || "Loading..."}</h1>
-                    <Chip className="shadow-inner" label={modalStatus || "Loading..."} sx={{fontSize:"18px", padding:"10px", background:"var(--base)", border:"1px solid var(--base_dark)", color:statusColor}}/>
+
+                    <div className="flex flex-row items-center gap-1">
+                        <IconButton id="editStatus" onClick={() => {
+                            setStatusDisabled(false)
+                            statusBox = document.getElementById("statusBox")
+                            editStatus = document.getElementById("editStatus")
+                            saveStatus = document.getElementById("saveStatus")
+                            statusBox.focus()
+                            statusBox.placeholder = modalStatus
+                            editStatus.style.display = "none"
+                            saveStatus.style.display = ""
+                        }}>
+
+                            <EditIcon className=""/>
+
+                        </IconButton>
+
+                        <IconButton id="saveStatus" onClick={() => {
+                            setStatusDisabled(true)
+                            statusBox = document.getElementById("statusBox")
+                            editStatus = document.getElementById("editStatus")
+                            saveStatus = document.getElementById("saveStatus")
+                            statusBox.style.color = statusColor
+                            editStatus.style.display = ""
+                            saveStatus.style.display = "none"
+                            editStt(modalId)
+                        }} style={{display:"none"}}>
+                            <SaveIcon className="" />
+                        </IconButton>
+                        {/* <Chip className="shadow-inner" label={modalStatus || "Loading..."} sx={{fontSize:"18px", padding:"10px", background:"var(--base)", border:"1px solid var(--base_dark)", color:statusColor}}/> */}
+                        {/* <input id='statusBox' type="text" className="text-center w-40 py-1 shadow-inner" disabled={statusDisabled} defaultValue={modalStatus || loading} style={{fontSize:"18px", background:"var(--accent)", border:"1px solid var(--base_dark)", borderRadius:"20px", color:statusColor}} /> */}
+                        <div id='statusList' className="flex flex-row justify-center">
+                            <Autocomplete
+                                disablePortal
+                                id="statusBox"
+                                options={statusList}
+                                sx={{ minWidth: "12rem", width:"fit-content"}}
+                                disabled={statusDisabled}
+                                defaultValue={modalStatus || "Loading..."}
+                                renderInput={(params) => <TextField className="textInputBR20" {...params} style={{background:"white", borderRadius:"20px"}}/>}
+                            />
+                        </div>
+                    </div>
                 </div>
                 <br />
 
