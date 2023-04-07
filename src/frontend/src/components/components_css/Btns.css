@@ -1,0 +1,100 @@
+button#btn {
+    --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+button#btn:focus {
+    outline: .2rem var(--accent-color) solid;
+    outline-offset: 2px;
+}
+
+
+.primaryBtn{
+    border: 0;
+    border-radius: 50px;
+    background: var(--primary-color);
+    color: white;
+    padding: 11px;
+    width: 30%;
+    transition: all .3s ease-in;
+}
+  
+.primaryBtn:hover {
+    background: var(--accent-color);
+    box-shadow: var(--base_shadow);
+    transform:translate(0,-2px);
+}
+
+.primaryBtn:active {
+    color: var(--accent);
+    background-color: var(--secondary-color);
+    outline: .2rem var(--accent-color) solid;   
+    transition: 0.1s ease-out;
+    transform:translate(0,1px);
+    box-shadow:0px 1px 9px rgba(0, 0, 0, 0.21);
+}
+
+.secondaryBtn {
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    background: transparent;
+    color: var(--grey2);
+    padding: 11px;
+    width: 30%;
+    transition: all .3s ease-in;
+}
+
+.secondaryBtn:hover {
+    background: white;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    box-shadow: var(--base_shadow);
+    transform:translate(0,-2px);
+}
+
+.secondaryBtn:active {
+    color: var(--grey1);
+    background-color: transparent;
+    border: 2px solid var(--grey2);
+    transition: 0.1s ease-out;
+    transform:translate(0,1px);
+    box-shadow:0px 1px 9px rgba(0, 0, 0, 0.21);
+}
+
+.normalBtn {
+    border: 1px solid var(--grey1);
+    border-radius: 50px;
+    background: white;
+    color: var(--grey3);
+    padding: 11px;
+    width: 30%;
+    transition: all .3s ease-in;
+}
+
+.normalBtn:hover {
+    border: 0;
+    background: white;
+    color: var(--grey5);
+    box-shadow: var(--base_shadow);
+    transform:translate(0,-2px);
+}
+
+.normalBtn:active {
+    color: var(--grey2);
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    transition: 0.1s ease-out;
+    transform:translate(0,1px);
+    box-shadow:0px 1px 9px rgba(0, 0, 0, 0.21);
+}
+
+.disabledBtn {
+    border: 1px solid var(--grey1);
+    border-radius: 50px;
+    background: white;
+    color: var(--grey1);
+    padding: 11px;
+    width: 30%;
+    transition: all .3s ease-in;
+}

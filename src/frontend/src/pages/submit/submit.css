@@ -1,0 +1,63 @@
+.teclabel
+{
+    display: flex;
+    width: 7rem;
+    height: 2rem;
+    justify-content: center;
+    align-items: center;
+    background: var(--accent-color);
+    border-radius: 30px;
+    color: white;
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+.inproglabel
+{
+    display: flex;
+    width: 7rem;
+    height: 2rem;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--grey2);
+    border-radius: 30px;
+    color: #e2b511;
+    font-weight: 800;
+}
+
+.divider
+{
+    content:'';
+    height: 5rem;
+    width: 3px;
+    background: var(--grey1);
+}
+
+.selectedBar {
+    content:'';
+    height: 3px;
+    width: 100%;
+    background-color: var(--accent-color);
+}
+
+.editstt{
+    display: none;
+}
+
+.inputstt{
+    margin-bottom: 10px;
+    border-radius:20px;
+    padding: 10px;
+}
+
+.feito{
+    display: block;
+}
+
+#standardDev:checked ~ .selectedBar {
+    background: red;
+}
+
+#shadowDev:checked ~ .selectedBar {
+    background: aqua;
+
+}

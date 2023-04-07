@@ -1,0 +1,56 @@
+.yourProjects {
+    margin-left: 0;
+}
+
+.yourSkills {
+    margin-left: -100%;
+}
+
+
+div#profileContentSlide {
+    transition: 0.5s ease;
+}
+
+input#editProfileButton {
+    transition: 0.5s ease;
+}
+
+@media screen and (max-width: 900px) {
+    .profileContentBox {
+        width: 100%;
+        margin-left: 0px;
+        padding-left: 0;
+        border-radius: 30px !important;
+    
+    }
+
+    .profileSkillsBox {
+        background: var(--base);
+        gap: 20px;
+        width: 100%;
+        margin-left: -70px;
+    }
+
+    div#profileContentSlide {
+        width: 220% !important;
+        transition: 0.5s ease;
+        gap: 0px !important;
+    }
+
+}
+
+@media screen and (max-width: 1500px) {
+    
+    .profileContentBox {
+        width: 100%;
+        margin-left: 0px;
+        border-radius: 30px !important;
+    };
+
+    .projectCard {
+        padding-right: 1px !important;
+        margin: 0 !important;
+        width: 100%;
+    }
+
+}
