@@ -4,13 +4,24 @@ import * as React from 'react'
 import NavBar from '../../components/NavBar'
 import Footer from '../../components/Footer';
 import CheckBox from '../../components/CheckBox'
-import PrimaryBtn from '../../components/Btn'
+import Btn from '../../components/Btn'
 import userPlaceholder from '../../assets/images/user_placeholder.jpeg'
 import { TextField,Box, Autocomplete, Chip, IconButton} from '@mui/material'
 import Add from '@mui/icons-material/Add';
+import { api } from '../../api';
+import { create } from '@mui/material/styles/createTransitions';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { border } from '@mui/system';
 
 function Submit() 
 { 
+    const params = useParams();
+    const [project, setProject] = React.useState({})
+    const [submission, setSubmission] = React.useState({})
+    const [statusColor, setStatusColor] = React.useState("")
+
+
     const checkedFunc = () => {
         console.log('checked')
     }
@@ -24,6 +35,7 @@ function Submit()
         { role: 'Back-end' },
         { role: 'Designer' },
         { role: 'Software Engineer' },
+        { role: 'Shadow' }
     ]
     const addTagRole = () => {
         var tagInput
@@ -75,16 +87,147 @@ function Submit()
         roleSelector.classList.toggle('hidden')
     }
 
+
+    // Create a submit
+ async function createSubmit(){
+        var role = document.getElementById('dropdown-roleList').value
+        var reason = document.getElementById('reason').value;
+        var profile = sessionStorage.getItem("idUser");
+
+        var getPosition
+        await api.get("/position").then((response)=>{getPosition=response.data})
+        
+        for(var i = 0; i < getPosition.length; i++){
+            if(getPosition[i].position == role){
+                role = getPosition[i].id_position
+            }
+        }
+        
+        console.log(role)
+        await api.post("/submission", {
+            reason: reason,
+            stt: "em avaliação",
+            idProject: id,
+            id_profile: profile,
+            position: role,
+            
+        })
+        
+    }
+
+
+
+//Edit stt
+
+function showEditStt(){
+    document.getElementById('editstt').style.display ='block';
+}
+    async function editStt(){
+        const id = project.idProject;
+        // const title = project.title;
+        // const description = project.description;
+        var stt = document.getElementById('stt').value;
+        // const submissionDate = project.submission_date;
+        // const endDate = project.date_initial;
+        // const initialDate = project.date_end;
+        // const creator = project.creator;
+        // const area = project.area;
+        // const role = project.role;
+        // const auth = project.auth;
+
+        document.getElementById('editstt').style.display ='none';
+        await api.patch(`/project/${id}`, {
+            // idProject: id,
+            // title: title,
+            // description: description,
+            stt: stt,
+            // submission_date: submissionDate,
+            // date_initial: initialDate,
+            // date_end: endDate,
+            // creator: creator,
+            // area: area,
+            // role: role,
+            // auth: auth
+        });
+
+        window.location.reload();
+
+}
+
+
+    useEffect(() => {
+        const {id } = params
+        async function getProject(){
+            await api.get('/project/'+id).then(res => {
+                setProject(res.data)
+                console.log(res.data)
+            }).catch(err => {
+                window.location.href = '/home'
+            })
+        }
+        
+        if (!id) {
+            window.location.href = '/home'
+        }
+
+        getProject()
+        console.log(submission)
+    }, [])
+
+
+    async function deleteProject(){
+        console.log("apagar projeto")
+        await api.delete('/project/'+id).then(res => {
+            window.location.href = '/home'
+        }).catch(err => {
+            window.location.href = '/project/'+id
+        })
+    }
+
+
+    const {id} = params
+    async function deleteSubmission(){
+
+        if(submission.length != 0){
+            for(var i = 0; i < submission.length; i++){
+                if(submission[i].idProject.idProject == id){
+                    await api.delete('/submission/'+submission[i].idSubmission).then(res => {
+                        console.log(res.data)
+                    }).catch(err => {
+                        console.log(err)
+                    })
+                }
+            }
+
+        }
+        deleteProject()
+
+    }
+ 
+
+    console.log(project.technologies)
+
+    var projectPositions = []
+
+
     return(<div>
         <NavBar/>
-        <div className="mainScreen px-40">
+        <div className="mainScreen px-40 pt-10">
             <div className="div1 flex flex-col justify-between w-full">
                 <div className='flex flex-row justify-between'>
-                    <h1 className=" text-7xl">Título</h1>
-                    <div className="inproglabel"> <h1>In progress</h1></div>
+                    <h1 className=" text-7xl">
+                        {project.title || "Loading..."}
+                    </h1>
+                    <Chip className="shadow-inner" label={project.stt || "Loading..."} sx={{fontSize:"18px", padding:"10px", background:"var(--base)", border:"1px solid var(--base_dark)"}}/>
+                    {/* <div className="">{project.stt || "Loading..."} </div> */}
+                    {/* <Btn text="EDITAR STATUS" onClick = {showEditStt}></Btn> */}
+                    <div className='editstt' id='editstt'>
+                        <input id='stt' placeholder='Status' className='inputstt' style={{borderRadius:"20px"}}></input>
+                        <Btn text="SALVAR STATUS" onClick= {editStt} ></Btn>
+                    </div>
                 </div>
                 <br></br>
-                <p className="" style={{width:"78%"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quam pellentesque nec nam aliquam sem et tortor. Tempor nec feugiat nisl pretium fusce id. Molestie at elementum eu facilisis. Dolor purus non enim praesent elementum facilisis leo. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum.</p>
+                <p className="" style={{width:"78%"}}>{project.description || "Loading..."}</p>
             </div>
 
             <br /><br />
@@ -92,13 +235,16 @@ function Submit()
             <div className="flex flex-row gap-2 justify-between">
                 <div className="flex flex-col justify-between">
                     <div className="flex flex-row items-center">
-                        <p className="font-bold text-lg pr-1">Area:</p><p>Automations</p>
+                        <p className="font-bold text-lg pr-1">Area:</p><p>{project.area || "Loading..."}</p>
                     </div>
                     <div className="flex flex-row items-center">
-                        <p className="font-bold text-lg pr-1">Vagas:</p> <p>Back-end</p>
+                        <p className="font-bold text-lg">Vagas:</p>
+                        {project.positions ? project.positions.map((e, index) => (<p className="mx-1" key={index}>{e.position}</p>)) : "Loading..."}
                     </div>
                     <div className="flex flex-row items-center">
-                        <p className="font-bold text-lg pr-1">Período:</p> <p>14/02/23 à 25/03/23</p>
+                        <p className="font-bold text-lg pr-1">Período:</p>
+                        {project.date_initial && <p>{`De ${project.date_initial.replace(/:00.000Z/g, "").replace(/-/g,'/').replace(/T/g,' - ') } até ${project.date_end.replace(/:00.000Z/g, "").replace(/-/g,'/').replace(/T/g,' - ')}`}</p> || "Loading..."}
+                        
                     </div>
                     <div className="flex flex-row items-center">
                         <p className="font-bold text-lg pr-1">Time:</p> 
@@ -110,32 +256,30 @@ function Submit()
                     </div>
                 </div>
 
-                <div className="flex flex-wrap justify-end">
-                    <div className="teclabel">Tecnologia I</div> 
-                    <div className="teclabel">Tecnologia I</div> 
-                    <div className="teclabel">Tecnologia I</div> 
+                <div className="flex flex-wrap justify-end gap-2">
+                    {project.technologies && project.technologies.map((e, index) => (<div key={index}> <Chip label={e.technology} className="shadow-lg" sx={{minWidth:"5rem", background:"var(--accent-color)", color:"var(--base)"}} /> </div>)) || "Loading..."} 
                 </div>
             </div> 
             {/* fim 1o bloco */}
             <br></br>
             <div className="flex flex-col justify-center items-center w-full">
-                <div className="flex flex-row justify-center items-center h-fit gap-3" style={{width:"100%"}}>
+                {/* <div className="flex flex-row justify-center items-center h-fit gap-3" style={{width:"100%"}}>
                     <label className="cursor-pointer" htmlFor="standardDev">
                         <h1 className="text-2xl font-medium text-center break-words">Participar no desenvolvimento</h1>
                         <div id='standardBar' className="selectedBar"></div>
                     </label>
                     <input checked={!IsChecked} onChange={standardDev} className="hidden" id="standardDev" type = "radio" name="radio"></input>
 
-                    <div className="divider"></div> 
+                     <div className="divider"></div>  
 
                     <label className="cursor-pointer" htmlFor="shadowDev">
                         <h1 className="text-2xl font-medium text-center">Participar como shadow</h1>
                         <div id='shadowBar' className="selectedBar hidden"></div>
-                    </label>
+                    </label> 
                     <input checked={IsChecked} onChange={shadowDev} className="hidden" id="shadowDev" type = "radio" name="radio"></input>
-                </div>
+                </div> */}
                 <br></br>
-                <div className="w-full">
+                <div className="w-full pb-10">
                     <div>
                         <h1 className="font-semibold text-3xl">Preencha as informações abaixo para se inscrever:</h1>
                     </div>
@@ -143,18 +287,31 @@ function Submit()
                     <br></br>
                     <Box className="shadow p-10" sx={{background:"var(--base)", borderRadius:"15px", gap: 5 }}>
                         
-                        <div className="flex flex-col gap-10">
-                            <TextField className="textInputBR20" fullWidth label="Nome completo:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/> 
+                        <div className="flex flex-col gap-5">
+                            <div className="hidden">
+                                {project.positions && project.positions.map((e, index) => (projectPositions.push({label:e.position}))) || "Loading..."}
+                            </div>
 
-                            <TextField className="textInputBR20" fullWidth label="Email institucional:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/> 
+                            <div id='role' className="flex flex-row justify-center">
+                                <Autocomplete
+                                    disablePortal
+                                    id="dropdown-roleList"
+                                    options={projectPositions}
+                                    sx={{ width: "100%" }}
+                                    renderInput={(params) => <TextField label="Vaga" className="textInputBR20" {...params} style={{background:"white", borderRadius:"20px"}}/>}
+                                />
+                            </div>
+                            {/* <TextField className="textInputBR20" fullWidth label="Nome completo:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/> 
+
+                            <TextField className="textInputBR20" fullWidth label="Email institucional:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>  */}
 
                             <div id='roleSelector' className="flex flex-row justify-between items-center w-full">
-                                <Autocomplete multiple id="fixed-tags-Role"
-                                    onChange={(event, newValue) => {
-                                        setValue([
-                                        ...newValue.filter((option) => roleList.indexOf(option)),
-                                        ]);
-                                    }}
+                                {/* <Autocomplete multiple id="fixed-tags-Role"
+                                    // onChange={(event, newValue) => {
+                                    //     setValue([
+                                    //     ...newValue.filter((option) => roleList.indexOf(option)),
+                                    //     ]);
+                                    // }}
                                     options={roleList}
                                     getOptionLabel={(option) => option.role}
                                     renderTags={(tagValue, getTagProps) =>
@@ -168,27 +325,28 @@ function Submit()
                                     style={{ width: "100%" }}
                                     filterSelectedOptions
                                     renderInput={(params) => (
-                                        <TextField {...params} label="Vagas" placeholder="Select" className="techList textInputBR20" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}} />)}
-                                />
-
+                                        <TextField {...params} label="Vagas" placeholder="Select" id= "role" className="techList textInputBR20" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}} />)}
+                                /> */}
                                 
-                                    <div style={{paddingLeft:"2.5%", paddingRight:"2.5%"}}>
+                                    {/* <div style={{paddingLeft:"2.5%", paddingRight:"2.5%"}}>
                                         <IconButton color="primary" onClick={addTagRole} aria-label="add" sx={{background:"var(--base)", border:"1px solid var(--accent-color)"}}>
                                             <Add color="accent_color" />
                                         </IconButton> 
-                                    </div>
+                                    </div> */}
 
-                                    <TextField id="addTagRole" className="textInputBR20" fullWidth label="Adicionar Vagas:" sx={{width:"57%",background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>    
+                                    {/* <TextField id="addTagRole" className="textInputBR20" fullWidth label="Adicionar Vagas:" sx={{width:"57%",background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>     */}
                                 
                             </div>
-                            <TextField className="textInputBR20" fullWidth rows={5} multiline label="Justificativa:" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>
+                            <TextField id="reason" className="textInputBR20" fullWidth rows={5} multiline label="Por que você quer aplicar para a vaga?" sx={{background:"white", borderRadius:"20px", boxShadow:"0px 1px 9px rgba(0, 0, 0, 0.21)"}}/>
                             <div className="flex flex-row justify-between items-center">
                                 <CheckBox checkFunction={checkedFunc} label="Meu gestor está ciente e concorda com minha participação no projeto."/>
-                                <PrimaryBtn text="SUBMETER"/>
+                                <Btn onClick={createSubmit} text="SUBMETER"/>
                             </div>
                         </div>
                     </Box>
                 </div>
+                <br /><br />
+                {/* <Btn text="Apagar" variant={"secondaryBtn"} onClick={deleteSubmission}/> */}
             </div>
 
         </div>

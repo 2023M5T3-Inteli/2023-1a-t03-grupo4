@@ -13,6 +13,7 @@ import { FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton } fr
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import { api } from '../../api';
 
 
 function Login() {
@@ -27,16 +28,22 @@ function Login() {
   
 
     //Constantes e armazenam o que foi escrito nos inputs de login
-    const [email, setEmail] = useState('')
+    const [username, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    const [userId, setUserId] = useState('');
     //Define o que será feito quando o botão de entrar é pressionado (Redireciona diretamente para a Home para fins demonstrativos)
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Submit", {email, password});
-        window.location.href = '/home'
-    }
+        
+        console.log(username)
 
+        await api.get(`/profile/${username}/id`)
+        .then((response) => {sessionStorage.setItem("idUser",response.data.id_profile)
+        window.location.href = '/home'})
+        .catch(()=>{
+            console.log("erro")
+        })
+    }
 
     return(
         <div className="background w-screen h-screen flex fixed">
@@ -73,11 +80,11 @@ function Login() {
                                 {/* Campos de input para login */}
                                 <div className="flex flex-col items-center w-full" style={{maxWidth:"23rem"}}>
                                     <FormControl fullWidth className='textInputBR20' sx={{ m: 1, background:"white", borderRadius:"20px" }} variant="outlined">
-                                        <InputLabel htmlFor="email">Email</InputLabel>
+                                        <InputLabel htmlFor="email">Username</InputLabel>
                                         <OutlinedInput
-                                            id="email"
+                                            id="username"
                                             type={"email"}
-                                            value={email} onChange={(e) => setEmail(e.target.value)}
+                                            value={username} onChange={(e) => setEmail(e.target.value)}
                                             endAdornment={
                                             <InputAdornment position="end">
                                                 <MailOutlineIcon></MailOutlineIcon>

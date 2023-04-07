@@ -1,8 +1,14 @@
 //Importação de componentes e bibliotecas
-import App from './App';
+
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Routes } from './routes';
+
+
+import { ThemeProvider } from "@mui/material";
+
+import { appTheme } from "./themes/theme.js";
 
 import './styles/global.css';
 
@@ -10,6 +16,8 @@ import './styles/global.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={appTheme}>
+      <Routes/>
+    </ThemeProvider>
   </React.StrictMode>
 );

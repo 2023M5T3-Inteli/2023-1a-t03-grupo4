@@ -1,13 +1,45 @@
+import { useEffect, useState } from "react";
 import './home.css'
-
 import $ from 'jquery'
 import NavBar from '../../components/NavBar';
 import ProjectCard from '../../components/ProjectCard';
 import Footer from '../../components/Footer';
 import PrimaryBtn from '../../components/Btn';
+import { api } from "../../api";
+import { renderMatches } from "react-router-dom";
 
 
 function Home() {
+    const [loading, setLoading] = useState(false);
+    const [userData, setUserData] = useState();
+
+    window.addEventListener('load',() => {
+        const fetchUserData = async () => {
+          setLoading(true);
+          var getProjects
+          await api.get('/project').then((response) => {getProjects=response.data});
+          
+    
+          setUserData(getProjects);
+    
+          setLoading(false);
+        };
+
+        fetchUserData();
+    }, []); 
+
+
+    var User
+    window.addEventListener('load', User = userData)
+    
+    const showMore = (e) => {
+        e.preventDefault();
+        window.location.href = "/projects"
+    }
+
+
+
+
     var techList = [
          'Next.js' ,
          'AWS' ,
@@ -34,27 +66,20 @@ function Home() {
                 <br /><br /><br />
 
                 <div className="flex flex-col items-center shadow-sm w-full h-fit p-10 py-20" style={{background:"white", minHeight:"20rem" , maxHeight:"fit-content", borderRadius:"20px", border:"1px solid var(--grey1)"}}>
-                    <div className="flex flex-wrap items-center justify-center gap-28">
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-                        <ProjectCard title={"teste"} techList={techList}/>
-
+                    <div className="flex flex-wrap items-center justify-center gap-28 pb-20">
+                        {User ? User.map((e, index) => {if(index < 9) {return(<ProjectCard id={e.idProject} key={index} title={e.title} techList={e.technologies} windowLocaion={"/submit"} color={e.color}/>)}}) : <h1>Carregando...</h1>}
+                        
+                        
                     </div>
 
                     <br /><br /><br />
 
-                    <PrimaryBtn text={"Ver mais"}/>
+                    <PrimaryBtn onClick={showMore} text={"Ver mais"}/>
                 </div>
             </section>
 
-            <section className="flex flex-col items-center w-full h-96 p-16" style={{borderTop:"2px solid var(--grey1)"}}>
-                <div className="flex flex-col items-center justify-center w-full pb-10" style={{maxWidth:"40rem"}}>
+            <section className="flex flex-col items-center w-full h-fit p-16" style={{borderTop:"2px solid var(--grey1)"}}>
+                <div className="flex flex-col items-center justify-center text-center w-full pb-10" style={{maxWidth:"40rem"}}>
                     <h1 className="text-6xl font-semibold" style={{color:"var(--primary-color)"}}>SOBRE A SOLUÇÃO</h1>
                     <br />
                     <p className="text-center">Lorem ipsum dolor sit amet consectetur. Faucibus mauris consequat purus ullamcorper ut sit. Duis consequat eu libero tellus tincidunt morbi interdum semper cras. Sit lorem nunc non convallis. </p>

@@ -1,4 +1,6 @@
 import styles from "./Modal.module.scss";
+import { IconButton } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 
 const Modal = (props) => {
   return (
@@ -8,19 +10,14 @@ const Modal = (props) => {
         <header className={styles.header}>
           <h1>Título</h1>
           <p>In Progress</p>
-          <button onClick={props.onClose}>X</button>
+          <IconButton color="primary" onClick={props.onClose} aria-label="add" sx={{background: "var(--base)", border: "1px solid var(--accent-color)" }}>
+            <CloseIcon color="accent_color" sx={{fontSize:"18px"}} />
+          </IconButton>
+          {/* <button onClick={props.onClose}>X</button> */}
         </header>
         <main className={styles.main}> 
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-            egestas, nibh eget tristique cursus, libero nisi cursus lacus, eu
-            tempus lacus tellus at felis. Praesent id malesuada massa. Integer
-            vitae gravida nisl. Donec in neque id purus vehicula faucibus. Nam
-            auctor justo eu tellus iaculis, ut dictum dolor feugiat. Curabitur
-            vitae augue vestibulum magna congue laoreet. Maecenas ut ante sed
-            libero dignissim rhoncus. Nunc tristique luctus lectus et gravida.
-            Nullam et nisl lacus. Etiam varius nulla ac nibh mattis semper.
-            Vestibulum pulvinar nunc sed pellentesque sollicitudin.
+            {props.projectDescription}
           </p>
           <div className={styles.techBox}>
             <p>Tecnologia I</p>

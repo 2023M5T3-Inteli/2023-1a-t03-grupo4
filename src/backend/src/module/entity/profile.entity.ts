@@ -16,11 +16,11 @@ export class Profile{
     @Index({ unique: true })
     public email: string;
 
-    @ManyToMany(() => Skills)
+    @ManyToMany(() => Skills, {eager: true})
     @JoinTable()
     skills: Skills[]
 
-    @ManyToMany(() => Technologies)
+    @ManyToMany(() => Technologies, {eager: true})
     @JoinTable()
     technologies: Technologies[]
   

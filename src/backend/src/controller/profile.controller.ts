@@ -26,10 +26,15 @@ export class profileController {
     return this.profileService.createProfile(profile);
   }
 
-
   //delete todo
   @Delete(':id')
   async deleteprofile(@Param('id') id: string) {
     this.profileService.deleteprofile(Number(id));
   }
+
+  @Get(':name/id')
+  async findUserIdByUsername(@Param('name') name: string){
+    return this.profileService.findUserIdByUsername(name);
+  }
+
 }

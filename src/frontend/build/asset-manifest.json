@@ -1,15 +1,30 @@
 {
   "files": {
-    "main.css": "/static/css/main.d00dac08.css",
-    "main.js": "/static/js/main.59533cc5.js",
+<<<<<<< Updated upstream
+    "main.css": "/static/css/main.a004095b.css",
+    "main.js": "/static/js/main.9f7deb1d.js",
+=======
+    "main.css": "/static/css/main.42bf6eb7.css",
+    "main.js": "/static/js/main.b7591b36.js",
+>>>>>>> Stashed changes
+    "static/media/WallpaperHome.png": "/static/media/WallpaperHome.f79e3df6137b16d0e767.png",
     "static/media/CNLogoName.png": "/static/media/CNLogoName.8b8acf9bfe82cfa9a466.png",
     "static/media/CNLogo.png": "/static/media/CNLogo.43d0ac36e437ece2785c.png",
     "index.html": "/index.html",
-    "main.d00dac08.css.map": "/static/css/main.d00dac08.css.map",
-    "main.59533cc5.js.map": "/static/js/main.59533cc5.js.map"
+<<<<<<< Updated upstream
+    "main.a004095b.css.map": "/static/css/main.a004095b.css.map",
+    "main.9f7deb1d.js.map": "/static/js/main.9f7deb1d.js.map"
   },
   "entrypoints": [
-    "static/css/main.d00dac08.css",
-    "static/js/main.59533cc5.js"
+    "static/css/main.a004095b.css",
+    "static/js/main.9f7deb1d.js"
+=======
+    "main.42bf6eb7.css.map": "/static/css/main.42bf6eb7.css.map",
+    "main.b7591b36.js.map": "/static/js/main.b7591b36.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.42bf6eb7.css",
+    "static/js/main.b7591b36.js"
+>>>>>>> Stashed changes
   ]
 }

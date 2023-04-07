@@ -44,15 +44,15 @@ export class Project {
   @Column()
   public auth: boolean;
 
-  @ManyToMany(() => Skills)
+  @ManyToMany(() => Skills, {eager: true})
   @JoinTable()
   skills: Skills[]
 
-  @ManyToMany(() => Positions)
+  @ManyToMany(() => Positions, {eager: true})
   @JoinTable()
   positions: Positions[]
 
-  @ManyToMany(() => Technologies)
+  @ManyToMany(() => Technologies, {eager: true})
   @JoinTable()
   technologies: Technologies[]
 }
