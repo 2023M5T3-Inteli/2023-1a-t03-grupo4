@@ -37,10 +37,15 @@ export class projectController {
     this.projectService.deleteProject(Number(id));
   }
 
-    // update a project
-    @Patch(':id')
-    async updateProject(@Param('id') id: string, @Body() project: UpdateProjectDto) {
-      return this.projectService.updateProject(Number(id), project);
-    }
+  // update a project
+  @Patch(':id')
+  async updateProject(@Param('id') id: string, @Body() project: UpdateProjectDto) {
+    return this.projectService.updateProject(Number(id), project);
+  }
 
+  // Get a project by creator
+  @Get('creator/:id')
+  getProjectByCreator(@Param('id') id: string) {
+    return this.projectService.getProjectByCreator(id);
+  }
 }

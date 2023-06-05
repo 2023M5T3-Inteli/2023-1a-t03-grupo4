@@ -55,6 +55,9 @@ export class Project {
   @ManyToMany(() => Technologies, {eager: true})
   @JoinTable()
   technologies: Technologies[]
+
+  @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
+  created_at: Date;
 }
 
 export default Project;

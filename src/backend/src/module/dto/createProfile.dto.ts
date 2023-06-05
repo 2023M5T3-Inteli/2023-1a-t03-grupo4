@@ -5,7 +5,7 @@ export class createProfileDto{
         description: 'Id of the profile',
         example: 1,
     })
-    idProfile: number;
+    idProfile: string;
     
     @ApiProperty({
         description: 'Tesla Alberto da Silva',

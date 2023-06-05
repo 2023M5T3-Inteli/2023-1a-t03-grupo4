@@ -1,4 +1,4 @@
-import { Column, PrimaryGeneratedColumn, Index, Entity, ManyToMany, JoinTable, OneToOne, JoinColumn} from 'typeorm';
+import { Column, PrimaryGeneratedColumn, Index, Entity, ManyToMany, JoinTable, OneToOne, JoinColumn, PrimaryColumn} from 'typeorm';
 import {Project} from './project.entity'
 import {Skills} from './skills.entity';
 import { Technologies } from './technologies.entity';
@@ -6,8 +6,8 @@ import { Technologies } from './technologies.entity';
 @Entity()
 export class Profile{
 
-    @PrimaryGeneratedColumn()   
-    id_profile: number;
+    @PrimaryColumn()   
+    id_profile: string;
     
     @Column()
     public name: string;

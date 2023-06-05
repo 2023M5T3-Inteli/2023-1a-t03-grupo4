@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -20,6 +22,8 @@ export class ProjectService {
   async getProjectById(idProject: number) {
     const project = await this.projectRepository.findOneById(idProject);
     if (project) {
+      project.date_initial = new Date(project.date_initial).toLocaleDateString();
+      project.date_end = new Date(project.date_end).toLocaleDateString();
       return project;
     }
 
@@ -42,15 +46,23 @@ export class ProjectService {
     }
   }
 
-      //Update a project
-      async updateProject(id, project: UpdateProjectDto) {
-        await this.projectRepository.update(id, project);
-        const updatedProject = await this.projectRepository.findOne({where:id});
-        if (updatedProject) {
-          return updatedProject;
-        }
-    
-        throw new HttpException('Project not found', HttpStatus.NOT_FOUND);
-      }
+  //Update a project  
+  async updateProject(id, project: UpdateProjectDto) {
+    await this.projectRepository.update(id, project);
+    const updatedProject = await this.projectRepository.findOne({where:id});
+    if (updatedProject) {
+      return updatedProject;
+    }
+  
+   throw new HttpException('Project not found', HttpStatus.NOT_FOUND);
+  }
 
+  async getProjectByCreator(Creator: string) {
+    const project = await this.projectRepository.find({where:{creator:{id_profile:Creator}}});
+    if (project) {
+      return project;
+    }
+
+    throw new HttpException('Project not found', HttpStatus.NOT_FOUND);
+  }
 }

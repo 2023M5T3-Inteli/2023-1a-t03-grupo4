@@ -16,8 +16,8 @@ export class profileController {
 
   // get todo by id
   @Get(':id')
-  getProfileById(@Param('id') id: number) {
-    return this.profileService.getProfileById(Number(id));
+  getProfileById(@Param('id') id: string) {
+    return this.profileService.getProfileById(id);
   }
 
   // create todo

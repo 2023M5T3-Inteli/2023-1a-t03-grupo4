@@ -16,7 +16,7 @@ export class profileService {
   }
 
   // find by id
-  async getProfileById(id: number) {
+  async getProfileById(id: string) {
     const profile = await this.profileRepository.findOneById(id);
     if (profile) {
       return profile;

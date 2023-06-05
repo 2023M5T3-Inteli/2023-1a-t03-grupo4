@@ -1,6 +1,8 @@
 import { Profile } from '../entity/profile.entity'
 import { ApiProperty } from "@nestjs/swagger";
 
+var now = new Date();
+var date = now.toLocaleDateString();
 
 export class CreateProject{
     @ApiProperty({
