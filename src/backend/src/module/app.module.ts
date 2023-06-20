@@ -24,7 +24,7 @@ import { HealthModule } from './health.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'database-3-legado.c73mzkqqtqen.us-east-1.rds.amazonaws.com',
+      host: 'db-legado.cfv9w60ythbm.us-east-1.rds.amazonaws.com',
       port: 5432,
       username: 'postgres',
       password: 'grupo4123',
